@@ -1,0 +1,91 @@
+﻿<!-- Topbar Start -->
+<div class="container-fluid">
+    <div class="row bg-secondary py-1 px-xl-5">
+        <div class="col-lg-6 d-none d-lg-block">
+            <div class="d-inline-flex align-items-center h-100">
+                <a class="text-body mr-3" asp-action="Index" asp-controller="Home">Giới thiệu</a>
+                <a class="text-body mr-3" asp-action="Index" asp-controller="Contact">Liên hệ</a>
+                <a class="text-body mr-3" asp-action="Index" asp-controller="Contact">Hỗ trợ</a> <!-- Tính sau -->
+                <a class="text-body mr-3" href="">Câu hỏi thường gặp</a> <!-- Tính sau -->
+            </div>
+        </div>
+        <div class="col-lg-6 text-center text-lg-right">
+            <div class="d-inline-flex align-items-center">
+                <div class="btn-group">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        // Nếu là Khách hàng
+                        if (User.HasClaim(c => c.Type == "Hinh"))
+                        {
+                            <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">
+                                <img src="@Url.Content("~/Hinh/KhachHang/" +
+                                                              (!string.IsNullOrEmpty(User.FindFirst("Hinh")?.Value)
+                                                                  ? User.FindFirst("Hinh").Value
+                                                                  : "default-customer.png"))"
+                             alt="Avatar" style="width:24px; height:24px; border-radius:50%; object-fit:cover; margin-right:5px;">
+                            @User.Identity.Name
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item" asp-action="DangXuat" asp-controller="KhachHang">Đăng xuất (KH)</a>
+                            </div>
+                        }
+                        }
+                    else
+                    {
+                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Đăng nhập</button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" asp-action="DangNhap" asp-controller="KhachHang">Khách hàng</a>
+                            <a class="dropdown-item" asp-action="Index" asp-controller="DangNhap">Nhân viên</a>
+                        </div>
+                    }
+                </div>
+                @if (User.Identity.IsAuthenticated && User.FindFirst("MaNV")?.Value == "admin")
+                {
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Quản trị</button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" asp-action="Index" asp-controller="NhanVien">Quản lý nhân viên</a>
+                        </div>
+                    </div>
+                }
+                </div>
+            </div>
+            <div class="d-inline-flex align-items-center d-block d-lg-none">
+                <a href="" class="btn px-0 ml-2">
+                    <i class="fas fa-heart text-dark"></i>
+                    <span class="badge text-dark border border-dark rounded-circle" style="padding-bottom: 2px;">0</span>
+                </a>
+                <a href="" class="btn px-0 ml-2">
+                    <i class="fas fa-shopping-cart text-dark"></i>
+                    <span class="badge text-dark border border-dark rounded-circle" style="padding-bottom: 2px;">0</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
+        <div class="col-lg-4">
+            <a href="/" class="text-decoration-none">
+                <span class="h2 text-uppercase text-primary bg-dark px-2">STATIONERY</span>
+            </a>
+        </div>
+        <div class="col-lg-4 col-6 text-left">
+            <form asp-action="Search" asp-controller="HangHoa" method="get">
+                <div class="input-group">
+                    <input id="searchText" type="text" class="form-control" style="border-radius:50px;" placeholder="Tìm kiếm sản phẩm..." name="query">
+                    <div class="input-group-append">
+                        <button type="submit" style="border: none;border-radius: 50%;padding: 0px 12px;background: transparent;cursor: pointer;">
+                            <span id="searchButton" style="color: #333;font-size: 18px; ">
+                                <i class="fa fa-search"></i>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-4 col-6 text-right">
+            <p class="m-0">Hỗ trợ khách hàng</p>
+            <h5 class="m-0">+84 012 345 6789</h5>
+        </div>
+    </div>
+</div>
+<!-- Topbar End -->

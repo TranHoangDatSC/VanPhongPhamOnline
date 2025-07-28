@@ -1,0 +1,84 @@
+﻿@model VanPhongPhamOnline.ViewModels.LoginVM
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <h1 class="text-center mb-4">Tên đăng nhập</h1>
+
+            <form asp-action="DangNhap" asp-route-returnurl="@ViewBag.ReturnUrl">
+                <div class="text-danger mb-3" asp-validation-summary="All"></div>
+
+                <div class="mb-3">
+                    <label asp-for="UserName" class="form-label">Đăng nhập <sup>*</sup></label>
+                    <input asp-for="UserName" class="form-control" style="border-radius:12px; />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="Password" class="form-label">Mật khẩu <sup>*</sup></label>
+                    <input asp-for="Password" class="form-control" type="password" style="border-radius:12px; />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" class="btn btn-register">
+                        <i class="fa fa-sign-in-alt me-2"></i> Đăng nhập
+                    </button>
+
+                    <a asp-controller="" asp-action="" class="btn btn-forgot">
+                        Quên mật khẩu?
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<style>
+    .button-group {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .btn-register {
+        background: linear-gradient(45deg, #f6a623, #f39c12);
+        border: none;
+        color: white !important;
+        padding: 14px 40px;
+        border-radius: 50px;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 16px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        transition: 0.3s;
+    }
+
+        .btn-register:hover {
+            background: linear-gradient(45deg, #f39c12, #f6a623);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+
+    .btn-forgot {
+        background: white;
+        border: 2px solid #f39c12;
+        color: #f39c12 !important;
+        padding: 14px 40px;
+        border-radius: 50px;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 16px;
+        transition: 0.3s;
+    }
+
+        .btn-forgot:hover {
+            background: #fef3e7;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+</style>

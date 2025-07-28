@@ -1,0 +1,58 @@
+﻿@model VanPhongPhamOnline.Data.PhanCong
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+</head>
+<body>
+
+<h4>PhanCong</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="MaPc" />
+            <div class="form-group">
+                <label asp-for="MaNv" class="control-label"></label>
+                <select asp-for="MaNv" class="form-control" asp-items="ViewBag.MaNv"></select>
+                <span asp-validation-for="MaNv" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaPb" class="control-label"></label>
+                <select asp-for="MaPb" class="form-control" asp-items="ViewBag.MaPb"></select>
+                <span asp-validation-for="MaPb" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NgayPc" class="control-label"></label>
+                <input asp-for="NgayPc" class="form-control" />
+                <span asp-validation-for="NgayPc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HieuLuc" class="control-label"></label>
+                <input asp-for="HieuLuc" class="form-control" />
+                <span asp-validation-for="HieuLuc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+</body>
+</html>

@@ -1,0 +1,112 @@
+﻿@model IEnumerable<VanPhongPhamOnline.Data.NhanVien>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <title>Quản lý nhân viên</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <style>
+        body {
+            background: linear-gradient(120deg, #fff3e0, #ffe0b2);
+            font-family: 'Segoe UI', sans-serif;
+            padding: 40px;
+        }
+
+        .container-box {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #f57c00;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        th {
+            background-color: #ffe0b2;
+            color: #5d4037;
+        }
+
+        td {
+            vertical-align: middle !important;
+        }
+
+        .btn-primary {
+            background-color: #f57c00;
+            border: none;
+            border-radius: 30px;
+            font-weight: bold;
+        }
+
+            .btn-primary:hover {
+                background-color: #ef6c00;
+            }
+
+        .action-links a {
+            margin-right: 10px;
+            font-weight: 500;
+        }
+
+        .action-links a:hover {
+            text-decoration: underline;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border: none;
+            border-radius: 30px;
+            font-weight: bold;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-box">
+        <h1 style="text-align: center">Quản lý nhân viên</h1>
+
+        <p>
+            <a asp-controller="Admin" asp-action="IndexAdmin" class="btn btn-secondary">&larr; Quay về Trang Quản Trị</a>
+            <a asp-action="Create" class="btn btn-primary ml-2">+ Thêm mới</a>
+        </p>
+
+
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Họ tên</th>
+                    <th>Email</th>
+                    <th>Mật khẩu</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.HoTenNv</td>
+                        <td>@item.EmailNv</td>
+                        <td>@item.MatKhauNv</td>
+                        <td class="action-links">
+                            <a asp-action="Edit" asp-route-id="@item.MaNv" class="text-warning">Sửa</a>
+                            <a asp-action="Details" asp-route-id="@item.MaNv" class="text-info">Chi tiết</a>
+                            <a asp-action="Delete" asp-route-id="@item.MaNv" class="text-danger">Xóa</a>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

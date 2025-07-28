@@ -1,0 +1,8 @@
+﻿@model IEnumerable<VanPhongPhamOnline.ViewModels.HangHoaVM>
+@{
+    ViewData["Title"] = "Search";
+    Layout = "_DanhSachHangHoa";
+}
+<!-- Product Item -->
+@await Html.PartialAsync("ProductItem", Model)
+<!-- End of Product Item -->

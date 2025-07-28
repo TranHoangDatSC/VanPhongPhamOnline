@@ -1,0 +1,606 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|c:\\dat files\\document_study\\2024-2025 - semester i \u0026 ii \u0026 iii\\introduction to software engineering\\vanphongphamonline\\vanphongphamonline\\controllers\\admin\\nhanviencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|solutionrelative:vanphongphamonline\\controllers\\admin\\nhanviencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|c:\\dat files\\document_study\\2024-2025 - semester i \u0026 ii \u0026 iii\\introduction to software engineering\\vanphongphamonline\\vanphongphamonline\\views\\contact\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|solutionrelative:vanphongphamonline\\views\\contact\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|c:\\dat files\\document_study\\2024-2025 - semester i \u0026 ii \u0026 iii\\introduction to software engineering\\vanphongphamonline\\vanphongphamonline\\views\\shared\\_footer.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|solutionrelative:vanphongphamonline\\views\\shared\\_footer.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|c:\\dat files\\document_study\\2024-2025 - semester i \u0026 ii \u0026 iii\\introduction to software engineering\\vanphongphamonline\\vanphongphamonline\\views\\admin\\indexadmin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|solutionrelative:vanphongphamonline\\views\\admin\\indexadmin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|c:\\dat files\\document_study\\2024-2025 - semester i \u0026 ii \u0026 iii\\introduction to software engineering\\vanphongphamonline\\vanphongphamonline\\controllers\\admin\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|solutionrelative:vanphongphamonline\\controllers\\admin\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|c:\\dat files\\document_study\\2024-2025 - semester i \u0026 ii \u0026 iii\\introduction to software engineering\\vanphongphamonline\\vanphongphamonline\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|solutionrelative:vanphongphamonline\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|c:\\dat files\\document_study\\2024-2025 - semester i \u0026 ii \u0026 iii\\introduction to software engineering\\vanphongphamonline\\vanphongphamonline\\views\\cart\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|solutionrelative:vanphongphamonline\\views\\cart\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|c:\\dat files\\document_study\\2024-2025 - semester i \u0026 ii \u0026 iii\\introduction to software engineering\\vanphongphamonline\\vanphongphamonline\\views\\hanghoa\\detail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|solutionrelative:vanphongphamonline\\views\\hanghoa\\detail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|c:\\dat files\\document_study\\2024-2025 - semester i \u0026 ii \u0026 iii\\introduction to software engineering\\vanphongphamonline\\vanphongphamonline\\views\\hanghoa\\productitem.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|solutionrelative:vanphongphamonline\\views\\hanghoa\\productitem.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|c:\\dat files\\document_study\\2024-2025 - semester i \u0026 ii \u0026 iii\\introduction to software engineering\\vanphongphamonline\\vanphongphamonline\\views\\shared\\components\\cart\\cartpanel.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|solutionrelative:vanphongphamonline\\views\\shared\\components\\cart\\cartpanel.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|c:\\dat files\\document_study\\2024-2025 - semester i \u0026 ii \u0026 iii\\introduction to software engineering\\vanphongphamonline\\vanphongphamonline\\views\\admin\\dangnhap\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|solutionrelative:vanphongphamonline\\views\\admin\\dangnhap\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|c:\\dat files\\document_study\\2024-2025 - semester i \u0026 ii \u0026 iii\\introduction to software engineering\\vanphongphamonline\\vanphongphamonline\\views\\khachhang\\dangnhap.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|solutionrelative:vanphongphamonline\\views\\khachhang\\dangnhap.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|c:\\dat files\\document_study\\2024-2025 - semester i \u0026 ii \u0026 iii\\introduction to software engineering\\vanphongphamonline\\vanphongphamonline\\controllers\\admin\\dangnhapcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|solutionrelative:vanphongphamonline\\controllers\\admin\\dangnhapcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|c:\\dat files\\document_study\\2024-2025 - semester i \u0026 ii \u0026 iii\\introduction to software engineering\\vanphongphamonline\\vanphongphamonline\\views\\shared\\_topbar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|solutionrelative:vanphongphamonline\\views\\shared\\_topbar.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|c:\\dat files\\document_study\\2024-2025 - semester i \u0026 ii \u0026 iii\\introduction to software engineering\\vanphongphamonline\\vanphongphamonline\\controllers\\khachhangcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|solutionrelative:vanphongphamonline\\controllers\\khachhangcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|c:\\dat files\\document_study\\2024-2025 - semester i \u0026 ii \u0026 iii\\introduction to software engineering\\vanphongphamonline\\vanphongphamonline\\data\\phancong.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|solutionrelative:vanphongphamonline\\data\\phancong.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|c:\\dat files\\document_study\\2024-2025 - semester i \u0026 ii \u0026 iii\\introduction to software engineering\\vanphongphamonline\\vanphongphamonline\\views\\khachhang\\profile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|solutionrelative:vanphongphamonline\\views\\khachhang\\profile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|c:\\dat files\\document_study\\2024-2025 - semester i \u0026 ii \u0026 iii\\introduction to software engineering\\vanphongphamonline\\vanphongphamonline\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|solutionrelative:vanphongphamonline\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|c:\\dat files\\document_study\\2024-2025 - semester i \u0026 ii \u0026 iii\\introduction to software engineering\\vanphongphamonline\\vanphongphamonline\\views\\admin\\nhanvien\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|solutionrelative:vanphongphamonline\\views\\admin\\nhanvien\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|c:\\dat files\\document_study\\2024-2025 - semester i \u0026 ii \u0026 iii\\introduction to software engineering\\vanphongphamonline\\vanphongphamonline\\helpers\\admingenerater.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|solutionrelative:vanphongphamonline\\helpers\\admingenerater.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|c:\\dat files\\document_study\\2024-2025 - semester i \u0026 ii \u0026 iii\\introduction to software engineering\\vanphongphamonline\\vanphongphamonline\\views\\admin\\nhanvien\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|solutionrelative:vanphongphamonline\\views\\admin\\nhanvien\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|c:\\dat files\\document_study\\2024-2025 - semester i \u0026 ii \u0026 iii\\introduction to software engineering\\vanphongphamonline\\vanphongphamonline\\views\\admin\\nhanvien\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|solutionrelative:vanphongphamonline\\views\\admin\\nhanvien\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|c:\\dat files\\document_study\\2024-2025 - semester i \u0026 ii \u0026 iii\\introduction to software engineering\\vanphongphamonline\\vanphongphamonline\\views\\admin\\nhanvien\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|solutionrelative:vanphongphamonline\\views\\admin\\nhanvien\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|c:\\dat files\\document_study\\2024-2025 - semester i \u0026 ii \u0026 iii\\introduction to software engineering\\vanphongphamonline\\vanphongphamonline\\views\\admin\\nhanvien\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|solutionrelative:vanphongphamonline\\views\\admin\\nhanvien\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|c:\\dat files\\document_study\\2024-2025 - semester i \u0026 ii \u0026 iii\\introduction to software engineering\\vanphongphamonline\\vanphongphamonline\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|solutionrelative:vanphongphamonline\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|c:\\dat files\\document_study\\2024-2025 - semester i \u0026 ii \u0026 iii\\introduction to software engineering\\vanphongphamonline\\vanphongphamonline\\viewmodels\\nhanvienvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|solutionrelative:vanphongphamonline\\viewmodels\\nhanvienvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|c:\\dat files\\document_study\\2024-2025 - semester i \u0026 ii \u0026 iii\\introduction to software engineering\\vanphongphamonline\\vanphongphamonline\\data\\nhanvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|solutionrelative:vanphongphamonline\\data\\nhanvien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|c:\\dat files\\document_study\\2024-2025 - semester i \u0026 ii \u0026 iii\\introduction to software engineering\\vanphongphamonline\\vanphongphamonline\\viewmodels\\loginvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|solutionrelative:vanphongphamonline\\viewmodels\\loginvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|c:\\dat files\\document_study\\2024-2025 - semester i \u0026 ii \u0026 iii\\introduction to software engineering\\vanphongphamonline\\vanphongphamonline\\data\\phongban.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|solutionrelative:vanphongphamonline\\data\\phongban.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|c:\\dat files\\document_study\\2024-2025 - semester i \u0026 ii \u0026 iii\\introduction to software engineering\\vanphongphamonline\\vanphongphamonline\\views\\khachhang\\dangky.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|solutionrelative:vanphongphamonline\\views\\khachhang\\dangky.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|c:\\dat files\\document_study\\2024-2025 - semester i \u0026 ii \u0026 iii\\introduction to software engineering\\vanphongphamonline\\vanphongphamonline\\viewmodels\\phancongvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|solutionrelative:vanphongphamonline\\viewmodels\\phancongvm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|c:\\dat files\\document_study\\2024-2025 - semester i \u0026 ii \u0026 iii\\introduction to software engineering\\vanphongphamonline\\vanphongphamonline\\helpers\\myulti.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|solutionrelative:vanphongphamonline\\helpers\\myulti.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|c:\\dat files\\document_study\\2024-2025 - semester i \u0026 ii \u0026 iii\\introduction to software engineering\\vanphongphamonline\\vanphongphamonline\\helpers\\dataencryptionextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|solutionrelative:vanphongphamonline\\helpers\\dataencryptionextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|c:\\dat files\\document_study\\2024-2025 - semester i \u0026 ii \u0026 iii\\introduction to software engineering\\vanphongphamonline\\vanphongphamonline\\controllers\\hanghoacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|solutionrelative:vanphongphamonline\\controllers\\hanghoacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|c:\\dat files\\document_study\\2024-2025 - semester i \u0026 ii \u0026 iii\\introduction to software engineering\\vanphongphamonline\\vanphongphamonline\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|solutionrelative:vanphongphamonline\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|c:\\dat files\\document_study\\2024-2025 - semester i \u0026 ii \u0026 iii\\introduction to software engineering\\vanphongphamonline\\vanphongphamonline\\viewmodels\\hanghoavm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F8D745E-D1B5-46E7-8A7F-E3337666CE54}|VanPhongPhamOnline\\VanPhongPhamOnline.csproj|solutionrelative:vanphongphamonline\\viewmodels\\hanghoavm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 9,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Views\\Contact\\Index.cshtml",
+              "RelativeDocumentMoniker": "VanPhongPhamOnline\\Views\\Contact\\Index.cshtml",
+              "ToolTip": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Views\\Contact\\Index.cshtml",
+              "RelativeToolTip": "VanPhongPhamOnline\\Views\\Contact\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-28T05:00:28.002Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Profile.cshtml",
+              "DocumentMoniker": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Views\\KhachHang\\Profile.cshtml",
+              "RelativeDocumentMoniker": "VanPhongPhamOnline\\Views\\KhachHang\\Profile.cshtml",
+              "ToolTip": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Views\\KhachHang\\Profile.cshtml",
+              "RelativeToolTip": "VanPhongPhamOnline\\Views\\KhachHang\\Profile.cshtml",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAACIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-27T17:36:46.814Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "DangNhap.cshtml",
+              "DocumentMoniker": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Views\\KhachHang\\DangNhap.cshtml",
+              "RelativeDocumentMoniker": "VanPhongPhamOnline\\Views\\KhachHang\\DangNhap.cshtml",
+              "ToolTip": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Views\\KhachHang\\DangNhap.cshtml",
+              "RelativeToolTip": "VanPhongPhamOnline\\Views\\KhachHang\\DangNhap.cshtml",
+              "ViewState": "AgIAADoAAAAAAAAAAAAIwFQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-27T17:36:33.567Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "_ViewStart.cshtml",
+              "DocumentMoniker": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Views\\_ViewStart.cshtml",
+              "RelativeDocumentMoniker": "VanPhongPhamOnline\\Views\\_ViewStart.cshtml",
+              "ToolTip": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Views\\_ViewStart.cshtml",
+              "RelativeToolTip": "VanPhongPhamOnline\\Views\\_ViewStart.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-27T17:36:19.524Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Controllers\\Admin\\AdminController.cs",
+              "RelativeDocumentMoniker": "VanPhongPhamOnline\\Controllers\\Admin\\AdminController.cs",
+              "ToolTip": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Controllers\\Admin\\AdminController.cs",
+              "RelativeToolTip": "VanPhongPhamOnline\\Controllers\\Admin\\AdminController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-27T17:17:24.506Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Views\\Admin\\DangNhap\\Index.cshtml",
+              "RelativeDocumentMoniker": "VanPhongPhamOnline\\Views\\Admin\\DangNhap\\Index.cshtml",
+              "ToolTip": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Views\\Admin\\DangNhap\\Index.cshtml",
+              "RelativeToolTip": "VanPhongPhamOnline\\Views\\Admin\\DangNhap\\Index.cshtml",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAIwE8AAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-27T17:07:49.019Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Views\\Admin\\NhanVien\\Edit.cshtml",
+              "RelativeDocumentMoniker": "VanPhongPhamOnline\\Views\\Admin\\NhanVien\\Edit.cshtml",
+              "ToolTip": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Views\\Admin\\NhanVien\\Edit.cshtml",
+              "RelativeToolTip": "VanPhongPhamOnline\\Views\\Admin\\NhanVien\\Edit.cshtml",
+              "ViewState": "AgIAAHkAAAAAAAAAAAAkwIkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-27T16:17:35.277Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "NhanVienController.cs",
+              "DocumentMoniker": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Controllers\\Admin\\NhanVienController.cs",
+              "RelativeDocumentMoniker": "VanPhongPhamOnline\\Controllers\\Admin\\NhanVienController.cs",
+              "ToolTip": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Controllers\\Admin\\NhanVienController.cs",
+              "RelativeToolTip": "VanPhongPhamOnline\\Controllers\\Admin\\NhanVienController.cs",
+              "ViewState": "AgIAAFkAAAAAAAAAAAAwwHQAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-27T09:44:47.001Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "_Topbar.cshtml",
+              "DocumentMoniker": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Views\\Shared\\_Topbar.cshtml",
+              "RelativeDocumentMoniker": "VanPhongPhamOnline\\Views\\Shared\\_Topbar.cshtml",
+              "ToolTip": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Views\\Shared\\_Topbar.cshtml",
+              "RelativeToolTip": "VanPhongPhamOnline\\Views\\Shared\\_Topbar.cshtml",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAB4AAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-27T17:42:37.638Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "CartPanel.cshtml",
+              "DocumentMoniker": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Views\\Shared\\Components\\Cart\\CartPanel.cshtml",
+              "RelativeDocumentMoniker": "VanPhongPhamOnline\\Views\\Shared\\Components\\Cart\\CartPanel.cshtml",
+              "ToolTip": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Views\\Shared\\Components\\Cart\\CartPanel.cshtml",
+              "RelativeToolTip": "VanPhongPhamOnline\\Views\\Shared\\Components\\Cart\\CartPanel.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-28T04:03:54.389Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Views\\Admin\\NhanVien\\Details.cshtml",
+              "RelativeDocumentMoniker": "VanPhongPhamOnline\\Views\\Admin\\NhanVien\\Details.cshtml",
+              "ToolTip": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Views\\Admin\\NhanVien\\Details.cshtml",
+              "RelativeToolTip": "VanPhongPhamOnline\\Views\\Admin\\NhanVien\\Details.cshtml",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAkwGQAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-27T16:15:52.856Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "VanPhongPhamOnline\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "VanPhongPhamOnline\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-27T16:04:39.877Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "KhachHangController.cs",
+              "DocumentMoniker": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Controllers\\KhachHangController.cs",
+              "RelativeDocumentMoniker": "VanPhongPhamOnline\\Controllers\\KhachHangController.cs",
+              "ToolTip": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Controllers\\KhachHangController.cs",
+              "RelativeToolTip": "VanPhongPhamOnline\\Controllers\\KhachHangController.cs",
+              "ViewState": "AgIAAKUAAAAAAAAAAAAwwMkAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-27T15:52:58.383Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "PhanCong.cs",
+              "DocumentMoniker": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Data\\PhanCong.cs",
+              "RelativeDocumentMoniker": "VanPhongPhamOnline\\Data\\PhanCong.cs",
+              "ToolTip": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Data\\PhanCong.cs",
+              "RelativeToolTip": "VanPhongPhamOnline\\Data\\PhanCong.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAzwA8AAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-27T15:35:12.919Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "NhanVien.cs",
+              "DocumentMoniker": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Data\\NhanVien.cs",
+              "RelativeDocumentMoniker": "VanPhongPhamOnline\\Data\\NhanVien.cs",
+              "ToolTip": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Data\\NhanVien.cs",
+              "RelativeToolTip": "VanPhongPhamOnline\\Data\\NhanVien.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAA/wBgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-27T15:30:49.512Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "NhanVienVM.cs",
+              "DocumentMoniker": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\ViewModels\\NhanVienVM.cs",
+              "RelativeDocumentMoniker": "VanPhongPhamOnline\\ViewModels\\NhanVienVM.cs",
+              "ToolTip": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\ViewModels\\NhanVienVM.cs",
+              "RelativeToolTip": "VanPhongPhamOnline\\ViewModels\\NhanVienVM.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAA9wAwAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-27T15:27:38.296Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "PhanCongVM.cs",
+              "DocumentMoniker": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\ViewModels\\PhanCongVM.cs",
+              "RelativeDocumentMoniker": "VanPhongPhamOnline\\ViewModels\\PhanCongVM.cs",
+              "ToolTip": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\ViewModels\\PhanCongVM.cs",
+              "RelativeToolTip": "VanPhongPhamOnline\\ViewModels\\PhanCongVM.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-27T15:11:49.522Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "PhongBan.cs",
+              "DocumentMoniker": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Data\\PhongBan.cs",
+              "RelativeDocumentMoniker": "VanPhongPhamOnline\\Data\\PhongBan.cs",
+              "ToolTip": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Data\\PhongBan.cs",
+              "RelativeToolTip": "VanPhongPhamOnline\\Data\\PhongBan.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-27T15:11:03.327Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "DangKy.cshtml",
+              "DocumentMoniker": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Views\\KhachHang\\DangKy.cshtml",
+              "RelativeDocumentMoniker": "VanPhongPhamOnline\\Views\\KhachHang\\DangKy.cshtml",
+              "ToolTip": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Views\\KhachHang\\DangKy.cshtml",
+              "RelativeToolTip": "VanPhongPhamOnline\\Views\\KhachHang\\DangKy.cshtml",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAAFAAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-27T14:22:06.533Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Views\\Admin\\NhanVien\\Create.cshtml",
+              "RelativeDocumentMoniker": "VanPhongPhamOnline\\Views\\Admin\\NhanVien\\Create.cshtml",
+              "ToolTip": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Views\\Admin\\NhanVien\\Create.cshtml",
+              "RelativeToolTip": "VanPhongPhamOnline\\Views\\Admin\\NhanVien\\Create.cshtml",
+              "ViewState": "AgIAAHUAAAAAAAAAAAAAAHUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-27T14:12:00.784Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Delete.cshtml",
+              "DocumentMoniker": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Views\\Admin\\NhanVien\\Delete.cshtml",
+              "RelativeDocumentMoniker": "VanPhongPhamOnline\\Views\\Admin\\NhanVien\\Delete.cshtml",
+              "ToolTip": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Views\\Admin\\NhanVien\\Delete.cshtml",
+              "RelativeToolTip": "VanPhongPhamOnline\\Views\\Admin\\NhanVien\\Delete.cshtml",
+              "ViewState": "AgIAADgAAAAAAAAAAAAkwEkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-27T14:20:04.781Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Views\\Admin\\NhanVien\\Index.cshtml",
+              "RelativeDocumentMoniker": "VanPhongPhamOnline\\Views\\Admin\\NhanVien\\Index.cshtml",
+              "ToolTip": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Views\\Admin\\NhanVien\\Index.cshtml",
+              "RelativeToolTip": "VanPhongPhamOnline\\Views\\Admin\\NhanVien\\Index.cshtml",
+              "ViewState": "AgIAAEgAAAAAAAAAAAAkwFMAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-27T14:03:01.343Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "LoginVM.cs",
+              "DocumentMoniker": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\ViewModels\\LoginVM.cs",
+              "RelativeDocumentMoniker": "VanPhongPhamOnline\\ViewModels\\LoginVM.cs",
+              "ToolTip": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\ViewModels\\LoginVM.cs",
+              "RelativeToolTip": "VanPhongPhamOnline\\ViewModels\\LoginVM.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-27T10:31:30.366Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "DangNhapController.cs",
+              "DocumentMoniker": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Controllers\\Admin\\DangNhapController.cs",
+              "RelativeDocumentMoniker": "VanPhongPhamOnline\\Controllers\\Admin\\DangNhapController.cs",
+              "ToolTip": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Controllers\\Admin\\DangNhapController.cs",
+              "RelativeToolTip": "VanPhongPhamOnline\\Controllers\\Admin\\DangNhapController.cs",
+              "ViewState": "AgIAAD8AAAAAAAAAAADwv08AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-27T09:31:34.886Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IndexAdmin.cshtml",
+              "DocumentMoniker": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Views\\Admin\\IndexAdmin.cshtml",
+              "RelativeDocumentMoniker": "VanPhongPhamOnline\\Views\\Admin\\IndexAdmin.cshtml",
+              "ToolTip": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Views\\Admin\\IndexAdmin.cshtml",
+              "RelativeToolTip": "VanPhongPhamOnline\\Views\\Admin\\IndexAdmin.cshtml",
+              "ViewState": "AgIAAHEAAAAAAAAAAAAIwHYAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-27T09:32:28.598Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "AdminGenerater.cs",
+              "DocumentMoniker": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Helpers\\AdminGenerater.cs",
+              "RelativeDocumentMoniker": "VanPhongPhamOnline\\Helpers\\AdminGenerater.cs",
+              "ToolTip": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Helpers\\AdminGenerater.cs",
+              "RelativeToolTip": "VanPhongPhamOnline\\Helpers\\AdminGenerater.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAAkwDIAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-27T08:59:21.401Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Program.cs",
+              "RelativeDocumentMoniker": "VanPhongPhamOnline\\Program.cs",
+              "ToolTip": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Program.cs",
+              "RelativeToolTip": "VanPhongPhamOnline\\Program.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAAABMAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-27T07:53:24.839Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "DataEncryptionExtensions.cs",
+              "DocumentMoniker": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Helpers\\DataEncryptionExtensions.cs",
+              "RelativeDocumentMoniker": "VanPhongPhamOnline\\Helpers\\DataEncryptionExtensions.cs",
+              "ToolTip": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Helpers\\DataEncryptionExtensions.cs",
+              "RelativeToolTip": "VanPhongPhamOnline\\Helpers\\DataEncryptionExtensions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-27T08:58:41.709Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "MyUlti.cs",
+              "DocumentMoniker": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Helpers\\MyUlti.cs",
+              "RelativeDocumentMoniker": "VanPhongPhamOnline\\Helpers\\MyUlti.cs",
+              "ToolTip": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Helpers\\MyUlti.cs",
+              "RelativeToolTip": "VanPhongPhamOnline\\Helpers\\MyUlti.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-27T08:56:25.995Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Detail.cshtml",
+              "DocumentMoniker": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Views\\HangHoa\\Detail.cshtml",
+              "RelativeDocumentMoniker": "VanPhongPhamOnline\\Views\\HangHoa\\Detail.cshtml",
+              "ToolTip": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Views\\HangHoa\\Detail.cshtml",
+              "RelativeToolTip": "VanPhongPhamOnline\\Views\\HangHoa\\Detail.cshtml",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAADEAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-27T08:18:52.736Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ProductItem.cshtml",
+              "DocumentMoniker": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Views\\HangHoa\\ProductItem.cshtml",
+              "RelativeDocumentMoniker": "VanPhongPhamOnline\\Views\\HangHoa\\ProductItem.cshtml",
+              "ToolTip": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Views\\HangHoa\\ProductItem.cshtml",
+              "RelativeToolTip": "VanPhongPhamOnline\\Views\\HangHoa\\ProductItem.cshtml",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABkAAABJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-27T07:04:05.436Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Views\\Cart\\Index.cshtml",
+              "RelativeDocumentMoniker": "VanPhongPhamOnline\\Views\\Cart\\Index.cshtml",
+              "ToolTip": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Views\\Cart\\Index.cshtml",
+              "RelativeToolTip": "VanPhongPhamOnline\\Views\\Cart\\Index.cshtml",
+              "ViewState": "AgIAABoAAAAAAAAAAAAIwCwAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-27T07:50:04.767Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "_Footer.cshtml",
+              "DocumentMoniker": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Views\\Shared\\_Footer.cshtml",
+              "RelativeDocumentMoniker": "VanPhongPhamOnline\\Views\\Shared\\_Footer.cshtml",
+              "ToolTip": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Views\\Shared\\_Footer.cshtml",
+              "RelativeToolTip": "VanPhongPhamOnline\\Views\\Shared\\_Footer.cshtml",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABMAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-27T08:17:15.474Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CartController.cs",
+              "DocumentMoniker": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Controllers\\CartController.cs",
+              "RelativeDocumentMoniker": "VanPhongPhamOnline\\Controllers\\CartController.cs",
+              "ToolTip": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Controllers\\CartController.cs",
+              "RelativeToolTip": "VanPhongPhamOnline\\Controllers\\CartController.cs",
+              "ViewState": "AgIAADcAAAAAAAAAAAAIwE4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-27T07:54:11.58Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "HangHoaVM.cs",
+              "DocumentMoniker": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\ViewModels\\HangHoaVM.cs",
+              "RelativeDocumentMoniker": "VanPhongPhamOnline\\ViewModels\\HangHoaVM.cs",
+              "ToolTip": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\ViewModels\\HangHoaVM.cs",
+              "RelativeToolTip": "VanPhongPhamOnline\\ViewModels\\HangHoaVM.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-27T07:47:41.006Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "HangHoaController.cs",
+              "DocumentMoniker": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Controllers\\HangHoaController.cs",
+              "RelativeDocumentMoniker": "VanPhongPhamOnline\\Controllers\\HangHoaController.cs",
+              "ToolTip": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I \u0026 II \u0026 III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\Controllers\\HangHoaController.cs",
+              "RelativeToolTip": "VanPhongPhamOnline\\Controllers\\HangHoaController.cs",
+              "ViewState": "AgIAAFMAAAAAAAAAAAAkwFgAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-27T07:09:41.901Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

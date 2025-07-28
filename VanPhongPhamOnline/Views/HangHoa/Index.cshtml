@@ -1,0 +1,47 @@
+﻿@model IEnumerable<VanPhongPhamOnline.ViewModels.HangHoaVM>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_DanhSachHangHoa";
+}
+
+<!-- Breadcrumb Start -->
+@section BreadCrumb {
+    <div class="container-fluid">
+        <div class="row px-xl-5">
+            <div class="col-12">
+                <nav class="breadcrumb bg-light mb-30">
+                    <a href="/" class="breadcrumb-item text-dark">Home</a>
+                    <a asp-controller="HangHoa" asp-action="Index" class="breadcrumb-item text-dark">Shop</a>
+                    <span class="breadcrumb-item active">Shop List</span>
+                </nav>
+            </div>
+        </div>
+    </div>
+}
+<!-- Breadcrumb End -->
+<!-- Shop Start -->
+@await Html.PartialAsync("ProductItem", Model)
+
+<div class="col-12">
+    <nav>
+        <ul class="pagination justify-content-center">
+            <li class="page-item @(ViewBag.CurrentPage == 1 ? "disabled" : "")">
+                <a class="page-link" asp-action="Index" asp-route-loai="@ViewBag.Loai" asp-route-page="@(ViewBag.CurrentPage - 1)">Trước đó</a>
+            </li>
+
+            @for (int i = 1; i <= (int)ViewBag.TotalPages; i++)
+            {
+                <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                    <a class="page-link" asp-action="Index" asp-route-loai="@ViewBag.Loai" asp-route-page="@i">@i</a>
+                </li>
+            }
+
+            <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPages ? "disabled" : "")">
+                <a class="page-link" asp-action="Index" asp-route-loai="@ViewBag.Loai" asp-route-page="@(ViewBag.CurrentPage + 1)">Tiếp theo</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<!-- Shop End -->
