@@ -91,7 +91,7 @@ namespace VanPhongPhamOnline.Controllers
                 {
                     new Claim(ClaimTypes.Email, khachHang.EmailKh),
                     new Claim(ClaimTypes.Name, khachHang.HoTenKh),
-                    new Claim("MaKH", khachHang.MaKh),
+                    new Claim("MaKH", khachHang.MaKh.ToString()),
                     new Claim("HinhKH", string.IsNullOrEmpty(khachHang.HinhKh) ? "default-customer.png" : khachHang.HinhKh),
                     new Claim("DienThoaiKH", khachHang.DienThoaiKh ?? ""),
                     new Claim("DiaChi", khachHang.DiaChiKh ?? ""),
