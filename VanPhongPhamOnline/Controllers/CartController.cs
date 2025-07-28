@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System;
+using System.Security.Claims;
 using VanPhongPhamOnline.Data;
 using VanPhongPhamOnline.Helpers;
 using VanPhongPhamOnline.ViewModels;
@@ -112,6 +115,73 @@ namespace VanPhongPhamOnline.Controllers
         {
             SaveToCart(new List<CartItem>());
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        [Authorize(AuthenticationSchemes = "KhachHang")]
+        public IActionResult Checkout()
+        {
+            if(Cart.Count == 0)
+            {
+                return Redirect("/");
+            }
+            return View(Cart);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Checkout(CheckoutVM model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var maKH = User.FindFirst("MaKH")?.Value;
+            if (string.IsNullOrEmpty(maKH))
+            {
+                return Content("Không xác định được khách hàng.");
+            }
+
+            var hoaDon = new HoaDon
+            {
+                MaKh = maKH,
+                NgayDat = DateTime.Now,
+                DiaChi = "Sài Gòn",
+                CachThanhToan = "COD",
+                CachVanChuyen = "GRAB",
+                PhiVanChuyen = 10000,
+                MaTrangThai = 1,
+                HoTenNguoiNhan = model.HoTen,
+                GhiChu = model.GhiChu,
+                MaNv = null
+            };
+
+            db.HoaDons.Add(hoaDon);
+            db.SaveChanges();
+
+            var cart = HttpContext.Session.Get<List<CartItem>>("Cart");
+            if (cart != null)
+            {
+                foreach (var item in cart)
+                {
+                    db.ChiTietHds.Add(new ChiTietHd
+                    {
+                        MaHd = hoaDon.MaHd,
+                        MaHh = item.MaHH,
+                        SoLuong = item.SoLuong,
+                        DonGia = item.DonGia
+                    });
+                }
+                db.SaveChanges();
+                HttpContext.Session.Remove("Cart");
+            }
+
+            return RedirectToAction("Success", "Cart");
+        }
+        public IActionResult Success()
+        {
+            return View(); // Tự hiểu là /Views/Cart/Success.cshtml
         }
     }
 }

@@ -83,7 +83,11 @@
                         <h5>Tổng số tiền:</h5>
                         <h5>$@total.ToString("N0") VNĐ</h5>
                     </div>
-                    <button class="btn btn-block btn-primary font-weight-bold my-3 py-3">Thanh toán</button>
+                    <form asp-action="Checkout" asp-controller="Cart" method="get">
+                        <button type="submit" class="btn btn-block btn-primary font-weight-bold my-3 py-3">
+                            Thanh toán
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
