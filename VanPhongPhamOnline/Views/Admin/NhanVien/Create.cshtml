@@ -1,0 +1,136 @@
+﻿@model VanPhongPhamOnline.Data.NhanVien
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Tạo Mới Nhân Viên</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        body {
+            background: linear-gradient(135deg, #ffe5b4, #fff3e0);
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .form-wrapper {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+        }
+
+        h1 {
+            color: #ff8c00;
+            font-weight: 800;
+        }
+
+        .form-label {
+            color: #ff9800;
+            font-weight: 600;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            border: 2px solid #ffcc80;
+        }
+
+        .btn-create {
+            background: linear-gradient(45deg, #ffa726, #fb8c00);
+            color: white;
+            border: none;
+            font-weight: bold;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+            .btn-create:hover {
+                background: linear-gradient(45deg, #fb8c00, #ffa726);
+                transform: scale(1.03);
+            }
+
+        .btn-secondary {
+            border-radius: 30px;
+            font-weight: bold;
+        }
+
+        .form-check-label {
+            color: #6c757d;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6 form-wrapper">
+                <h1 class="text-center mb-4">Tạo Mới Nhân Viên</h1>
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                    <div class="mb-3">
+                        <label asp-for="MaNv" class="form-label">Mã Nhân Viên<sup>*</sup></label>
+                        <input asp-for="MaNv" class="form-control" />
+                        <span asp-validation-for="MaNv" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="HoTenNv" class="form-label">Họ và Tên<sup>*</sup></label>
+                        <input asp-for="HoTenNv" class="form-control" />
+                        <span asp-validation-for="HoTenNv" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="EmailNv" class="form-label">Email<sup>*</sup></label>
+                        <input asp-for="EmailNv" class="form-control" type="email" />
+                        <span asp-validation-for="EmailNv" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="MatKhauNv" class="form-label">Mật khẩu<sup>*</sup></label>
+                        <input asp-for="MatKhauNv" class="form-control" type="password" />
+                        <span asp-validation-for="MatKhauNv" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="NgaySinhNv" class="form-label">Ngày sinh</label>
+                        <input asp-for="NgaySinhNv" class="form-control" type="date" />
+                        <span asp-validation-for="NgaySinhNv" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label d-block">Giới tính</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" asp-for="GioiTinhNv" value="true" checked/>
+                            <label class="form-check-label">Nam</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" asp-for="GioiTinhNv" value="false" />
+                            <label class="form-check-label">Nữ</label>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="DiaChiNv" class="form-label">Địa chỉ</label>
+                        <textarea asp-for="DiaChiNv" class="form-control" rows="2"></textarea>
+                        <span asp-validation-for="DiaChiNv" class="text-danger"></span>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-create">
+                            <i class="fa fa-user-plus me-2"></i> Tạo Mới
+                        </button>
+                        <a asp-action="Index" class="btn btn-secondary ms-3">Quay Lại</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

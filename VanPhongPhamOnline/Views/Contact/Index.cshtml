@@ -1,0 +1,65 @@
+﻿@model VanPhongPhamOnline.ViewModels.ContactVM
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+<div class="container-fluid">
+    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Liên hệ với chúng tôi</span></h2>
+    <div class="row px-xl-5">
+        <div class="col-lg-7 mb-5">
+            <div class="contact-form bg-light p-30">
+                @if (TempData["Success"] != null)
+                {
+                    <div class="alert alert-success">@TempData["Success"]</div>
+                }
+                @if (TempData["Error"] != null)
+                {
+                    <div class="alert alert-danger">@TempData["Error"]</div>
+                }
+
+                @using (Html.BeginForm("Contact", "Home", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="control-group">
+                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Tên của bạn" })
+                        @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="control-group">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email của bạn" })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="control-group">
+                        @Html.TextBoxFor(m => m.Subject, new { @class = "form-control", placeholder = "Tóm tắt" })
+                        @Html.ValidationMessageFor(m => m.Subject, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="control-group">
+                        @Html.TextAreaFor(m => m.Message, 8, 50, new { @class = "form-control", placeholder = "Tin nhắn" })
+                        @Html.ValidationMessageFor(m => m.Message, "", new { @class = "text-danger" })
+                    </div>
+                    <div>
+                        <button class="btn btn-primary py-2 px-4" type="submit">Gửi tin nhắn</button>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="col-lg-5 mb-5">
+            <div class="bg-light p-30 mb-30">
+                <iframe style="width: 100%; height: 250px;"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.424285146531!2d106.693157814287!3d10.77688979232114!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f190d8cb3a7%3A0xa50b2da77bb979f2!2zUXXhuq1uIDEsIFTDom4gSOG7kyBDaMOtbmgsIFRow6BuaCBwaOG7kSBI4buTIENow60gTWluaA!5e0!3m2!1sen!2s!4v1656745142741!5m2!1sen!2s"
+                        frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+            </div>
+            <div class="bg-light p-30 mb-3">
+                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>123 Đường ABC, Quận 1, TP.HCM</p>
+                <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>lienhe@vanphongpham.vn</p>
+                <p class="mb-2"><i class="fa fa-phone-alt text-primary mr-3"></i>+84 123 456 789</p>
+            </div>
+        </div>
+    </div>
+</div>

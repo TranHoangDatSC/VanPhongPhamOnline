@@ -1,0 +1,146 @@
+﻿@{
+    ViewData["Title"] = "Tài khoản của tôi";
+    var profile = ViewBag.Profile;
+    var avtPath = Url.Content("~/Hinh/KhachHang/" + profile.HinhKh);
+    var defaultAvt = Url.Content("~/Hinh/default-customer.png");
+}
+
+<div class="container py-5">
+    <div class="card shadow-lg p-4" style="max-width:900px; margin:auto;">
+
+        <div class="row">
+            <!-- Bên trái: Avatar + Nút -->
+            <div class="col-md-4 text-center d-flex flex-column align-items-center justify-content-center">
+
+                <img src="@avtPath"
+                     onerror="this.onerror=null;this.src='@defaultAvt';"
+                     class="rounded-circle mb-3"
+                     style="width:120px; height:120px; object-fit:cover; border:3px solid #f39c12;" alt="Avatar" />
+
+                <div class="d-flex flex-column gap-3 w-100" style="padding:10px;">
+                    <a asp-action="EditProfile" class="btn btn-orange">
+                        <i class="fa fa-edit me-1"></i> Chỉnh sửa
+                    </a>
+
+                    <form asp-action="XoaTaiKhoan" method="post" onsubmit="return confirm('Bạn có chắc muốn xóa tài khoản?');">
+                        <button type="submit" class="btn btn-red btn-full-width">
+                            <i class="fa fa-trash-alt me-1"></i> Xóa tài khoản
+                        </button>
+                    </form>
+
+                    <a asp-action="DangXuat" class="btn btn-dark">
+                        <i class="fa fa-sign-out-alt me-1"></i> Đăng xuất
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- Bên phải: Thông tin -->
+            <div class="col-md-8">
+                <h4 class="fw-bold mb-3">@profile.HoTenKh</h4>
+                <p><strong>Tài khoản:</strong> @profile.MaKH</p>
+                <p><strong>Email:</strong> @profile.EmailKh</p>
+                <p><strong>Điện thoại:</strong> @(string.IsNullOrEmpty(profile.DienThoaiKh) ? "Chưa cập nhật" : profile.DienThoaiKh)</p>
+                <p><strong>Địa chỉ:</strong> @(string.IsNullOrEmpty(profile.DiaChiKh) ? "Chưa cập nhật" : profile.DiaChiKh)</p>
+                <p><strong>Giới tính:</strong> @profile.GioiTinhKh</p>
+                <p><strong>Ngày sinh:</strong> @profile.NgaySinhKh</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<style>
+.profile-card {
+background: #fff8f0;
+border-radius: 20px;
+box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+width: 100%;
+}
+
+.avatar {
+width: 160px;
+height: 160px;
+object-fit: cover;
+border-radius: 50%;
+border: 5px solid #f39c12;
+background: #fff;
+}
+
+.profile-info p {
+margin-bottom: 12px;
+font-size: 16px;
+}
+
+/* Nút đẹp */
+.btn-orange {
+background: linear-gradient(45deg, #f6a623, #f39c12);
+color: #fff;
+border: none;
+border-radius: 50px;
+padding: 12px 25px;
+font-weight: bold;
+transition: 0.3s;
+}
+
+.btn-orange:hover {
+background: linear-gradient(45deg, #f39c12, #f6a623);
+transform: translateY(-2px);
+box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.btn-red {
+background: linear-gradient(45deg, #ff4d4d, #e74c3c);
+color: #fff;
+border: none;
+border-radius: 50px;
+padding: 12px 25px;
+font-weight: bold;
+transition: 0.3s;
+}
+
+    .btn-red, .btn-orange, .btn-dark {
+        display: inline-block;
+        width: 100%;
+        padding: 12px 25px;
+        border-radius: 50px;
+        font-weight: bold;
+        text-align: center;
+        transition: 0.3s;
+    }
+.btn-red:hover {
+background: linear-gradient(45deg, #e74c3c, #ff4d4d);
+transform: translateY(-2px);
+box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.btn-dark {
+background: #495057;
+color: #fff;
+border: none;
+border-radius: 50px;
+padding: 12px 25px;
+font-weight: bold;
+transition: 0.3s;
+}
+
+.btn-dark:hover {
+background: #343a40;
+transform: translateY(-2px);
+box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Cân đều các nút */
+.gap-3 {
+gap: 15px !important;
+}
+
+    .btn-full-width {
+        width: 100%;
+        padding: 12px 25px;
+        border-radius: 50px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+</style>

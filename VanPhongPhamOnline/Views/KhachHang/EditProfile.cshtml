@@ -1,0 +1,159 @@
+﻿@model VanPhongPhamOnline.ViewModels.EditProfileVM
+
+@{
+    ViewData["Title"] = "Chỉnh sửa thông tin";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <h1 class="text-center mb-4">Chỉnh sửa thông tin cá nhân</h1>
+            <form asp-action="EditProfile" method="post" enctype="multipart/form-data">
+
+                <div class="mb-3">
+                    <label asp-for="HoTen" class="form-label">Họ và tên<sup>*</sup></label>
+                    <input asp-for="HoTen" class="form-control" />
+                    <span asp-validation-for="HoTen" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="GioiTinh" class="form-label">Giới tính</label>
+                    <select asp-for="GioiTinh" class="form-control">
+                        <option value="true">Nam</option>
+                        <option value="false">Nữ</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="NgaySinh" class="form-label">Ngày sinh</label>
+                    <input asp-for="NgaySinh" class="form-control" type="date" />
+                    <span asp-validation-for="NgaySinh" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="DiaChi" class="form-label">Địa chỉ</label>
+                    <input asp-for="DiaChi" class="form-control" />
+                    <span asp-validation-for="DiaChi" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="DienThoai" class="form-label">Số điện thoại</label>
+                    <input asp-for="DienThoai" class="form-control" />
+                    <span asp-validation-for="DienThoai" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label">Email</label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <!-- Upload Hình -->
+                <div class="form-item w-100">
+                    <label for="Hinh" class="form-label my-3">Thay ảnh đại diện (nếu muốn)</label>
+                    <input asp-for="Hinh" type="file" onchange="showFileName(this)" class="custom-file-input-real" />
+                    <div id="file-name" class="file-name-preview">Chưa chọn file</div>
+                </div>
+
+                <br>
+                <div class="register-button-wrapper">
+                    <button type="submit" class="btn btn-register">
+                        <i class="fa fa-save me-2"></i> Lưu thay đổi
+                    </button>
+                    <a asp-action="Profile" class="btn btn-secondary ms-3">Hủy</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Style tái sử dụng từ Register -->
+<style>
+    .register-button-wrapper {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .btn-register {
+        background: linear-gradient(45deg, #f6a623, #f39c12);
+        border: none;
+        color: white !important;
+        padding: 14px 50px;
+        border-radius: 50px;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 16px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        transition: 0.3s;
+    }
+
+        .btn-register:hover {
+            background: linear-gradient(45deg, #f39c12, #f6a623);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+
+    form label {
+        font-weight: 600;
+    }
+
+    .form-control {
+        border-radius: 12px;
+    }
+
+    .custom-file-input-real {
+        border: 2px dashed #f39c12;
+        padding: 12px 20px;
+        border-radius: 12px;
+        background: #fff;
+        cursor: pointer;
+        width: 100%;
+        font-weight: bold;
+        color: #f39c12;
+        transition: 0.3s;
+    }
+
+        .custom-file-input-real:hover {
+            background: #fff8f0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+        .custom-file-input-real::-webkit-file-upload-button {
+            visibility: hidden;
+        }
+
+        .custom-file-input-real::before {
+            content: "📁 Chọn ảnh";
+            display: inline-block;
+            background: linear-gradient(45deg, #f6a623, #f39c12);
+            color: white;
+            padding: 10px 30px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .custom-file-input-real:hover::before {
+            background: linear-gradient(45deg, #f39c12, #f6a623);
+        }
+
+    .file-name-preview {
+        margin-top: 10px;
+        font-size: 14px;
+        color: #666;s
+        font-style: italic;
+    }
+</style>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        function showFileName(input) {
+            const fileName = input.files.length > 0 ? input.files[0].name : "Chưa chọn file";
+            document.getElementById('file-name').innerText = fileName;
+        }
+    </script>
+}

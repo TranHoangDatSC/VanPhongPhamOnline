@@ -1,0 +1,92 @@
+﻿@model IEnumerable<VanPhongPhamOnline.ViewModels.CartItem>
+@{
+    ViewData["Title"] = "Gio Hang";
+    var subtotal = Model.Sum(p => p.ThanhTien);
+    var shipping = 10000; 
+    var total = subtotal + shipping;
+}
+<!-- Cart Start -->
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-lg-8 table-responsive mb-5">
+            <table class="table table-light table-borderless table-hover text-center mb-0">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Các sản phẩm</th>
+                        <th>Giá cả</th>
+                        <th>Số lượng</th>
+                        <th>Tổng số</th>
+                        <th>Xóa</th>
+                    </tr>
+                </thead>
+                <tbody class="align-middle">
+                    @foreach(var item in Model) 
+                    {
+                    <tr>
+                            <td class="align-middle">
+                                <img src="@Url.Content("~/Hinh/HangHoa/" + item.Hinh)" alt="@item.TenHH" style="width: 50px; height:50px" />
+                            <a asp-action="Detail" asp-controller="HangHoa" asp-route-id="@item.MaHH">@item.TenHH</a>
+                        </td>
+                        <td class="align-middle">$ @item.DonGia</td>
+                        <td class="align-middle">
+                            <form asp-action="UpdateCart" asp-controller="Cart" method="post">
+                                <input type="hidden" name="id" value="@item.MaHH" />
+                                <div class="input-group quantity mx-auto" style="width: 100px;">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-sm btn-primary btn-minus" type="submit" name="change" value="-1">
+                                            <i class="fa fa-minus"></i>
+                                        </button>
+                                    </div>
+                                    <input type="text" class="form-control form-control-sm bg-secondary border-0 text-center" name="quantity" value="@item.SoLuong" readonly>
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-sm btn-primary btn-plus" type="submit" name="change" value="1">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </td>
+                        <td class="align-middle">$ @item.ThanhTien</td>
+                        <td class="align-middle">
+                            <a asp-action="RemoveToCart" asp-controller="Cart" asp-route-id="@item.MaHH" class="btn btn-sm btn-danger">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-4">
+            <form class="mb-30" action="">
+                <div class="input-group">
+                    <input type="text" class="form-control border-0 p-4" placeholder="Coupon Code">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary">Áp dụng giảm giá</button>
+                    </div>
+                </div>
+            </form>
+            <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Tóm tắt giỏ hàng</span></h5>
+            <div class="bg-light p-30 mb-5">
+                <div class="border-bottom pb-2">
+                    <div class="d-flex justify-content-between mb-3">
+                        <h6>Tổng số tiền:</h6>
+                        <h6>$@Model.Sum(p => p.ThanhTien) VNĐ</h6>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <h6 class="font-weight-medium">Tiền giao hàng:</h6>
+                        <h6 class="font-weight-medium">$@shipping.ToString("N0") VNĐ</h6>
+                    </div>
+                </div>
+                <div class="pt-2">
+                    <div class="d-flex justify-content-between mt-2">
+                        <h5>Tổng số tiền:</h5>
+                        <h5>$@total.ToString("N0") VNĐ</h5>
+                    </div>
+                    <button class="btn btn-block btn-primary font-weight-bold my-3 py-3">Thanh toán</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Cart End -->

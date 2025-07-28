@@ -1,0 +1,137 @@
+﻿@model VanPhongPhamOnline.Data.NhanVien
+
+@{
+    ViewData["Title"] = "Cập Nhật Nhân Viên";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"]</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            background: linear-gradient(135deg, #fff8e1, #ffe0b2);
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .form-wrapper {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #ff9800;
+            font-weight: 700;
+        }
+
+        label {
+            color: #ff6f00;
+            font-weight: 600;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            border: 2px solid #ffcc80;
+        }
+
+        .btn-save {
+            background: linear-gradient(45deg, #ffa726, #fb8c00);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+            .btn-save:hover {
+                background: linear-gradient(45deg, #fb8c00, #ffa726);
+                transform: scale(1.03);
+            }
+
+        .btn-cancel {
+            background-color: #e0e0e0;
+            border: none;
+            border-radius: 30px;
+            font-weight: bold;
+        }
+
+            .btn-cancel:hover {
+                background-color: #bdbdbd;
+            }
+    </style>
+</head>
+<body>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6 form-wrapper">
+                <h2 class="text-center mb-4">Cập Nhật Nhân Viên</h2>
+
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                    <input type="hidden" asp-for="MaNv" />
+
+                    <div class="mb-3">
+                        <label asp-for="HoTenNv"></label>
+                        <input asp-for="HoTenNv" class="form-control" />
+                        <span asp-validation-for="HoTenNv" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="EmailNv"></label>
+                        <input asp-for="EmailNv" class="form-control" type="email" />
+                        <span asp-validation-for="EmailNv" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="MatKhauNv"></label>
+                        <input asp-for="MatKhauNv" class="form-control" type="password" />
+                        <span asp-validation-for="MatKhauNv" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="NgaySinhNv"></label>
+                        <input asp-for="NgaySinhNv" class="form-control" type="date" />
+                        <span asp-validation-for="NgaySinhNv" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label d-block">Giới tính</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="GioiTinhNv" value="true"
+                                   @(Model?.GioiTinhNv == true ? "checked" : "") />
+                            <label class="form-check-label">Nam</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="GioiTinhNv" value="false"
+                                   @(Model?.GioiTinhNv == false ? "checked" : "") />
+                            <label class="form-check-label">Nữ</label>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="DiaChiNv"></label>
+                        <textarea asp-for="DiaChiNv" class="form-control" rows="2"></textarea>
+                        <span asp-validation-for="DiaChiNv" class="text-danger"></span>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-save me-3">Lưu</button>
+                        <a asp-action="Index" class="btn btn-cancel px-4">Hủy</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation-unobtrusive@4.0.0/dist/jquery.validate.unobtrusive.min.js"></script>
+</body>
+</html>

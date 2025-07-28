@@ -1,0 +1,64 @@
+﻿<!-- Footer Start -->
+<div class="container-fluid bg-dark text-secondary mt-5 pt-5">
+    <div class="row px-xl-5 pt-5">
+        <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
+            <h5 class="text-secondary text-uppercase mb-4">Liên hệ với chúng tôi</h5>
+            <p class="mb-4">Chuyên cung cấp các sản phẩm văn phòng phẩm chất lượng với giá cả hợp lý. Hỗ trợ giao hàng nhanh và đổi trả dễ dàng.</p>
+            <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>123 Đường ABC, Quận 1, TP.HCM</p>
+            <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>lienhe@vanphongpham.vn</p>
+            <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+84 123 456 789</p>
+        </div>
+        <div class="col-lg-8 col-md-12">
+            <div class="row">
+                <div class="col-md-4 mb-5">
+                    <h5 class="text-secondary text-uppercase mb-4">Danh mục nhanh</h5>
+                    <div class="d-flex flex-column justify-content-start">
+                        <a class="text-secondary mb-2" href="/"><i class="fa fa-angle-right mr-2"></i>Trang chủ</a>
+                        <a class="text-secondary mb-2" asp-action="Index" asp-controller="HangHoa"><i class="fa fa-angle-right mr-2"></i>Sản phẩm</a>
+                        <a class="text-secondary mb-2" asp-action="Index" asp-controller="Cart"><i class="fa fa-angle-right mr-2"></i>Giỏ hàng</a>
+                        <a class="text-secondary" asp-action="Index" asp-controller="Contact"><i class="fa fa-angle-right mr-2"></i>Liên hệ</a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-5">
+                    <h5 class="text-secondary text-uppercase mb-4">Tài khoản của tôi</h5>
+                    <div class="d-flex flex-column justify-content-start">
+                        <a class="text-secondary mb-2" asp-action="DangNhap" asp-controller="KhachHang"><i class="fa fa-angle-right mr-2"></i>Đăng nhập</a>
+                        <a class="text-secondary mb-2" asp-action="DangKy" asp-controller="KhachHang"><i class="fa fa-angle-right mr-2"></i>Đăng ký</a>
+                        <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Đơn hàng</a> <!-- Tính sau -->
+                        <a class="text-secondary" asp-action="Index" asp-controller="Contact"><i class="fa fa-angle-right mr-2"></i>Hỗ trợ</a>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-5">
+                    <h5 class="text-secondary text-uppercase mb-4">Nhận tin khuyến mãi</h5>
+                    <p>Đăng ký nhận email để không bỏ lỡ các ưu đãi mới nhất từ chúng tôi.</p>
+                    <form asp-action="DangKy" asp-controller="KhachHang">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Nhập email của bạn">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary">Đăng ký</button>
+                            </div>
+                        </div>
+                    </form>
+                    <h6 class="text-secondary text-uppercase mt-4 mb-3">Kết nối với chúng tôi</h6>
+                    <div class="d-flex">
+                        <a class="btn btn-primary btn-square mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-primary btn-square mr-2" href="#"><i class="fab fa-instagram"></i></a>
+                        <a class="btn btn-primary btn-square mr-2" href="#"><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-primary btn-square" href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row border-top mx-xl-5 py-4" style="border-color: rgba(256, 256, 256, .1) !important;">
+        <div class="col-md-6 px-xl-0">
+            <p class="mb-md-0 text-center text-md-left text-secondary">
+                &copy; <a class="text-primary" href="#">Văn phòng phẩm online</a>. All Rights Reserved.
+            </p>
+        </div>
+        <div class="col-md-6 px-xl-0 text-center text-md-right">
+            <img class="img-fluid" src="~/Hinh/payments.png" alt="Thanh toán">
+        </div>
+    </div>
+</div>
+<!-- Footer End -->

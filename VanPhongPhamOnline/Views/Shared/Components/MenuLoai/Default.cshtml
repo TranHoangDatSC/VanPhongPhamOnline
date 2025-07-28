@@ -1,0 +1,21 @@
+﻿@model IEnumerable<VanPhongPhamOnline.ViewModels.MenuLoaiVM>
+
+<!-- Sidebar - Danh mục sản phẩm -->
+<div class="bg-light p-4 mb-30">
+    <form>
+        @foreach (var item in Model)
+        {
+            <div class="custom-control d-flex align-items-center justify-content-between mb-3">
+
+                <a style="text-decoration: none; color: #6C757D !important;"
+                   asp-controller="HangHoa"
+                   asp-action="Index"
+                   asp-route-loai="@item.MaLoai">
+                    @item.TenLoai
+                </a>
+
+                <span class="badge border font-weight-normal">(@item.SoLuong)</span>
+            </div>
+        }
+    </form>
+</div>

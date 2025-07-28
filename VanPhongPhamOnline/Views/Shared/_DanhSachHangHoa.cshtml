@@ -1,0 +1,74 @@
+﻿@{
+    Layout = "_LayoutCustomer";
+}
+<!-- Breadcrumb (_LayoutCustomer.cshtml) Start -->
+@RenderSection("BreadCrumb", required: false)
+<!-- Breadcrumb End (_LayoutCustomer.cshtml) -->
+
+<!-- Shop Start -->
+<div class="container-fluid">
+    <!-- Shop Sidebar Start -->
+    <div class="row px-xl-5">
+        <!-- Search Start -->
+        <div class="col-lg-3 col-md-4">
+            <h5 class="section-title position-relative text-uppercase mb-3">
+                <span class="bg-secondary pr-3">Tìm kiếm sản phẩm</span>
+            </h5>
+            <div class="bg-light p-4 mb-30">
+                <form asp-action="Search" asp-controller="HangHoa" method="get">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for products" name="query">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-primary" type="submit">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Search End -->
+            <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Danh mục sản phẩm</span></h5>
+            @await Component.InvokeAsync("MenuLoai")
+        </div>
+        <!-- Shop Sidebar End -->
+
+        <!-- Shop Product Start -->
+        <div class="col-lg-9 col-md-8">
+            <div class="row pb-3">
+                <div class="col-12 pb-1">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <div>
+                            <button class="btn btn-sm btn-light"><i class="fa fa-th-large"></i></button>
+                            <button class="btn btn-sm btn-light ml-2"><i class="fa fa-bars"></i></button>
+                        </div>
+                        <h6 class="mb-0 mr-3">
+                            Có <b>@( (Model as IEnumerable<VanPhongPhamOnline.ViewModels.HangHoaVM>)?.Count() ?? 0)</b> sản phẩm
+                        </h6>
+                        <div class="ml-2">                         
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Sorting</button>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="#">Latest</a>
+                                    <a class="dropdown-item" href="#">Popularity</a>
+                                    <a class="dropdown-item" href="#">Best Rating</a>
+                                </div>
+                            </div>
+                            <div class="btn-group ml-2">
+                                <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Showing</button>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="#">10</a>
+                                    <a class="dropdown-item" href="#">20</a>
+                                    <a class="dropdown-item" href="#">30</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @RenderBody()
+            </div>
+        </div>
+        <!-- Shop Product End -->
+    </div   
+<!-- Shop Sidebar End -->
+</div> 
+<!-- Shop End -->

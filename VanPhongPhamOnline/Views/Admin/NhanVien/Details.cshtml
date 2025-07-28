@@ -1,0 +1,115 @@
+﻿@model VanPhongPhamOnline.Data.NhanVien
+
+@{
+    ViewData["Title"] = "Chi Tiết Nhân Viên";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"]</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .details-box {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #ff9800;
+            font-weight: 700;
+        }
+
+        dt {
+            color: #ff6f00;
+            font-weight: 600;
+        }
+
+        .btn-action {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .btn-custom {
+            padding: 10px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .btn-edit {
+            background: linear-gradient(45deg, #ffa726, #fb8c00);
+            color: white;
+            border: none;
+        }
+
+            .btn-edit:hover {
+                background: linear-gradient(45deg, #fb8c00, #ffa726);
+            }
+
+        .btn-back {
+            background-color: #e0e0e0;
+            color: #333;
+            border: none;
+        }
+
+            .btn-back:hover {
+                background-color: #bdbdbd;
+            }
+    </style>
+</head>
+<body>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6 details-box">
+                <h2 class="text-center mb-4">Thông Tin Nhân Viên</h2>
+
+                <dl class="row">
+                    <dt class="col-sm-4">Họ và Tên:</dt>
+                    <dd class="col-sm-8">@Model.HoTenNv</dd>
+
+                    <dt class="col-sm-4">Email:</dt>
+                    <dd class="col-sm-8">@Model.EmailNv</dd>
+
+                    <dt class="col-sm-4">Mật khẩu:</dt>
+                    <dd class="col-sm-8">@Model.MatKhauNv</dd>
+
+                    <dt class="col-sm-4">Ngày sinh:</dt>
+                    <dd class="col-sm-8">@Model.NgaySinhNv?.ToString("dd/MM/yyyy")</dd>
+
+                    <dt class="col-sm-4">Giới tính:</dt>
+                    <dd class="col-sm-8">@(Model.GioiTinhNv == true ? "Nam" : "Nữ")</dd>
+
+                    <dt class="col-sm-4">Địa chỉ:</dt>
+                    <dd class="col-sm-8">@Model.DiaChiNv</dd>
+
+                    @* Nếu bạn có MaPb + Tên phòng ban, có thể thêm *@
+                    @*<dt class="col-sm-4">Phòng ban:</dt>
+                      <dd class="col-sm-8">@Model.TenPhongBan</dd>*@
+                </dl>
+
+                <div class="btn-action">
+                    <a asp-action="Edit" asp-route-id="@Model?.MaNv" class="btn btn-custom btn-edit">
+                        Sửa
+                    </a>
+                    <a asp-action="Index" class="btn btn-custom btn-back">
+                        Quay lại
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
