@@ -96,6 +96,21 @@ namespace VanPhongPhamOnline.Controllers.Admin
             {
                 try
                 {
+                    var existing = await _context.NhanViens.AsNoTracking().FirstOrDefaultAsync(n => n.MaNv == id);
+                    if (existing == null)
+                        return NotFound();
+
+                    // Nếu người dùng không thay đổi mật khẩu (giữ nguyên), thì không mã hóa lại
+                    if (nhanVien.MatKhauNv != existing.MatKhauNv)
+                    {
+                        // 👇 Tạo random key để mã hóa mới nếu có thay đổi
+                        string randomKey = MyUlti.GenerateRandomKey();
+                        nhanVien.MatKhauNv = nhanVien.MatKhauNv.ToMd5Hash(randomKey); // 👈 Mã hóa mật khẩu mới
+                    }
+                    else
+                    {
+                        nhanVien.MatKhauNv = existing.MatKhauNv; // giữ nguyên mật khẩu cũ
+                    }
                     _context.Update(nhanVien);
                     await _context.SaveChangesAsync();
                 }

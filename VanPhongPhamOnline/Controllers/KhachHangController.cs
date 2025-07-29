@@ -186,12 +186,22 @@ namespace VanPhongPhamOnline.Controllers
                     kh.HinhKh = MyUlti.UploadHinh(model.Hinh, "KhachHang", kh.MaKh);
                 }
 
+                // 👇 BẮT ĐẦU: Xử lý đổi mật khẩu nếu có nhập
+                if (!string.IsNullOrEmpty(model.MatKhau))
+                {
+                    var randomKey = MyUlti.GenerateRandomKey();              // sinh key mới
+                    kh.RandomKeyKh = randomKey;                              // cập nhật key
+                    kh.MatKhauKh = model.MatKhau.ToMd5Hash(randomKey);       // mã hóa mật khẩu
+                }
+                // 👆 KẾT THÚC: Phần xử lý đổi mật khẩu
+
                 db.SaveChanges();
                 return RedirectToAction("Profile");
             }
 
             return View(model);
         }
+
 
         [Authorize]
         public async Task<IActionResult> DangXuat()

@@ -60,6 +60,26 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTmhhblZpZW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Dat Files/Document_Study/2024-2025 - Semester I & II & III/Introduction to Software Engineering/VanPhongPhamOnline/VanPhongPhamOnline/Views/Admin/QuanLyKhachHang/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cUXVhbkx5S2hhY2hIYW5nXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dat Files/Document_Study/2024-2025 - Semester I & II & III/Introduction to Software Engineering/VanPhongPhamOnline/VanPhongPhamOnline/Views/Admin/QuanLyKhachHang/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cUXVhbkx5S2hhY2hIYW5nXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dat Files/Document_Study/2024-2025 - Semester I & II & III/Introduction to Software Engineering/VanPhongPhamOnline/VanPhongPhamOnline/Views/Admin/QuanLyKhachHang/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cUXVhbkx5S2hhY2hIYW5nXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dat Files/Document_Study/2024-2025 - Semester I & II & III/Introduction to Software Engineering/VanPhongPhamOnline/VanPhongPhamOnline/Views/Admin/QuanLyKhachHang/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cUXVhbkx5S2hhY2hIYW5nXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dat Files/Document_Study/2024-2025 - Semester I & II & III/Introduction to Software Engineering/VanPhongPhamOnline/VanPhongPhamOnline/Views/Admin/QuanLyKhachHang/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cUXVhbkx5S2hhY2hIYW5nXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Dat Files/Document_Study/2024-2025 - Semester I & II & III/Introduction to Software Engineering/VanPhongPhamOnline/VanPhongPhamOnline/Views/Cart/Checkout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FydFxDaGVja291dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -186,6 +206,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Dat Files/Document_Study/2024-2025 - Semester I & II & III/Introduction to Software Engineering/VanPhongPhamOnline/VanPhongPhamOnline/Views/Shared/_LayoutCustomer.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRDdXN0b21lci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Dat Files/Document_Study/2024-2025 - Semester I & II & III/Introduction to Software Engineering/VanPhongPhamOnline/VanPhongPhamOnline/Views/Shared/_ToastNotification.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Ub2FzdE5vdGlmaWNhdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Dat Files/Document_Study/2024-2025 - Semester I & II & III/Introduction to Software Engineering/VanPhongPhamOnline/VanPhongPhamOnline/Views/Shared/_Topbar.cshtml]

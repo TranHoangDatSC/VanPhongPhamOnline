@@ -1,4 +1,4 @@
-﻿@model VanPhongPhamOnline.Data.NhanVien
+﻿@model VanPhongPhamOnline.Data.KhachHang
 
 @{
     Layout = null;
@@ -8,11 +8,11 @@
 <html lang="vi">
 <head>
     <meta charset="utf-8" />
-    <title>Xóa nhân viên</title>
+    <title>Xóa khách hàng</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
     <style>
         body {
-            background: linear-gradient(120deg, #fff3e0, #ffe0b2);
+            background: linear-gradient(120deg, #ffebee, #ffcdd2);
             font-family: 'Segoe UI', sans-serif;
             padding: 40px;
         }
@@ -27,20 +27,20 @@
         }
 
         h1 {
-            color: #e65100;
+            color: #d32f2f;
             font-weight: bold;
             margin-bottom: 30px;
             text-align: center;
         }
 
         .warning-message {
-            background: linear-gradient(45deg, #fff3e0, #ffe0b2);
-            border: 2px solid #e65100;
+            background: linear-gradient(45deg, #ffebee, #ffcdd2);
+            border: 2px solid #d32f2f;
             border-radius: 15px;
             padding: 20px;
             margin-bottom: 30px;
             text-align: center;
-            color: #e65100;
+            color: #d32f2f;
             font-weight: bold;
         }
 
@@ -124,49 +124,63 @@
 <body>
     <div class="container">
         <div class="container-box">
-            <h1>⚠️ Xác nhận xóa nhân viên</h1>
+            <h1>⚠️ Xác nhận xóa khách hàng</h1>
 
-            <!-- Nếu có Toast Notification dùng chung -->
+            <!-- Include Toast Notification -->
             @await Html.PartialAsync("_ToastNotification")
 
             <div class="warning-message">
-                Bạn có chắc chắn muốn xóa nhân viên này không?<br />
+                Bạn có chắc chắn muốn xóa khách hàng này không?<br>
                 <strong>Hành động này không thể hoàn tác!</strong>
             </div>
 
             <div class="detail-row">
-                <div class="detail-label">Mã nhân viên:</div>
-                <div class="detail-value">@Html.DisplayFor(model => model.MaNv)</div>
+                <div class="detail-label">Mã khách hàng:</div>
+                <div class="detail-value">@Html.DisplayFor(model => model.MaKh)</div>
             </div>
 
             <div class="detail-row">
                 <div class="detail-label">Họ tên:</div>
-                <div class="detail-value">@Html.DisplayFor(model => model.HoTenNv)</div>
+                <div class="detail-value">@Html.DisplayFor(model => model.HoTenKh)</div>
             </div>
 
             <div class="detail-row">
                 <div class="detail-label">Email:</div>
-                <div class="detail-value">@Html.DisplayFor(model => model.EmailNv)</div>
+                <div class="detail-value">@Html.DisplayFor(model => model.EmailKh)</div>
             </div>
 
             <div class="detail-row">
-                <div class="detail-label">Mật khẩu:</div>
-                <div class="detail-value">@Html.DisplayFor(model => model.MatKhauNv)</div>
+                <div class="detail-label">Điện thoại:</div>
+                <div class="detail-value">@Html.DisplayFor(model => model.DienThoaiKh)</div>
+            </div>
+
+            <div class="detail-row">
+                <div class="detail-label">Giới tính:</div>
+                <div class="detail-value">
+                    <span class="gender-badge @(Model.GioiTinhKh ? "gender-male" : "gender-female")">
+                        @(Model.GioiTinhKh ? "Nam" : "Nữ")
+                    </span>
+                </div>
+            </div>
+
+            <div class="detail-row">
+                <div class="detail-label">Ngày sinh:</div>
+                <div class="detail-value">@Model.NgaySinhKh.ToString("dd/MM/yyyy")</div>
             </div>
 
             <div class="detail-row">
                 <div class="detail-label">Địa chỉ:</div>
-                <div class="detail-value">@Html.DisplayFor(model => model.DiaChiNv)</div>
+                <div class="detail-value">@Html.DisplayFor(model => model.DiaChiKh)</div>
             </div>
 
             <div class="actions">
                 <form asp-action="Delete" method="post" style="display: inline;">
-                    <input type="hidden" asp-for="MaNv" />
-                    <button type="submit" class="btn-delete" onclick="return confirm('Bạn có chắc chắn muốn xóa nhân viên này?')">
-                        🗑️ Xóa nhân viên
+                    <input type="hidden" asp-for="MaKh" />
+                    <button type="submit" class="btn-delete" onclick="return confirm('Bạn có chắc chắn muốn xóa khách hàng này?')">
+                        🗑️ Xóa khách hàng
                     </button>
                 </form>
-                <a href="@Url.Action("Index", "NhanVien")" class="btn-cancel">❌ Hủy bỏ</a>
+                <a href="@Url.Action("Index", "QuanLyKhachHang")" class="btn-cancel">❌ Hủy bỏ</a>
             </div>
         </div>
     </div>

@@ -1,4 +1,4 @@
-﻿@model VanPhongPhamOnline.Data.NhanVien
+﻿@model VanPhongPhamOnline.Data.KhachHang
 
 @{
     Layout = null;
@@ -8,7 +8,7 @@
 <html lang="vi">
 <head>
     <meta charset="utf-8" />
-    <title>Chi tiết nhân viên</title>
+    <title>Chi tiết khách hàng</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
     <style>
         body {
@@ -92,7 +92,7 @@
             color: #c2185b;
         }
 
-        .employee-image {
+        .customer-image {
             width: 100px;
             height: 100px;
             border-radius: 50%;
@@ -110,68 +110,62 @@
 <body>
     <div class="container">
         <div class="container-box">
-            <h1>Chi tiết nhân viên</h1>
+            <h1>Chi tiết khách hàng</h1>
 
-            @* Thêm thông báo nếu có *@
+            <!-- Include Toast Notification -->
             @await Html.PartialAsync("_ToastNotification")
 
-            @* <div class="image-section">
+            <div class="image-section">
                 @{
-                    var imageSrc = !string.IsNullOrEmpty(Model.HinhNv)
-                    ? "~/Hinh/NhanVien/" + Model.HinhNv
-                    : "~/Hinh/default-employee.jpg";
+                    var imageSrc = !string.IsNullOrEmpty(Model.HinhKh) ?
+                    "~/Hinh/KhachHang/" + Model.HinhKh :
+                    "~/Hinh/default-customer.jpg";
                 }
-                <img src="@Url.Content(imageSrc)" alt="Ảnh nhân viên" class="employee-image" />
-            </div> *@
+                <img src="@Url.Content(imageSrc)" alt="Ảnh khách hàng" class="customer-image" />
+            </div>
 
             <div class="detail-row">
-                <div class="detail-label">Mã nhân viên:</div>
-                <div class="detail-value">@Model.MaNv</div>
+                <div class="detail-label">Mã khách hàng:</div>
+                <div class="detail-value">@Html.DisplayFor(model => model.MaKh)</div>
             </div>
 
             <div class="detail-row">
                 <div class="detail-label">Họ tên:</div>
-                <div class="detail-value">@Model.HoTenNv</div>
+                <div class="detail-value">@Html.DisplayFor(model => model.HoTenKh)</div>
             </div>
 
             <div class="detail-row">
                 <div class="detail-label">Email:</div>
-                <div class="detail-value">@Model.EmailNv</div>
+                <div class="detail-value">@Html.DisplayFor(model => model.EmailKh)</div>
             </div>
 
             <div class="detail-row">
-                <div class="detail-label">Mật khẩu:</div>
-                <div class="detail-value">@Model.MatKhauNv</div>
-            </div>
-
-            <div class="detail-row">
-                <div class="detail-label">Ngày sinh:</div>
-                <div class="detail-value">@Model.NgaySinhNv?.ToString("dd/MM/yyyy")</div>
+                <div class="detail-label">Điện thoại:</div>
+                <div class="detail-value">@Html.DisplayFor(model => model.DienThoaiKh)</div>
             </div>
 
             <div class="detail-row">
                 <div class="detail-label">Giới tính:</div>
                 <div class="detail-value">
-                    <span class="gender-badge @(Model.GioiTinhNv == true ? "gender-male" : "gender-female")">
-                        @(Model.GioiTinhNv == true ? "Nam" : "Nữ")
+                    <span class="gender-badge @(Model.GioiTinhKh ? "gender-male" : "gender-female")">
+                        @(Model.GioiTinhKh ? "Nam" : "Nữ")
                     </span>
                 </div>
             </div>
 
             <div class="detail-row">
-                <div class="detail-label">Địa chỉ:</div>
-                <div class="detail-value">@Model.DiaChiNv</div>
+                <div class="detail-label">Ngày sinh:</div>
+                <div class="detail-value">@Model.NgaySinhKh.ToString("dd/MM/yyyy")</div>
             </div>
 
-            @* Thêm phòng ban nếu cần *@
-            @*<div class="detail-row">
-                <div class="detail-label">Phòng ban:</div>
-                <div class="detail-value">@Model.TenPhongBan</div>
-            </div>*@
+            <div class="detail-row">
+                <div class="detail-label">Địa chỉ:</div>
+                <div class="detail-value">@Html.DisplayFor(model => model.DiaChiKh)</div>
+            </div>
 
             <div class="actions">
-                <a href="@Url.Action("Index", "NhanVien")" class="back-link">← Quay lại danh sách</a>
-                <a href="@Url.Action("Edit", "NhanVien", new { id = Model.MaNv })" class="edit-link">✏️ Chỉnh sửa</a>
+                <a href="@Url.Action("Index", "QuanLyKhachHang")" class="back-link">← Quay lại danh sách</a>
+                <a href="@Url.Action("Edit", "QuanLyKhachHang", new { id = Model.MaKh })" class="edit-link">✏️ Chỉnh sửa</a>
             </div>
         </div>
     </div>
