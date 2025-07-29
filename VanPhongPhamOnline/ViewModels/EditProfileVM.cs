@@ -29,6 +29,8 @@ namespace VanPhongPhamOnline.ViewModels
         [Display(Name = "Email")]
         [EmailAddress(ErrorMessage = "Email không hợp lệ!")]
         public string Email { get; set; } = "";
+        [DataType(DataType.Password)]
+        public string? MatKhau { get; set; }
         public IFormFile? Hinh { get; set; }
     }
 }

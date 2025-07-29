@@ -25,88 +25,154 @@
         }
 
         h1 {
-            color: #f57c00;
+            color: #ef6c00;
             font-weight: bold;
             margin-bottom: 30px;
+            text-align: center;
         }
 
-        th {
-            background-color: #ffe0b2;
-            color: #5d4037;
-        }
-
-        td {
-            vertical-align: middle !important;
-        }
-
-        .btn-primary {
-            background-color: #f57c00;
+        .btn-create {
+            background: linear-gradient(45deg, #ffb74d, #f57c00);
             border: none;
-            border-radius: 30px;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
             font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
         }
 
-            .btn-primary:hover {
-                background-color: #ef6c00;
+            .btn-create:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(245, 124, 0, 0.4);
+                color: white;
+                text-decoration: none;
             }
 
-        .action-links a {
-            margin-right: 10px;
-            font-weight: 500;
+        .table {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
-        .action-links a:hover {
-            text-decoration: underline;
-        }
+            .table thead th {
+                background: linear-gradient(45deg, #f57c00, #ffb74d);
+                color: white;
+                border: none;
+                padding: 15px;
+                font-weight: 600;
+            }
 
-        .btn-secondary {
-            background-color: #6c757d;
-            border: none;
-            border-radius: 30px;
+            .table tbody td {
+                padding: 15px;
+                vertical-align: middle;
+                border-bottom: 1px solid #e0e0e0;
+            }
+
+            .table tbody tr:hover {
+                background-color: #fff8e1;
+                transform: scale(1.01);
+                transition: all 0.2s ease;
+            }
+
+        .btn-action {
+            margin: 0 2px;
+            border-radius: 20px;
+            padding: 6px 12px;
+            font-size: 11px;
             font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            min-width: 60px;
+            text-align: center;
         }
 
-        .btn-secondary:hover {
-            background-color: #5a6268;
+        .btn-info {
+            background: linear-gradient(45deg, #29b6f6, #0288d1);
+            border: none;
+            color: white;
         }
+
+        .btn-warning {
+            background: linear-gradient(45deg, #ffb74d, #f57c00);
+            border: none;
+            color: white;
+        }
+
+        .btn-danger {
+            background: linear-gradient(45deg, #ef5350, #d32f2f);
+            border: none;
+            color: white;
+        }
+
+        .btn-action:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            color: white;
+            text-decoration: none;
+        }
+
+        .back-link {
+            color: #f57c00;
+            text-decoration: none;
+            font-weight: bold;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+            .back-link:hover {
+                color: #e65100;
+                text-decoration: none;
+            }
     </style>
 </head>
 <body>
-    <div class="container-box">
-        <h1 style="text-align: center">Quản lý nhân viên</h1>
+    <div class="container-fluid">
+        <div class="container-box">
+            <a href="@Url.Action("IndexAdmin", "Admin")" class="back-link">← Quay lại trang Admin</a>
 
-        <p>
-            <a asp-controller="Admin" asp-action="IndexAdmin" class="btn btn-secondary">&larr; Quay về Trang Quản Trị</a>
-            <a asp-action="Create" class="btn btn-primary ml-2">+ Thêm mới</a>
-        </p>
+            <h1>Quản lý nhân viên</h1>
 
+            <a href="@Url.Action("Create", "NhanVien")" class="btn-create">
+                + Thêm nhân viên mới
+            </a>
 
-        <table class="table table-bordered table-hover">
-            <thead>
-                <tr>
-                    <th>Họ tên</th>
-                    <th>Email</th>
-                    <th>Mật khẩu</th>
-                    <th>Thao tác</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>@item.HoTenNv</td>
-                        <td>@item.EmailNv</td>
-                        <td>@item.MatKhauNv</td>
-                        <td class="action-links">
-                            <a asp-action="Edit" asp-route-id="@item.MaNv" class="text-warning">Sửa</a>
-                            <a asp-action="Details" asp-route-id="@item.MaNv" class="text-info">Chi tiết</a>
-                            <a asp-action="Delete" asp-route-id="@item.MaNv" class="text-danger">Xóa</a>
-                        </td>
-                    </tr>
-                }
-
-            </tbody>
-        </table>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Mã NV</th>
+                            <th>Họ tên</th>
+                            <th>Email</th>
+                            <th>Mật khẩu</th>
+                            <th style="width: 200px; text-align: center;">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.MaNv</td>
+                                <td>@item.HoTenNv</td>
+                                <td>@item.EmailNv</td>
+                                <td>@item.MatKhauNv</td>
+                                <td style="text-align: center; white-space: nowrap;">
+                                    <a href="@Url.Action("Details", "NhanVien", new { id = item.MaNv })" class="btn-action btn-info">Chi tiết</a>
+                                    <a href="@Url.Action("Edit", "NhanVien", new { id = item.MaNv })" class="btn-action btn-warning">Sửa</a>
+                                    <a href="@Url.Action("Delete", "NhanVien", new { id = item.MaNv })" class="btn-action btn-danger">Xóa</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
