@@ -1,0 +1,343 @@
+﻿@model VanPhongPhamOnline.Data.KhachHang
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <title>Chỉnh sửa khách hàng</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <style>
+        body {
+            background: linear-gradient(120deg, #e3f2fd, #bbdefb);
+            font-family: 'Segoe UI', sans-serif;
+            padding: 40px;
+        }
+
+        .container-box {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #1976d2;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .form-control {
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 12px 15px;
+            transition: all 0.3s ease;
+        }
+
+            .form-control:focus {
+                border-color: #1976d2;
+                box-shadow: 0 0 10px rgba(25, 118, 210, 0.2);
+            }
+
+        .btn-submit {
+            background: linear-gradient(45deg, #ff9800, #f57c00);
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+            .btn-submit:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(245, 124, 0, 0.4);
+                color: white;
+            }
+
+        .back-link {
+            color: #1976d2;
+            text-decoration: none;
+            font-weight: bold;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+            .back-link:hover {
+                color: #0d47a1;
+                text-decoration: none;
+            }
+
+        .text-danger {
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+            .radio-item input[type="radio"] {
+                margin: 0;
+            }
+
+        .readonly-field {
+            background-color: #f5f5f5;
+            color: #666;
+        }
+
+        /* Image upload styles */
+        .image-upload-section {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .image-preview {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #1976d2;
+            margin-bottom: 15px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .upload-btn {
+            display: inline-block;
+            padding: 8px 16px;
+            background: linear-gradient(45deg, #ff9800, #f57c00);
+            color: white;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+            .upload-btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(245, 124, 0, 0.4);
+            }
+
+        #imageUpload {
+            display: none;
+        }
+
+        /* Password toggle styles */
+        .password-input-container {
+            position: relative;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+            padding: 0;
+            font-size: 16px;
+        }
+
+            .password-toggle:hover {
+                color: #1976d2;
+            }
+
+            .password-toggle i {
+                font-size: 14px;
+            }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="container-box">
+            <a href="@Url.Action("Index", "QuanLyKhachHang")" class="back-link">← Quay lại danh sách</a>
+
+            <h1>Chỉnh sửa khách hàng</h1>
+
+            <!-- Include Toast Notification -->
+            @await Html.PartialAsync("_ToastNotification")
+
+            <form asp-action="Edit" method="post" enctype="multipart/form-data">
+                <input type="hidden" asp-for="MaKh" />
+                <input type="hidden" asp-for="RandomKeyKh" />
+
+                <!-- Image Upload Section -->
+                <div class="image-upload-section">
+                    @{
+                        var imageSrc = !string.IsNullOrEmpty(Model.HinhKh) ?
+                        "~/Hinh/KhachHang/" + Model.HinhKh :
+                        "~/Hinh/default-customer.jpg";
+                    }
+                    <img id="imagePreview" src="@Url.Content(imageSrc)" alt="Preview" class="image-preview" />
+                    <br>
+                    <label for="imageUpload" class="upload-btn">📷 Thay đổi ảnh đại diện</label>
+                    <input type="file" id="imageUpload" name="HinhKh" accept="image/*" onchange="previewImage(this)" />
+                    <br><small class="text-muted">Để trống nếu không muốn thay đổi ảnh</small>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="MaKh">Mã khách hàng</label>
+                            <input asp-for="MaKh" class="form-control readonly-field" readonly />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="HoTenKh">Họ tên</label>
+                            <input asp-for="HoTenKh" class="form-control" placeholder="Nhập họ tên" />
+                            <span asp-validation-for="HoTenKh" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="EmailKh">Email</label>
+                            <input asp-for="EmailKh" type="email" class="form-control" placeholder="" />
+                            <span asp-validation-for="EmailKh" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="DienThoaiKh">Điện thoại</label>
+                            <input asp-for="DienThoaiKh" class="form-control" placeholder="" pattern="[0-9]{10}" maxlength="10" />
+                            <span asp-validation-for="DienThoaiKh" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="NgaySinhKh">Ngày sinh</label>
+                            <input asp-for="NgaySinhKh" type="date" class="form-control" />
+                            <span asp-validation-for="NgaySinhKh" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Giới tính</label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input asp-for="GioiTinhKh" type="radio" value="true" id="male" />
+                                    <label for="male">Nam</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input asp-for="GioiTinhKh" type="radio" value="false" id="female" />
+                                    <label for="female">Nữ</label>
+                                </div>
+                            </div>
+                            <span asp-validation-for="GioiTinhKh" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="DiaChiKh">Địa chỉ</label>
+                    <textarea asp-for="DiaChiKh" class="form-control" rows="3" placeholder="Nhập địa chỉ"></textarea>
+                    <span asp-validation-for="DiaChiKh" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="MatKhauKh">Mật khẩu mới (để trống nếu không đổi)</label>
+                    <div class="password-input-container">
+                        <input asp-for="MatKhauKh" type="password" class="form-control" placeholder="" id="passwordField" />
+                        <button type="button" class="password-toggle" onclick="togglePassword('passwordField', this)">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <span asp-validation-for="MatKhauKh" class="text-danger"></span>
+                    <small class="text-muted">Chỉ nhập nếu muốn thay đổi mật khẩu</small>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn-submit">Cập nhật khách hàng</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+
+    <script>
+        function previewImage(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('imagePreview').src = e.target.result;
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function togglePassword(fieldId, button) {
+            const field = document.getElementById(fieldId);
+            const icon = button.querySelector('i');
+
+            if (field.type === 'password') {
+                field.type = 'text';
+                icon.className = 'fas fa-eye-slash';
+            } else {
+                field.type = 'password';
+                icon.className = 'fas fa-eye';
+            }
+        }
+
+        // Phone number validation
+        document.addEventListener('DOMContentLoaded', function() {
+            const phoneInput = document.querySelector('input[name="DienThoaiKh"]');
+            if (phoneInput) {
+                phoneInput.addEventListener('input', function(e) {
+                    // Only allow numbers
+                    e.target.value = e.target.value.replace(/[^0-9]/g, '');
+
+                    // Limit to 10 digits
+                    if (e.target.value.length > 10) {
+                        e.target.value = e.target.value.slice(0, 10);
+                    }
+                });
+
+                phoneInput.addEventListener('blur', function(e) {
+                    if (e.target.value && e.target.value.length !== 10) {
+                        e.target.setCustomValidity('Số điện thoại phải có đúng 10 chữ số');
+                    } else {
+                        e.target.setCustomValidity('');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

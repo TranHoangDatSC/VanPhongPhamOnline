@@ -7657,23 +7657,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\hoang\\.nuget\\packages\\": {},
+    "C:\\Users\\anhha\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I & II & III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\VanPhongPhamOnline.csproj",
+      "projectUniqueName": "C:\\Users\\anhha\\Source\\Repos\\VanPhongPhamOnline\\VanPhongPhamOnline\\VanPhongPhamOnline.csproj",
       "projectName": "VanPhongPhamOnline",
-      "projectPath": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I & II & III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\VanPhongPhamOnline.csproj",
-      "packagesPath": "C:\\Users\\hoang\\.nuget\\packages\\",
-      "outputPath": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I & II & III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\obj\\",
+      "projectPath": "C:\\Users\\anhha\\Source\\Repos\\VanPhongPhamOnline\\VanPhongPhamOnline\\VanPhongPhamOnline.csproj",
+      "packagesPath": "C:\\Users\\anhha\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\anhha\\Source\\Repos\\VanPhongPhamOnline\\VanPhongPhamOnline\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\hoang\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\anhha\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -7682,7 +7682,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

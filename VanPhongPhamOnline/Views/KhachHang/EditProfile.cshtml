@@ -47,7 +47,11 @@
                     <input asp-for="Email" class="form-control" />
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
-
+                <div class="mb-3">
+                    <label asp-for="MatKhau" class="form-label">Mật khẩu mới (tuỳ chọn)</label>
+                    <input asp-for="MatKhau" class="form-control" type="password" />
+                    <span asp-validation-for="MatKhau" class="text-danger"></span>
+                </div>
                 <!-- Upload Hình -->
                 <div class="form-item w-100">
                     <label for="Hinh" class="form-label my-3">Thay ảnh đại diện (nếu muốn)</label>
