@@ -1,0 +1,58 @@
+﻿@model VanPhongPhamOnline.ViewModels.QuenMatKhauVM
+@{
+    ViewData["Title"] = "Quên mật khẩu";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <h1 class="text-center mb-4">Quên mật khẩu</h1>
+
+            @if (ViewBag.Message != null)
+            {
+                <div class="alert alert-success text-center">@ViewBag.Message</div>
+            }
+
+            <form asp-action="QuenMatKhau">
+                <div class="text-danger mb-3" asp-validation-summary="All"></div>
+
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label">Nhập email đã đăng ký <sup>*</sup></label>
+                    <input asp-for="Email" class="form-control" style="border-radius:12px;" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex justify-content-center mt-4">
+                    <button type="submit" class="btn btn-forgot-submit">
+                        <i class="fa fa-paper-plane me-2"></i> Gửi mã xác nhận
+                    </button>
+                </div>
+            </form>
+
+            <div class="text-center mt-3">
+                <a asp-action="Index" asp-controller="DangNhap">Quay lại đăng nhập</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .btn-forgot-submit {
+        background: linear-gradient(45deg, #f6a623, #f39c12);
+        border: none;
+        color: white !important;
+        padding: 12px 30px;
+        border-radius: 50px;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 16px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        transition: 0.3s;
+    }
+
+        .btn-forgot-submit:hover {
+            background: linear-gradient(45deg, #f39c12, #f6a623);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+</style>

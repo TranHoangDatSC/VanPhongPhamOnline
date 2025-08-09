@@ -2,16 +2,19 @@
 using Microsoft.EntityFrameworkCore;
 using VanPhongPhamOnline.Data;
 using VanPhongPhamOnline.Helpers;
+using VanPhongPhamOnline.ViewModels;
 
 namespace VanPhongPhamOnline.Controllers.Admin
 {
     public class NhanVienController : Controller
     {
         private readonly MultiShopContext _context;
+        private readonly MyUlti _ulti;
 
-        public NhanVienController(MultiShopContext context)
+        public NhanVienController(MultiShopContext context, MyUlti ulti)
         {
             _context = context;
+            _ulti = ulti;
         }
 
 
@@ -168,5 +171,7 @@ namespace VanPhongPhamOnline.Controllers.Admin
         {
             return _context.NhanViens.Any(e => e.MaNv == id);
         }
+
+        
     }
 }

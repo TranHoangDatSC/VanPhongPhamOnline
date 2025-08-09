@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using Microsoft.Extensions.Options;
+using System.Net;
 using System.Net.Mail;
 using System.Text;
 
@@ -50,22 +51,38 @@ namespace VanPhongPhamOnline.Helpers
             }
             return sb.ToString();
         }
-        public static void SendMail(string to, string subject, string body)
+
+
+        private readonly EmailSettings _emailSettings;
+
+        public MyUlti(IOptions<EmailSettings> options)
         {
-            var message = new MailMessage();
-            message.From = new MailAddress("your-email@gmail.com", "MultiShop");
-            message.To.Add(to);
-            message.Subject = subject;
-            message.Body = body;
-            message.IsBodyHtml = true;
+            _emailSettings = options.Value;
+        }
 
-            var smtp = new SmtpClient("smtp.gmail.com", 587)
+        public void SendMail(string to, string subject, string body)
+        {
+            try
             {
-                Credentials = new NetworkCredential("your-email@gmail.com", "app-password-16-ký-tự"),
-                EnableSsl = true
-            };
+                var message = new MailMessage();
+                message.From = new MailAddress(_emailSettings.Mail, _emailSettings.DisplayName);
+                message.To.Add(to);
+                message.Subject = subject;
+                message.Body = body;
+                message.IsBodyHtml = true;
 
-            smtp.Send(message);
+                var smtp = new SmtpClient(_emailSettings.Host, _emailSettings.Port)
+                {
+                    Credentials = new NetworkCredential(_emailSettings.Mail, _emailSettings.Password),
+                    EnableSsl = _emailSettings.EnableSsl
+                };
+
+                smtp.Send(message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Email sending error: " + ex.Message);
+            }
         }
     }
 }
