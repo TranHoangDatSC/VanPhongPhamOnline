@@ -1,0 +1,113 @@
+﻿@model VanPhongPhamOnline.Data.HoaDon
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <title>Chỉnh sửa đơn hàng</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <style>
+        body {
+            background: linear-gradient(120deg, #e3f2fd, #bbdefb);
+            font-family: Arial, sans-serif;
+        }
+
+        .card {
+            max-width: 600px;
+            margin: 50px auto;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-header {
+            background-color: #1976d2;
+            color: white;
+            font-size: 20px;
+            text-align: center;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+
+        .btn-custom {
+            background-color: #1976d2;
+            color: white;
+            border-radius: 25px;
+            padding: 8px 20px;
+        }
+
+            .btn-custom:hover {
+                background-color: #1565c0;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="card-header">
+            ✏️ Chỉnh sửa đơn hàng
+        </div>
+        <div class="card-body">
+            <form asp-action="Edit" method="post">
+                @* Mã đơn hàng (readonly) *@
+                <div class="form-group">
+                    <label>Mã đơn hàng</label>
+                    <input asp-for="MaHd" class="form-control" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label>Mã khách hàng</label>
+                    <input asp-for="MaKh" class="form-control" />
+                    <span asp-validation-for="MaKh" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Ngày đặt</label>
+                    <input asp-for="NgayDat" class="form-control" type="date" />
+                    <span asp-validation-for="NgayDat" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Ngày giao dự kiến</label>
+                    <input asp-for="NgayGiao" class="form-control" type="date" />
+                    <span asp-validation-for="NgayGiao" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Địa chỉ giao hàng</label>
+                    <input asp-for="DiaChi" class="form-control" />
+                    <span asp-validation-for="DiaChi" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Trạng thái</label>
+                    <select asp-for="MaTrangThai" class="form-control">
+                        <option value="1">Chờ xác nhận</option>
+                        <option value="Đang giao">Đang giao</option>
+                        <option value="Đã giao">Đã giao</option>
+                        <option value="Đã hủy">Đã hủy</option>
+                    </select>
+                    <span asp-validation-for="MaTrangThai" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label>Tổng tiền</label>
+                    <input asp-for="PhiVanChuyen" class="form-control" type="number" step="1000" />
+                    <span asp-validation-for="PhiVanChuyen" class="text-danger"></span>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-custom">💾 Lưu thay đổi</button>
+                    <a asp-action="Index" class="btn btn-secondary ml-2">⬅ Quay lại</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
