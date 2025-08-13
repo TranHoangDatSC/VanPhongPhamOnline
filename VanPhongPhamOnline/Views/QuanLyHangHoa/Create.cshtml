@@ -5,86 +5,180 @@
 }
 
 <!DOCTYPE html>
-
-<html>
+<html lang="vi">
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Create</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thêm sản phẩm mới</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
+    <style>
+        body {
+            background: linear-gradient(120deg, #fff8e1, #ffe0b2);
+            font-family: 'Segoe UI', sans-serif;
+            padding: 40px;
+        }
+
+        .container-box {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #fb8c00;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .form-control {
+            border: 2px solid #ffecb3;
+            border-radius: 10px;
+            padding: 12px 15px;
+            transition: all 0.3s ease;
+        }
+
+            .form-control:focus {
+                border-color: #fb8c00;
+                box-shadow: 0 0 10px rgba(251, 140, 0, 0.2);
+            }
+
+        .btn-submit {
+            background: linear-gradient(45deg, #ffa726, #fb8c00);
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+            .btn-submit:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(251, 140, 0, 0.4);
+                color: white;
+            }
+
+        .text-danger {
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .back-link {
+            color: #fb8c00;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+            .back-link:hover {
+                text-decoration: underline;
+            }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <div class="container-box">
+            <a asp-action="Index">← Quay lại danh sách</a>
+            <h1>Thêm sản phẩm mới</h1>
 
-<h4>HangHoa</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="TenHh" class="control-label"></label>
-                <input asp-for="TenHh" class="form-control" />
-                <span asp-validation-for="TenHh" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TenAlias" class="control-label"></label>
-                <input asp-for="TenAlias" class="form-control" />
-                <span asp-validation-for="TenAlias" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MaLoai" class="control-label"></label>
+            <form asp-action="Create" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="form-group">
+                    <label asp-for="Hinh"></label>
+                    <br />
+                    <img id="imagePreview" src="~/Hinh/HangHoa/default.png" alt="Preview"
+                         style="width:150px; height:150px; object-fit:cover; border-radius:8px; margin-bottom:10px;" />
+                    <input asp-for="Hinh" type="file" class="form-control" id="imageUpload" accept="image/*" onchange="previewImage(this)" />
+                    <small class="text-muted">Chọn ảnh sản phẩm</small>
+                    <span asp-validation-for="Hinh" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="TenHh"></label>
+                    <input asp-for="TenHh" class="form-control" />
+                    <span asp-validation-for="TenHh" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="TenAlias"></label>
+                    <input asp-for="TenAlias" class="form-control" />
+                    <span asp-validation-for="TenAlias" class="text-danger"></span>
+                </div>
+
                 <input type="hidden" asp-for="MaLoai" value="1" />
-            </div>
-            <div class="form-group">
-                <label asp-for="MoTaDonVi" class="control-label"></label>
-                <input asp-for="MoTaDonVi" class="form-control" />
-                <span asp-validation-for="MoTaDonVi" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DonGia" class="control-label"></label>
-                <input asp-for="DonGia" class="form-control" />
-                <span asp-validation-for="DonGia" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Hinh" class="control-label"></label>
-                <input asp-for="Hinh" class="form-control" />
-                <span asp-validation-for="Hinh" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="NgaySx" class="control-label"></label>
-                <input asp-for="NgaySx" class="form-control" />
-                <span asp-validation-for="NgaySx" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="GiamGia" class="control-label"></label>
-                <input type="hidden" value="0" asp-for="GiamGia" class="form-control" />
-                <span asp-validation-for="GiamGia" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SoLanXem" class="control-label"></label>
-                <input type="hidden" value="0" asp-for="SoLanXem" class="form-control" />
-                <span asp-validation-for="SoLanXem" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MoTa" class="control-label"></label>
-                <input asp-for="MoTa" class="form-control" />
-                <span asp-validation-for="MoTa" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MaNcc" class="control-label"></label>
+                <input type="hidden" asp-for="GiamGia" value="0" />
+                <input type="hidden" asp-for="SoLanXem" value="0" />
                 <input type="hidden" asp-for="MaNcc" value="NCC01" />
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+
+                <div class="form-group">
+                    <label asp-for="MoTaDonVi"></label>
+                    <input asp-for="MoTaDonVi" class="form-control" />
+                    <span asp-validation-for="MoTaDonVi" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="DonGia"></label>
+                    <input asp-for="DonGia" class="form-control" />
+                    <span asp-validation-for="DonGia" class="text-danger"></span>
+                </div>
+
+                @* <div class="form-group">
+                    <label asp-for="Hinh"></label>
+                    <input asp-for="Hinh" class="form-control" />
+                    <span asp-validation-for="Hinh" class="text-danger"></span>
+                </div> *@
+
+                <div class="form-group">
+                    <label asp-for="NgaySx"></label>
+                    <input asp-for="NgaySx" type="date" class="form-control" />
+                    <span asp-validation-for="NgaySx" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="MoTa"></label>
+                    <input asp-for="MoTa" class="form-control" />
+                    <span asp-validation-for="MoTa" class="text-danger"></span>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn-submit">Thêm sản phẩm</button>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
 </body>
 </html>
+<script>
+    function previewImage(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                document.getElementById('imagePreview').src = e.target.result;
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>

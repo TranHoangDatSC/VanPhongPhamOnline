@@ -21,9 +21,17 @@ namespace VanPhongPhamOnline.Controllers.Admin
         // GET: HoaDon
         public async Task<IActionResult> Index()
         {
-            var multiShopContext = _context.HoaDons.Include(h => h.MaKhNavigation).Include(h => h.MaNvNavigation).Include(h => h.MaTrangThaiNavigation);
+            var maNV = HttpContext.Session.GetString("MaNV"); 
+            ViewBag.IsAdmin = string.Equals(maNV, "AD001", StringComparison.OrdinalIgnoreCase);
+
+            var multiShopContext = _context.HoaDons
+                .Include(h => h.MaKhNavigation)
+                .Include(h => h.MaNvNavigation)
+                .Include(h => h.MaTrangThaiNavigation);
+
             return View("~/Views/Admin/QuanLyHoaDon/Index.cshtml", multiShopContext);
         }
+
 
         // GET: HoaDon/Details/5
         public async Task<IActionResult> Details(int? id)

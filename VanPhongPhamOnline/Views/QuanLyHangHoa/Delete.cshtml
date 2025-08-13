@@ -5,92 +5,161 @@
 }
 
 <!DOCTYPE html>
-
-<html>
+<html lang="vi">
 <head>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>Delete</title>
+    <title>Xóa sản phẩm</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <style>
+        body {
+            background: linear-gradient(120deg, #fff3e0, #ffe0b2);
+            font-family: 'Segoe UI', sans-serif;
+            padding: 40px;
+        }
+
+        .container-box {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #e65100;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .warning-message {
+            background: linear-gradient(45deg, #fff3e0, #ffe0b2);
+            border: 2px solid #e65100;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #e65100;
+            font-weight: bold;
+        }
+
+        .detail-row {
+            display: flex;
+            margin-bottom: 15px;
+            padding: 12px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: #333;
+            width: 150px;
+            flex-shrink: 0;
+        }
+
+        .detail-value {
+            color: #666;
+            flex: 1;
+        }
+
+        .btn-delete {
+            background: linear-gradient(45deg, #ef5350, #d32f2f);
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: bold;
+            margin-right: 15px;
+            transition: all 0.3s ease;
+        }
+
+            .btn-delete:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(211, 47, 47, 0.4);
+                color: white;
+            }
+
+        .btn-cancel {
+            background: linear-gradient(45deg, #78909c, #546e7a);
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+            .btn-cancel:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(84, 110, 122, 0.4);
+                color: white;
+                text-decoration: none;
+            }
+
+        .actions {
+            text-align: center;
+            margin-top: 30px;
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <div class="container-box">
+            <h1>⚠️ Xác nhận xóa sản phẩm</h1>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>HangHoa</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TenHh)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TenHh)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TenAlias)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TenAlias)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MoTaDonVi)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MoTaDonVi)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DonGia)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DonGia)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Hinh)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Hinh)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NgaySx)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NgaySx)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.GiamGia)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.GiamGia)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SoLanXem)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SoLanXem)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MoTa)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MoTa)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MaLoaiNavigation)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MaLoaiNavigation.MaLoai)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MaNccNavigation)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MaNccNavigation.MaNcc)
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="MaHh" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
-</div>
+            <div class="warning-message">
+                Bạn có chắc chắn muốn xóa sản phẩm này không?<br />
+                <strong>Hành động này không thể hoàn tác!</strong>
+            </div>
+
+            <div class="detail-row">
+                <div class="detail-label">Tên sản phẩm:</div>
+                <div class="detail-value">@Html.DisplayFor(model => model.TenHh)</div>
+            </div>
+
+            <div class="detail-row">
+                <div class="detail-label">Alias:</div>
+                <div class="detail-value">@Html.DisplayFor(model => model.TenAlias)</div>
+            </div>
+
+            <div class="detail-row">
+                <div class="detail-label">Đơn vị:</div>
+                <div class="detail-value">@Html.DisplayFor(model => model.MoTaDonVi)</div>
+            </div>
+
+            <div class="detail-row">
+                <div class="detail-label">Đơn giá:</div>
+                <div class="detail-value">@Html.DisplayFor(model => model.DonGia)</div>
+            </div>
+
+            <div class="detail-row">
+                <div class="detail-label">Hình:</div>
+                <div class="detail-value">@Html.DisplayFor(model => model.Hinh)</div>
+            </div>
+
+            <div class="detail-row">
+                <div class="detail-label">Ngày sản xuất:</div>
+                <div class="detail-value">@Html.DisplayFor(model => model.NgaySx)</div>
+            </div>
+
+            <div class="detail-row">
+                <div class="detail-label">Mô tả:</div>
+                <div class="detail-value">@Html.DisplayFor(model => model.MoTa)</div>
+            </div>
+
+            <div class="actions">
+                <form asp-action="Delete" method="post" style="display: inline;">
+                    <input type="hidden" asp-for="MaHh" />
+                    <button type="submit" class="btn-delete" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')">
+                        🗑️ Xóa sản phẩm
+                    </button>
+                </form>
+                <a asp-action="Index"> ❌ Hủy bỏ</a>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

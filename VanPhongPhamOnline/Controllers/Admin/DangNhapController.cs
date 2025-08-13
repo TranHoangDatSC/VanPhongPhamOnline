@@ -48,7 +48,6 @@ namespace VanPhongPhamOnline.Controllers.Admin
                 ModelState.AddModelError("", "Sai tài khoản hoặc mật khẩu!");
                 return View("~/Views/Admin/DangNhap/Index.cshtml");
             }
-
             //var pc = _context.PhanCongs
             //    .FirstOrDefault(p => p.MaNv == nv.MaNv && p.HieuLuc == true);
 
@@ -67,7 +66,7 @@ namespace VanPhongPhamOnline.Controllers.Admin
 
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             var principal = new ClaimsPrincipal(claimsIdentity);
-
+            HttpContext.Session.SetString("MaNV", nv.MaNv);
             await HttpContext.SignInAsync(principal);
 
             if(nv.MaNv== "AD001")
