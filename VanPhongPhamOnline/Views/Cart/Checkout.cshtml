@@ -6,171 +6,133 @@
     var total = subtotal + shipping;
 }
 
+<div class="container py-5">
+    <h1 class="mb-4">Billing Details</h1>
 
+    <form asp-action="Checkout" asp-controller="Cart" method="post">
+        @Html.AntiForgeryToken()
+        <div class="row g-5">
+            <!-- Thông tin giao hàng -->
+            <div class="col-lg-7">
+                <div class="form-check mb-3">
+                    <input type="checkbox" name="GiongKhachHang" class="form-check-input" id="GiongKhachHang" value="true">
+                    <label class="form-check-label" for="GiongKhachHang">Giống thông tin khách hàng?</label>
+                </div>
 
-<!-- Checkout Page Start -->
-<div class="container-fluid py-5">
-    <div class="container py-5">
-        <h1 class="mb-4">Billing details</h1>
-        <form asp-action="Checkout" asp-controller="Cart" method="post">
-            @Html.AntiForgeryToken()
-            <div class="row g-5">
-                    <div class="col-md-12 col-lg-6 col-xl-7">
-                        <div class="form-check my-3">
-                            <input type="checkbox" name="GiongKhachHang" class="form-check-input" id="GiongKhachHang" value="true">
-                            <label class="form-check-label" for="GiongKhachHang">Giống thông tin khách hàng?</label>
-                        </div>
-                    <div class="form-item delivery-info">
-                        <label class="form-label my-3">Người nhận hàng<sup>*</sup></label>
+                <div class="delivery-info">
+                    <div class="mb-3">
+                        <label class="form-label">Người nhận hàng <sup>*</sup></label>
                         <input type="text" name="HoTen" class="form-control">
                     </div>
-                    <div class="form-item delivery-info">
-                        <label class="form-label my-3">Địa chỉ nhận hàng <sup>*</sup></label>
+                    <div class="mb-3">
+                        <label class="form-label">Địa chỉ nhận hàng <sup>*</sup></label>
                         <input type="text" name="DiaChi" class="form-control" placeholder="123 Lê Lợi">
                     </div>
-                        <div class="form-item delivery-info">
-                        <label class="form-label my-3">Điện thoại<sup>*</sup></label>
+                    <div class="mb-3">
+                        <label class="form-label">Điện thoại <sup>*</sup></label>
                         <input type="text" name="DienThoai" class="form-control">
                     </div>
-                    <hr>
-                    <div class="form-item mt-2">
-                        <textarea name="GhiChu" class="form-control" spellcheck="false" cols="30" rows="11" placeholder="Ghi chú"></textarea>
-                    </div>
-                    <br />
-                    <div style="width:100px"class="style row g-4 text-center align-items-center justify-content-center pt-4">
-                        <button type="submit" class="btn border-secondary py-3 px-4 text-uppercase w-100 text-primary">Đặt hàng</button>
-                    </div>
                 </div>
-                <div class="col-md-12 col-lg-6 col-xl-5">
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Products</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Price</th>
-                                    <th scope="col">Quantity</th>
-                                    <th scope="col">Total</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in Model)
-                                {
-                                    <tr>
-                                        <th scope="row">
-                                            <div class="d-flex align-items-center mt-2">
-                                                <img src="@Url.Content("~/Hinh/HangHoa/" + item.Hinh)" class="img-fluid rounded-circle" style="width: 90px; height: 90px;" alt="@item.TenHH">
-                                            </div>
-                                        </th>
-                                        <td class="py-5">@item.TenHH</td>
-                                        <td class="py-5">$@item.DonGia</td>
-                                        <td class="py-5">@item.SoLuong</td>
-                                        <td class="py-5">@item.ThanhTien</td>
-                                    </tr>
-                                }
-                                <tr>
-                                    <th scope="row">
-                                    </th>
-                                    <td class="py-5"></td>
-                                    <td class="py-5"></td>
-                                    <td class="py-5">
-                                        <p class="mb-0 text-dark py-3">Subtotal</p>
-                                    </td>
-                                    <td class="py-5">
-                                        <div class="py-3 border-bottom border-top">
-                                            <p class="mb-0 text-dark">$@Model.Sum(p => p.ThanhTien).ToString("#,##0.00")</p>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                    </th>
-                                    <td class="py-5">
-                                        <p class="mb-0 text-dark py-4">Shipping</p>
-                                    </td>
-                                    <td colspan="3" class="py-5">
-                                        <div class="form-check text-start">
-                                            <input type="checkbox" class="form-check-input bg-primary border-0" id="Shipping-1" name="Shipping-1" value="Shipping">
-                                            <label class="form-check-label" for="Shipping-1">Free Shipping</label>
-                                        </div>
-                                        <div class="form-check text-start">
-                                            <input type="checkbox" class="form-check-input bg-primary border-0" id="Shipping-2" name="Shipping-1" value="Shipping">
-                                            <label class="form-check-label" for="Shipping-2">Flat rate: $15.00</label>
-                                        </div>
-                                        <div class="form-check text-start">
-                                            <input type="checkbox" class="form-check-input bg-primary border-0" id="Shipping-3" name="Shipping-1" value="Shipping">
-                                            <label class="form-check-label" for="Shipping-3">Local Pickup: $8.00</label>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                    </th>
-                                    <td class="py-5">
-                                        <p class="mb-0 text-dark text-uppercase py-3">TOTAL</p>
-                                    </td>
-                                    <td class="py-5"></td>
-                                    <td class="py-5"></td>
-                                    <td class="py-5">
-                                        <div class="py-3 border-bottom border-top">
-                                            <p class="mb-0 text-dark">$135.00</p>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="row g-4 text-center align-items-center justify-content-center border-bottom py-3">
-                        <div class="col-12">
-                            <div class="form-check text-start my-3">
-                                <input type="checkbox" class="form-check-input bg-primary border-0" id="Transfer-1" name="Transfer" value="Transfer">
-                                <label class="form-check-label" for="Transfer-1">Direct Bank Transfer</label>
-                            </div>
-                            <p class="text-start text-dark">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order will not be shipped until the funds have cleared in our account.</p>
-                        </div>
-                    </div>
-                    <div class="row g-4 text-center align-items-center justify-content-center border-bottom py-3">
-                        <div class="col-12">
-                            <div class="form-check text-start my-3">
-                                <input type="checkbox" class="form-check-input bg-primary border-0" id="Payments-1" name="Payments" value="Payments">
-                                <label class="form-check-label" for="Payments-1">Check Payments</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row g-4 text-center align-items-center justify-content-center border-bottom py-3">
-                        <div class="col-12">
-                            <div class="form-check text-start my-3">
-                                <input type="checkbox" class="form-check-input bg-primary border-0" id="Delivery-1" name="Delivery" value="Delivery">
-                                <label class="form-check-label" for="Delivery-1">Cash On Delivery</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row g-4 text-center align-items-center justify-content-center border-bottom py-3">
-                        <div class="col-12">
-                            <div class="form-check text-start my-3">
-                                <input type="checkbox" class="form-check-input bg-primary border-0" id="Paypal-1" name="Paypal" value="Paypal">
-                                <label class="form-check-label" for="Paypal-1">Paypal</label>
-                            </div>
-                        </div>
-                    </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Ghi chú</label>
+                    <textarea name="GhiChu" class="form-control" rows="5" placeholder="Ghi chú..."></textarea>
                 </div>
             </div>
-        </form>
-    </div>
+
+            <!-- Tóm tắt đơn hàng -->
+            <div class="col-lg-5">
+                <div class="table-responsive mb-4">
+                    <table class="table align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Ảnh</th>
+                                <th>Tên Sản Phẩm</th>
+                                <th>Giá</th>
+                                <th>SL</th>
+                                <th>Tổng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <img src="@Url.Content("~/Hinh/HangHoa/" + item.Hinh)"
+                                             class="img-fluid rounded" style="width:60px;height:60px;" alt="@item.TenHH">
+                                    </td>
+                                    <td>@item.TenHH</td>
+                                    <td>$@item.DonGia</td>
+                                    <td>@item.SoLuong</td>
+                                    <td>$@item.ThanhTien</td>
+                                </tr>
+                            }
+                            <tr>
+                                <td colspan="4" class="text-end fw-bold">Thành tiền</td>
+                                <td>$@subtotal.ToString("#,##0")</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" class="text-end fw-bold">Tiền ship</td>
+                                <td>$@shipping.ToString("#,##0")</td>
+                            </tr>
+                            <tr class="table-light">
+                                <td colspan="4" class="text-end fw-bold text-uppercase">Tổng tiền</td>
+                                <td class="fw-bold text-danger">$@total.ToString("#,##0")</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Phương thức thanh toán -->
+                @* <div class="mb-3">
+                    <label class="form-label fw-bold">Phương thức thanh toán</label>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="PaymentMethod" value="Bank">
+                        <label class="form-check-label">Chuyển khoản ngân hàng</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="PaymentMethod" value="COD">
+                        <label class="form-check-label">Thanh toán khi nhận hàng</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="PaymentMethod" value="Paypal">
+                        <label class="form-check-label">PayPal</label>
+                    </div>
+                </div> *@
+
+                <!-- Nút đặt hàng -->
+                <button type="submit" class="btn btn-primary w-100 mb-3">Thanh toán trực tiếp khi nhận hàng</button>
+
+                <!-- PayPal button -->
+                <div id="paypal-button-container"></div>
+            </div>
+        </div>
+    </form>
 </div>
-<!-- Checkout Page End -->
+
 @section Scripts {
+    <script src="https://www.paypal.com/sdk/js?client-id=@ViewBag.PaypalClientId"></script>
     <script>
-        $(document).ready(function () {
+        $(function () {
             $("#GiongKhachHang").change(function () {
-                if ($(this).prop("checked")) {
-                    $(this).val(true);
-                    $(".delivery-info").addClass("d-none");
-                } else {
-                    $(this).val(false);
-                    $(".delivery-info").removeClass("d-none");
-                }
+                $(".delivery-info").toggleClass("d-none", $(this).is(":checked"));
             });
+
+            paypal.Buttons({
+                style: { color: 'silver', layout: 'vertical' },
+                createOrder: () => {
+                    return fetch("/Cart/create-paypal-order", { method: "post" })
+                        .then(res => res.ok ? res.json() : res.json().then(err => { throw err; }))
+                        .then(order => order.id)
+                        .catch(err => alert(err.message));
+                },
+                onApprove: (data) => {
+                    return fetch(`/Cart/capture-paypal-order?orderId=${data.orderID}`, { method: "post" })
+                        .then(res => res.ok ? res.json() : res.json().then(err => { throw err; }))
+                        .then(() => window.location.href = "/Cart/Success")
+                        .catch(err => alert(err.message));
+                }
+            }).render('#paypal-button-container');
         });
     </script>
 }

@@ -5,7 +5,6 @@ namespace VanPhongPhamOnline.ViewModels
     public class EditProfileVM
     {
         [Display(Name = "Họ Tên")]
-        [Required(ErrorMessage = "*")]
         [MaxLength(50)]
         public string HoTen { get; set; }
 
@@ -32,5 +31,7 @@ namespace VanPhongPhamOnline.ViewModels
         [DataType(DataType.Password)]
         public string? MatKhau { get; set; }
         public IFormFile? Hinh { get; set; }
+
+        public bool IsDeleted { get; set; } = false;
     }
 }

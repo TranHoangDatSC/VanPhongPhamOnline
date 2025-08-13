@@ -36,8 +36,8 @@ namespace VanPhongPhamOnline.Helpers
                 HoTenNv = "Admin",
                 EmailNv = email,
                 MatKhauNv = hashedPassword,
-                NgaySinhNv = null,
-                GioiTinhNv = null,
+                NgaySinhNv = new DateTime(2005, 11, 23),
+                GioiTinhNv = true,
                 DiaChiNv = "Hệ thống",
                 HieuLuc = true,
                 RandomKeyNv = randomKey

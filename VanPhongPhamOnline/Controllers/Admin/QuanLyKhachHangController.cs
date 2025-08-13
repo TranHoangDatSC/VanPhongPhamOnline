@@ -17,7 +17,10 @@ namespace VanPhongPhamOnline.Controllers.Admin
         // GET: QuanLyKhachHang
         public async Task<IActionResult> Index()
         {
-            return View("~/Views/Admin/QuanLyKhachHang/Index.cshtml", await _context.KhachHangs.ToListAsync());
+            var khachHangs = await _context.KhachHangs
+                .Where(kh => !kh.IsDeleted) // Chỉ lấy khách hàng chưa xóa
+                .ToListAsync();
+            return View("~/Views/Admin/QuanLyKhachHang/Index.cshtml", khachHangs);
         }
 
         // GET: QuanLyKhachHang/Details/5
@@ -219,7 +222,7 @@ namespace VanPhongPhamOnline.Controllers.Admin
                         }
                     }
 
-                    _context.KhachHangs.Remove(khachHang);
+                    khachHang.IsDeleted = true;
                     await _context.SaveChangesAsync();
 
                     TempData["SuccessMessage"] = "Xóa khách hàng thành công!";

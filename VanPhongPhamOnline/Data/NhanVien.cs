@@ -13,15 +13,17 @@ public partial class NhanVien
 
     public string? MatKhauNv { get; set; }
 
-    public DateOnly? NgaySinhNv { get; set; }
+    public DateTime NgaySinhNv { get; set; }
 
-    public bool? GioiTinhNv { get; set; }
+    public bool GioiTinhNv { get; set; }
 
     public string? DiaChiNv { get; set; }
 
     public bool? HieuLuc { get; set; }
 
     public string? RandomKeyNv { get; set; }
+
+    public string? DienThoaiNv { get; set; }
 
     public virtual ICollection<GopY> Gopies { get; set; } = new List<GopY>();
 
