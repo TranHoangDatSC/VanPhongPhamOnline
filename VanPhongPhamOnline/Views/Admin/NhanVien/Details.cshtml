@@ -146,7 +146,7 @@
 
             <div class="detail-row">
                 <div class="detail-label">Ngày sinh:</div>
-                <div class="detail-value">@Model.NgaySinhNv?.ToString("dd/MM/yyyy")</div>
+                <div class="detail-value">@Model.NgaySinhNv.ToString("dd/MM/yyyy")</div>
             </div>
 
             <div class="detail-row">
@@ -161,6 +161,11 @@
             <div class="detail-row">
                 <div class="detail-label">Địa chỉ:</div>
                 <div class="detail-value">@Model.DiaChiNv</div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DienThoaiNv">Điện Thoại</label>
+                <input asp-for="DienThoaiNv" class="form-control" />
             </div>
 
             @* Thêm phòng ban nếu cần *@

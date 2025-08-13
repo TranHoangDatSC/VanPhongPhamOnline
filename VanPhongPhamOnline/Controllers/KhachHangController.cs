@@ -14,10 +14,12 @@ namespace VanPhongPhamOnline.Controllers
     {
         private readonly MultiShopContext db;
         private readonly IMapper _mapper;
-        public KhachHangController(MultiShopContext context, IMapper mapper)
+        private readonly MyUlti _ulti;
+        public KhachHangController(MultiShopContext context, IMapper mapper, MyUlti ulti)
         {
             db = context;
             _mapper = mapper;
+            _ulti = ulti;
         }
         #region Register       
         [HttpGet]
@@ -33,6 +35,7 @@ namespace VanPhongPhamOnline.Controllers
                 try
                 {
                     var khachHang = _mapper.Map<KhachHang>(model);
+                    khachHang.MaKh = model.MaKh;
                     khachHang.RandomKeyKh = MyUlti.GenerateRandomKey();
                     khachHang.MatKhauKh = model.MatKhauKh.ToMd5Hash(khachHang.RandomKeyKh);
 
@@ -70,7 +73,7 @@ namespace VanPhongPhamOnline.Controllers
 
             if (ModelState.IsValid)
             {
-                var khachHang = db.KhachHangs.SingleOrDefault(kh => kh.MaKh == model.UserName);
+                var khachHang = db.KhachHangs.SingleOrDefault(kh => kh.EmailKh == model.UserName);
 
                 if (khachHang == null)
                 {
@@ -186,22 +189,12 @@ namespace VanPhongPhamOnline.Controllers
                     kh.HinhKh = MyUlti.UploadHinh(model.Hinh, "KhachHang", kh.MaKh);
                 }
 
-                // 👇 BẮT ĐẦU: Xử lý đổi mật khẩu nếu có nhập
-                if (!string.IsNullOrEmpty(model.MatKhau))
-                {
-                    var randomKey = MyUlti.GenerateRandomKey();              // sinh key mới
-                    kh.RandomKeyKh = randomKey;                              // cập nhật key
-                    kh.MatKhauKh = model.MatKhau.ToMd5Hash(randomKey);       // mã hóa mật khẩu
-                }
-                // 👆 KẾT THÚC: Phần xử lý đổi mật khẩu
-
                 db.SaveChanges();
                 return RedirectToAction("Profile");
             }
 
             return View(model);
         }
-
 
         [Authorize]
         public async Task<IActionResult> DangXuat()
@@ -228,9 +221,10 @@ namespace VanPhongPhamOnline.Controllers
                     {
                         System.IO.File.Delete(path);
                     }
+
                 }
 
-                db.KhachHangs.Remove(kh);
+                kh.IsDeleted = true;
                 db.SaveChanges();
             }
 
@@ -242,32 +236,128 @@ namespace VanPhongPhamOnline.Controllers
         {
             return View();
         }
-        [HttpPost]
-        public IActionResult QuenMatKhau(string Email)
-        {
-            var kh = db.KhachHangs.FirstOrDefault(x => x.EmailKh == Email);
 
+        public IActionResult QuenMatKhau(QuenMatKhauVM model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            var kh = db.KhachHangs.FirstOrDefault(x => x.EmailKh == model.Email);
             if (kh == null)
             {
-                ModelState.AddModelError("", "Email này không tồn tại trong hệ thống.");
-                return View();
+                ModelState.AddModelError("", "Email này chưa được đăng ký.");
+                return View(model);
             }
 
-            // Tạo mật khẩu mới ngẫu nhiên
-            var matKhauMoi = MyUlti.GenerateRandomKey(8);
-            kh.RandomKeyKh = MyUlti.GenerateRandomKey();
-            kh.MatKhauKh = matKhauMoi.ToMd5Hash(kh.RandomKeyKh);
+            // Tạo mã OTP ngẫu nhiên
+            var otp = new Random().Next(100000, 999999).ToString();
+            var expireTime = DateTime.Now.AddMinutes(5);
 
-            db.SaveChanges();
+            // Lưu vào session
+            HttpContext.Session.SetString("OTP", otp);
+            HttpContext.Session.SetString("OTP_Email", model.Email);
+            HttpContext.Session.SetString("OTP_Expire", expireTime.ToString("O")); // ISO 8601 format
 
             // Gửi email
-            var subject = "Cấp lại mật khẩu mới - MultiShop";
-            var content = $@"Xin chào {kh.HoTenKh}, Mật khẩu mới của bạn là: {matKhauMoi} Vui lòng đăng nhập tại https://yourdomain.com/KhachHang/DangNhap và đổi mật khẩu ngay.";
+            var subject = "Xác nhận đặt lại mật khẩu - MultiShop";
+            var content = $@"Xin chào {kh.HoTenKh}, mã OTP đặt lại mật khẩu của bạn là: {otp}. Mã có hiệu lực trong 5 phút. Đừng chia sẻ mã này cho bất kỳ ai.";
 
-            MyUlti.SendMail(kh.EmailKh, subject, content);
+            _ulti.SendMail(kh.EmailKh, subject, content);
 
-            ViewBag.Message = "Mật khẩu mới đã được gửi về email của bạn.";
-            return View();
+
+            TempData["Email"] = model.Email;
+            return RedirectToAction("XacNhanMa");
         }
+
+
+
+        [HttpGet]
+        public IActionResult XacNhanMa()
+        {
+            var email = TempData["Email"]?.ToString();
+            if (string.IsNullOrEmpty(email))
+                return RedirectToAction("QuenMatKhau");
+
+            return View(new XacNhanMaVM { Email = email });
+        }
+
+        [HttpPost]
+        public IActionResult XacNhanMa(XacNhanMaVM model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            var otp = HttpContext.Session.GetString("OTP");
+            var otpEmail = HttpContext.Session.GetString("OTP_Email");
+            var otpExpireStr = HttpContext.Session.GetString("OTP_Expire");
+
+            if (otp == null || otpEmail == null || otpExpireStr == null)
+            {
+                ModelState.AddModelError("", "Mã xác nhận đã hết hạn hoặc không hợp lệ.");
+                return View(model);
+            }
+
+            if (otpEmail != model.Email)
+            {
+                ModelState.AddModelError("", "Email không khớp với mã xác nhận.");
+                return View(model);
+            }
+
+            if (otp != model.MaXacNhan)
+            {
+                ModelState.AddModelError("", "Mã xác nhận không chính xác.");
+                return View(model);
+            }
+
+            if (DateTime.TryParse(otpExpireStr, out var otpExpire) && DateTime.Now > otpExpire)
+            {
+                ModelState.AddModelError("", "Mã xác nhận đã hết hạn.");
+                return View(model);
+            }
+
+            // Thành công → lưu lại email qua TempData
+            TempData["Email"] = model.Email;
+            return RedirectToAction("DatLaiMatKhau");
+        }
+
+
+
+        [HttpGet]
+        public IActionResult DatLaiMatKhau()
+        {
+            var email = TempData["Email"]?.ToString();
+            if (string.IsNullOrEmpty(email))
+                return RedirectToAction("QuenMatKhau");
+
+            return View(new DatLaiMatKhauVM { Email = email });
+        }
+
+        [HttpPost]
+        public IActionResult DatLaiMatKhau(DatLaiMatKhauVM model)
+        {
+            if (!ModelState.IsValid)
+                return View(model);
+
+            var kh = db.KhachHangs.FirstOrDefault(x => x.EmailKh == model.Email);
+            if (kh == null)
+            {
+                ModelState.AddModelError("", "Không tìm thấy tài khoản.");
+                return View(model);
+            }
+
+            kh.RandomKeyKh = MyUlti.GenerateRandomKey();
+            kh.MatKhauKh = model.MatKhauMoi.ToMd5Hash(kh.RandomKeyKh);
+            db.SaveChanges();
+
+            // Xoá OTP trong session sau khi dùng
+            HttpContext.Session.Remove("OTP");
+            HttpContext.Session.Remove("OTP_Email");
+            HttpContext.Session.Remove("OTP_Expire");
+
+            TempData["Success"] = "Mật khẩu đã được cập nhật. Vui lòng đăng nhập lại.";
+            return RedirectToAction("DangNhap");
+        }
+
     }
+
 }

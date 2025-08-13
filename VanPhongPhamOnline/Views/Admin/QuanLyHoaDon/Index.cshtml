@@ -1,0 +1,167 @@
+﻿@model IEnumerable<VanPhongPhamOnline.Data.HoaDon>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <title>Quản lý hóa đơn</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <style>
+        body {
+            background: linear-gradient(120deg, #e8f5e9, #c8e6c9);
+            font-family: 'Segoe UI', sans-serif;
+            padding: 40px;
+        }
+
+        .container-box {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #2e7d32;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .btn-create {
+            background: linear-gradient(45deg, #66bb6a, #2e7d32);
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-create:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(46, 125, 50, 0.4);
+            color: white;
+        }
+
+        .table {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .table thead th {
+            background: linear-gradient(45deg, #2e7d32, #66bb6a);
+            color: white;
+            border: none;
+            padding: 15px;
+            font-weight: 600;
+        }
+
+        .table tbody td {
+            padding: 15px;
+            vertical-align: middle;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .table tbody tr:hover {
+            background-color: #f1f8f4;
+            transform: scale(1.01);
+            transition: all 0.2s ease;
+        }
+
+        .btn-action {
+            margin: 0 2px;
+            border-radius: 20px;
+            padding: 6px 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .btn-info {
+            background: linear-gradient(45deg, #81c784, #388e3c);
+            border: none;
+            color: white;
+        }
+
+        .btn-warning {
+            background: linear-gradient(45deg, #ffb74d, #f57c00);
+            border: none;
+            color: white;
+        }
+
+        .btn-danger {
+            background: linear-gradient(45deg, #e57373, #c62828);
+            border: none;
+            color: white;
+        }
+
+        .btn-action:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="container-box">
+            <a href="@Url.Action("IndexAdmin", "Admin")" class="back-link">← Quay lại trang Admin</a>
+
+            <h1>Quản lý hóa đơn</h1>
+
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Ngày đặt</th>
+                            <th>Ngày giao</th>
+                            <th>Người nhận</th>
+                            <th>Địa chỉ</th>
+                            <th>Thanh toán</th>
+                            <th>Vận chuyển</th>
+                            <th>Phí VC</th>
+                            <th>Ghi chú</th>
+                            <th>Khách Hàng</th>
+                            <th>Trạng thái</th>
+                            <th style="width: 220px; text-align: center;">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.NgayDat.ToString("dd/MM/yyyy")</td>
+                                <td>@item.NgayGiao?.ToString("dd/MM/yyyy")</td>
+                                <td>@item.HoTenNguoiNhan</td>
+                                <td>@item.DiaChi</td>
+                                <td>@item.CachThanhToan</td>
+                                <td>@item.CachVanChuyen</td>
+                                <td>@item.PhiVanChuyen.ToString("N0")</td>
+                                <td>@item.GhiChu</td>
+                                <td>@item.MaKhNavigation?.MaKh</td>
+                                <td>@item.MaTrangThaiNavigation?.MaTrangThai</td>
+                                <td style="text-align: center; white-space: nowrap;">
+                                    <a href="@Url.Action("Details", "HoaDon", new { id = item.MaHd })" class="btn-action btn-info">Chi tiết</a>
+                                    <a href="@Url.Action("Edit", "HoaDon", new { id = item.MaHd })" class="btn-action btn-warning">Sửa</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

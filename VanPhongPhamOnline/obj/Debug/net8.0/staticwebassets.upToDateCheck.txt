@@ -10,110 +10,6 @@ wwwroot\css\bootstrap.min.css
 wwwroot\css\style.css
 wwwroot\css\style.min.css
 wwwroot\detail.html
-wwwroot\Hinh\carousel-1.jpg
-wwwroot\Hinh\carousel-2.jpg
-wwwroot\Hinh\carousel-3.jpg
-wwwroot\Hinh\default-customer.jpg
-wwwroot\Hinh\HangHoa\balo_deli_70031.jpg
-wwwroot\Hinh\HangHoa\bangve_deli_78620.jpg
-wwwroot\Hinh\HangHoa\bangve_hongha_450.jpg
-wwwroot\Hinh\HangHoa\bangve_mg_2302.jpg
-wwwroot\Hinh\HangHoa\bangve_thienlong_mb01.jpg
-wwwroot\Hinh\HangHoa\biahoso_deli_5551.jpg
-wwwroot\Hinh\HangHoa\biahoso_hongha_920.jpg
-wwwroot\Hinh\HangHoa\biahoso_thienlong_foa4.jpg
-wwwroot\Hinh\HangHoa\bopviet_vai_canvas_hongha.jpg
-wwwroot\Hinh\HangHoa\bopviet_vai_deli_7025.jpg
-wwwroot\Hinh\HangHoa\bopviet_vai_faber_9002.jpg
-wwwroot\Hinh\HangHoa\bopviet_vai_mg_simple.jpg
-wwwroot\Hinh\HangHoa\butbi_do_bn01.jpg
-wwwroot\Hinh\HangHoa\butbi_do_flexoffice.jpg
-wwwroot\Hinh\HangHoa\butbi_do_mg702.jpg
-wwwroot\Hinh\HangHoa\butbi_do_tl027.jpg
-wwwroot\Hinh\HangHoa\butbi_xanh_bn01.jpg
-wwwroot\Hinh\HangHoa\butbi_xanh_flexoffice.jpg
-wwwroot\Hinh\HangHoa\butbi_xanh_mg702.jpg
-wwwroot\Hinh\HangHoa\butbi_xanh_tl027.jpg
-wwwroot\Hinh\HangHoa\butchi_faber_castell_9000.jpg
-wwwroot\Hinh\HangHoa\butchi_mg_2b.jpg
-wwwroot\Hinh\HangHoa\butchi_staedtler_noris120.jpg
-wwwroot\Hinh\HangHoa\butchi_thienlong_hb03.jpg
-wwwroot\Hinh\HangHoa\butdaquang_deli_hong.jpg
-wwwroot\Hinh\HangHoa\butdaquang_hongha_cam.jpg
-wwwroot\Hinh\HangHoa\butdaquang_mg_xanh.jpg
-wwwroot\Hinh\HangHoa\butdaquang_thienlong_vang.jpg
-wwwroot\Hinh\HangHoa\cap_delune_dl216.jpg
-wwwroot\Hinh\HangHoa\cap_hongha_8085.jpg
-wwwroot\Hinh\HangHoa\cap_miti_mt234.jpg
-wwwroot\Hinh\HangHoa\compa_deli_8564.jpg
-wwwroot\Hinh\HangHoa\compa_hongha_8820.jpg
-wwwroot\Hinh\HangHoa\compa_mg_cp20.jpg
-wwwroot\Hinh\HangHoa\compa_thienlong_cp01.jpg
-wwwroot\Hinh\HangHoa\filetrinhky_deli_5501.jpg
-wwwroot\Hinh\HangHoa\filetrinhky_hongha_660.jpg
-wwwroot\Hinh\HangHoa\filetrinhky_thienlong_c01.jpg
-wwwroot\Hinh\HangHoa\giaynote_deli_76x76.jpg
-wwwroot\Hinh\HangHoa\giaynote_hongha_5500.jpg
-wwwroot\Hinh\HangHoa\giaynote_mg_n100.jpg
-wwwroot\Hinh\HangHoa\giaynote_thienlong_fo_n01.jpg
-wwwroot\Hinh\HangHoa\gom_deli_eh20800.jpg
-wwwroot\Hinh\HangHoa\gom_faber_castell_7085.jpg
-wwwroot\Hinh\HangHoa\gom_staedtler_mars.jpg
-wwwroot\Hinh\HangHoa\gom_thienlong_e08.jpg
-wwwroot\Hinh\HangHoa\hopbutnhua_deli_9132.jpg
-wwwroot\Hinh\HangHoa\hopbutnhua_faber_castell.jpg
-wwwroot\Hinh\HangHoa\hopbutnhua_hongha_2025.jpg
-wwwroot\Hinh\HangHoa\hopbutnhua_staedtler.jpg
-wwwroot\Hinh\HangHoa\keodan_deli_30ml.jpg
-wwwroot\Hinh\HangHoa\keodan_hongha_4040.jpg
-wwwroot\Hinh\HangHoa\keodan_mg_gs20.jpg
-wwwroot\Hinh\HangHoa\keodan_thienlong_g01.jpg
-wwwroot\Hinh\HangHoa\kepgiay_deli_41mm.jpg
-wwwroot\Hinh\HangHoa\kepgiay_mg_25mm.jpg
-wwwroot\Hinh\HangHoa\kepgiay_thienlong_32mm.jpg
-wwwroot\Hinh\HangHoa\mau_chi_faber_12.jpg
-wwwroot\Hinh\HangHoa\mau_nuoc_hongha_320.jpg
-wwwroot\Hinh\HangHoa\mau_sap_deli_24mau.jpg
-wwwroot\Hinh\HangHoa\mau_sap_thienlong_colokit.jpg
-wwwroot\Hinh\HangHoa\phan_mau_deli_ec20200.jpg
-wwwroot\Hinh\HangHoa\phan_mau_hongha_mc10.jpg
-wwwroot\Hinh\HangHoa\phan_trang_mg_c08.jpg
-wwwroot\Hinh\HangHoa\phan_trang_thienlong_c01.jpg
-wwwroot\Hinh\HangHoa\sotay_faber_a6.jpg
-wwwroot\Hinh\HangHoa\sotay_hongha_biada.jpg
-wwwroot\Hinh\HangHoa\sotay_mg_classic.jpg
-wwwroot\Hinh\HangHoa\sotay_thienlong_a5.jpg
-wwwroot\Hinh\HangHoa\tap_campus_200tr.jpg
-wwwroot\Hinh\HangHoa\tap_hongha_96tr.jpg
-wwwroot\Hinh\HangHoa\tap_mg_200tr.jpg
-wwwroot\Hinh\HangHoa\tap_thienlong_212.jpg
-wwwroot\Hinh\HangHoa\thuoc_deli_15cm.jpg
-wwwroot\Hinh\HangHoa\thuoc_faber_castell_30cm.jpg
-wwwroot\Hinh\HangHoa\thuoc_hongha_20cm.jpg
-wwwroot\Hinh\HangHoa\thuoc_staedtler_30cm.jpg
-wwwroot\Hinh\KhachHang\Cá Sấu_07ec4701.png
-wwwroot\Hinh\KhachHang\Cá Sấu_0c5d488e.png
-wwwroot\Hinh\KhachHang\Cá Sấu_1985c476.png
-wwwroot\Hinh\KhachHang\Cá Sấu_1d4ae8ce.png
-wwwroot\Hinh\KhachHang\Cá Sấu_2b9f270f.png
-wwwroot\Hinh\KhachHang\Cá Sấu_42d85a6a.png
-wwwroot\Hinh\KhachHang\Cá Sấu_48c76706.png
-wwwroot\Hinh\KhachHang\Cá Sấu_5073900b.png
-wwwroot\Hinh\KhachHang\Cá Sấu_542788f2.png
-wwwroot\Hinh\KhachHang\Cá Sấu_549cc599.png
-wwwroot\Hinh\KhachHang\Cá Sấu_61e39e13.png
-wwwroot\Hinh\KhachHang\Cá Sấu_69b74f18.png
-wwwroot\Hinh\KhachHang\Cá Sấu_92a247fd.png
-wwwroot\Hinh\KhachHang\Cá Sấu_a0b8e0c3.png
-wwwroot\Hinh\KhachHang\Cá Sấu_c0594483.png
-wwwroot\Hinh\KhachHang\Cá Sấu_c09d6066.png
-wwwroot\Hinh\KhachHang\Cá Sấu_da2893e6.png
-wwwroot\Hinh\KhachHang\Cá Sấu_f3755f01.png
-wwwroot\Hinh\KhachHang\Cá Sấu_fdc44f25.png
-wwwroot\Hinh\momo-icon.png
-wwwroot\Hinh\offer-1.jpg
-wwwroot\Hinh\offer-2.jpg
-wwwroot\Hinh\payments.png
 wwwroot\img\carousel-1.jpg
 wwwroot\img\carousel-2.jpg
 wwwroot\img\carousel-3.jpg
@@ -256,3 +152,109 @@ wwwroot\scss\bootstrap\scss\_utilities.scss
 wwwroot\scss\bootstrap\scss\_variables.scss
 wwwroot\scss\style.scss
 wwwroot\shop.html
+wwwroot\Hinh\carousel-1.jpg
+wwwroot\Hinh\carousel-2.jpg
+wwwroot\Hinh\carousel-3.jpg
+wwwroot\Hinh\default-customer.jpg
+wwwroot\Hinh\momo-icon.png
+wwwroot\Hinh\offer-1.jpg
+wwwroot\Hinh\offer-2.jpg
+wwwroot\Hinh\payments.png
+wwwroot\Hinh\HangHoa\balo_deli_70031.jpg
+wwwroot\Hinh\HangHoa\bangve_deli_78620.jpg
+wwwroot\Hinh\HangHoa\bangve_hongha_450.jpg
+wwwroot\Hinh\HangHoa\bangve_mg_2302.jpg
+wwwroot\Hinh\HangHoa\bangve_thienlong_mb01.jpg
+wwwroot\Hinh\HangHoa\biahoso_deli_5551.jpg
+wwwroot\Hinh\HangHoa\biahoso_hongha_920.jpg
+wwwroot\Hinh\HangHoa\biahoso_thienlong_foa4.jpg
+wwwroot\Hinh\HangHoa\bopviet_vai_canvas_hongha.jpg
+wwwroot\Hinh\HangHoa\bopviet_vai_deli_7025.jpg
+wwwroot\Hinh\HangHoa\bopviet_vai_faber_9002.jpg
+wwwroot\Hinh\HangHoa\bopviet_vai_mg_simple.jpg
+wwwroot\Hinh\HangHoa\butbi_do_bn01.jpg
+wwwroot\Hinh\HangHoa\butbi_do_flexoffice.jpg
+wwwroot\Hinh\HangHoa\butbi_do_mg702.jpg
+wwwroot\Hinh\HangHoa\butbi_do_tl027.jpg
+wwwroot\Hinh\HangHoa\butbi_xanh_bn01.jpg
+wwwroot\Hinh\HangHoa\butbi_xanh_flexoffice.jpg
+wwwroot\Hinh\HangHoa\butbi_xanh_mg702.jpg
+wwwroot\Hinh\HangHoa\butchi_faber_castell_9000.jpg
+wwwroot\Hinh\HangHoa\butchi_mg_2b.jpg
+wwwroot\Hinh\HangHoa\butchi_staedtler_noris120.jpg
+wwwroot\Hinh\HangHoa\butchi_thienlong_hb03.jpg
+wwwroot\Hinh\HangHoa\butdaquang_deli_hong.jpg
+wwwroot\Hinh\HangHoa\butdaquang_hongha_cam.jpg
+wwwroot\Hinh\HangHoa\butdaquang_mg_xanh.jpg
+wwwroot\Hinh\HangHoa\butdaquang_thienlong_vang.jpg
+wwwroot\Hinh\HangHoa\cap_delune_dl216.jpg
+wwwroot\Hinh\HangHoa\cap_hongha_8085.jpg
+wwwroot\Hinh\HangHoa\cap_miti_mt234.jpg
+wwwroot\Hinh\HangHoa\compa_deli_8564.jpg
+wwwroot\Hinh\HangHoa\compa_hongha_8820.jpg
+wwwroot\Hinh\HangHoa\compa_mg_cp20.jpg
+wwwroot\Hinh\HangHoa\compa_thienlong_cp01.jpg
+wwwroot\Hinh\HangHoa\filetrinhky_deli_5501.jpg
+wwwroot\Hinh\HangHoa\filetrinhky_hongha_660.jpg
+wwwroot\Hinh\HangHoa\filetrinhky_thienlong_c01.jpg
+wwwroot\Hinh\HangHoa\giaynote_deli_76x76.jpg
+wwwroot\Hinh\HangHoa\giaynote_hongha_5500.jpg
+wwwroot\Hinh\HangHoa\giaynote_mg_n100.jpg
+wwwroot\Hinh\HangHoa\giaynote_thienlong_fo_n01.jpg
+wwwroot\Hinh\HangHoa\gom_deli_eh20800.jpg
+wwwroot\Hinh\HangHoa\gom_faber_castell_7085.jpg
+wwwroot\Hinh\HangHoa\gom_staedtler_mars.jpg
+wwwroot\Hinh\HangHoa\gom_thienlong_e08.jpg
+wwwroot\Hinh\HangHoa\hopbutnhua_deli_9132.jpg
+wwwroot\Hinh\HangHoa\hopbutnhua_faber_castell.jpg
+wwwroot\Hinh\HangHoa\hopbutnhua_hongha_2025.jpg
+wwwroot\Hinh\HangHoa\hopbutnhua_staedtler.jpg
+wwwroot\Hinh\HangHoa\keodan_deli_30ml.jpg
+wwwroot\Hinh\HangHoa\keodan_hongha_4040.jpg
+wwwroot\Hinh\HangHoa\keodan_mg_gs20.jpg
+wwwroot\Hinh\HangHoa\keodan_thienlong_g01.jpg
+wwwroot\Hinh\HangHoa\kepgiay_deli_41mm.jpg
+wwwroot\Hinh\HangHoa\kepgiay_mg_25mm.jpg
+wwwroot\Hinh\HangHoa\kepgiay_thienlong_32mm.jpg
+wwwroot\Hinh\HangHoa\mau_chi_faber_12.jpg
+wwwroot\Hinh\HangHoa\mau_nuoc_hongha_320.jpg
+wwwroot\Hinh\HangHoa\mau_sap_deli_24mau.jpg
+wwwroot\Hinh\HangHoa\mau_sap_thienlong_colokit.jpg
+wwwroot\Hinh\HangHoa\phan_mau_deli_ec20200.jpg
+wwwroot\Hinh\HangHoa\phan_mau_hongha_mc10.jpg
+wwwroot\Hinh\HangHoa\phan_trang_mg_c08.jpg
+wwwroot\Hinh\HangHoa\phan_trang_thienlong_c01.jpg
+wwwroot\Hinh\HangHoa\sotay_faber_a6.jpg
+wwwroot\Hinh\HangHoa\sotay_hongha_biada.jpg
+wwwroot\Hinh\HangHoa\sotay_mg_classic.jpg
+wwwroot\Hinh\HangHoa\sotay_thienlong_a5.jpg
+wwwroot\Hinh\HangHoa\tap_campus_200tr.jpg
+wwwroot\Hinh\HangHoa\tap_hongha_96tr.jpg
+wwwroot\Hinh\HangHoa\tap_mg_200tr.jpg
+wwwroot\Hinh\HangHoa\tap_thienlong_212.jpg
+wwwroot\Hinh\HangHoa\thuoc_deli_15cm.jpg
+wwwroot\Hinh\HangHoa\thuoc_faber_castell_30cm.jpg
+wwwroot\Hinh\HangHoa\thuoc_hongha_20cm.jpg
+wwwroot\Hinh\HangHoa\thuoc_staedtler_30cm.jpg
+wwwroot\Hinh\KhachHang\Cá Sấu_69b74f18.png
+wwwroot\Hinh\KhachHang\Cá Sấu_07ec4701.png
+wwwroot\Hinh\KhachHang\Cá Sấu_c09d6066.png
+wwwroot\Hinh\KhachHang\Cá Sấu_c0594483.png
+wwwroot\Hinh\KhachHang\Cá Sấu_48c76706.png
+wwwroot\Hinh\KhachHang\Cá Sấu_5073900b.png
+wwwroot\Hinh\KhachHang\Cá Sấu_42d85a6a.png
+wwwroot\Hinh\KhachHang\Cá Sấu_1985c476.png
+wwwroot\Hinh\KhachHang\Cá Sấu_da2893e6.png
+wwwroot\Hinh\KhachHang\Cá Sấu_92a247fd.png
+wwwroot\Hinh\KhachHang\Cá Sấu_61e39e13.png
+wwwroot\Hinh\KhachHang\Cá Sấu_a0b8e0c3.png
+wwwroot\Hinh\KhachHang\Cá Sấu_2b9f270f.png
+wwwroot\Hinh\KhachHang\Cá Sấu_f3755f01.png
+wwwroot\Hinh\KhachHang\Cá Sấu_0c5d488e.png
+wwwroot\Hinh\KhachHang\Cá Sấu_549cc599.png
+wwwroot\Hinh\KhachHang\Cá Sấu_fdc44f25.png
+wwwroot\Hinh\KhachHang\Cá Sấu_542788f2.png
+wwwroot\Hinh\KhachHang\Cá Sấu_4ddda64c.png
+wwwroot\Hinh\default-product.png
+wwwroot\Hinh\KhachHang\Renek_43d38e69.jpg
+wwwroot\Hinh\KhachHang\Đạttttttt_0c1ede14.png

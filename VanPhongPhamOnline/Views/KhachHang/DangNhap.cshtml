@@ -13,7 +13,7 @@
 
                 <div class="mb-3">
                     <label asp-for="UserName" class="form-label">Đăng nhập <sup>*</sup></label>
-                    <input asp-for="UserName" class="form-control" style="border-radius:12px; />
+                    <input asp-for="UserName" class="form-control" style="border-radius:12px;  />
                     <span asp-validation-for="UserName" class="text-danger"></span>
                 </div>
 
@@ -28,7 +28,7 @@
                         <i class="fa fa-sign-in-alt me-2"></i> Đăng nhập
                     </button>
 
-                    <a asp-controller="" asp-action="" class="btn btn-forgot">
+                    <a asp-controller="KhachHang" asp-action="QuenMatKhau" class="btn btn-forgot">
                         Quên mật khẩu?
                     </a>
                 </div>

@@ -8,5 +8,9 @@ namespace VanPhongPhamOnline.Controllers.Admin
         {
             return View("~/Views/Admin/IndexAdmin.cshtml");
         }
+        public IActionResult IndexNhanVien()
+        {
+            return View("~/Views/Admin/IndexNhanVien.cshtml");
+        }
     }
 }

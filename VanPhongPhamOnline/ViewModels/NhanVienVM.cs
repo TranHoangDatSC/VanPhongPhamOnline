@@ -9,8 +9,8 @@ namespace VanPhongPhamOnline.ViewModels
         public string HoTenNv { get; set; }
         public string EmailNv { get; set; }
         public string MatKhauNv { get; set; }
-        public DateTime? NgaySinhNv { get; set; }
-        public bool? GioiTinhNv { get; set; } // true = Nam, false = Nữ
+        public DateTime NgaySinhNv { get; set; }
+        public bool GioiTinhNv { get; set; } // true = Nam, false = Nữ
         public string? DiaChiNv { get; set; }
 
         // Từ bảng phân công

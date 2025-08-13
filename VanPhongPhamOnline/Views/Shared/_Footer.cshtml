@@ -16,7 +16,7 @@
                         <a class="text-secondary mb-2" href="/"><i class="fa fa-angle-right mr-2"></i>Trang chủ</a>
                         <a class="text-secondary mb-2" asp-action="Index" asp-controller="HangHoa"><i class="fa fa-angle-right mr-2"></i>Sản phẩm</a>
                         <a class="text-secondary mb-2" asp-action="Index" asp-controller="Cart"><i class="fa fa-angle-right mr-2"></i>Giỏ hàng</a>
-                        <a class="text-secondary" asp-action="Index" asp-controller="Contact"><i class="fa fa-angle-right mr-2"></i>Liên hệ</a>
+                        @* <a class="text-secondary" asp-action="Index" asp-controller="Contact"><i class="fa fa-angle-right mr-2"></i>Liên hệ</a> *@
                     </div>
                 </div>
                 <div class="col-md-4 mb-5">
@@ -24,12 +24,12 @@
                     <div class="d-flex flex-column justify-content-start">
                         <a class="text-secondary mb-2" asp-action="DangNhap" asp-controller="KhachHang"><i class="fa fa-angle-right mr-2"></i>Đăng nhập</a>
                         <a class="text-secondary mb-2" asp-action="DangKy" asp-controller="KhachHang"><i class="fa fa-angle-right mr-2"></i>Đăng ký</a>
-                        <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Đơn hàng</a> <!-- Tính sau -->
-                        <a class="text-secondary" asp-action="Index" asp-controller="Contact"><i class="fa fa-angle-right mr-2"></i>Hỗ trợ</a>
+                        @* <a class="text-secondary mb-2" href="#"><i class="fa fa-angle-right mr-2"></i>Đơn hàng</a> <!-- Tính sau --> *@
+                        @* <a class="text-secondary" asp-action="Index" asp-controller="Contact"><i class="fa fa-angle-right mr-2"></i>Hỗ trợ</a> *@
                     </div>
                 </div>
                 <div class="col-md-4 mb-5">
-                    <h5 class="text-secondary text-uppercase mb-4">Nhận tin khuyến mãi</h5>
+                    <h5 class="text-secondary text-uppercase mb-4">Đăng ký tài khoản</h5>
                     <p>Đăng ký nhận email để không bỏ lỡ các ưu đãi mới nhất từ chúng tôi.</p>
                     <form asp-action="DangKy" asp-controller="KhachHang">
                         <div class="input-group">
@@ -39,13 +39,13 @@
                             </div>
                         </div>
                     </form>
-                    <h6 class="text-secondary text-uppercase mt-4 mb-3">Kết nối với chúng tôi</h6>
+                    @* <h6 class="text-secondary text-uppercase mt-4 mb-3">Kết nối với chúng tôi</h6>
                     <div class="d-flex">
                         <a class="btn btn-primary btn-square mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
                         <a class="btn btn-primary btn-square mr-2" href="#"><i class="fab fa-instagram"></i></a>
                         <a class="btn btn-primary btn-square mr-2" href="#"><i class="fab fa-youtube"></i></a>
                         <a class="btn btn-primary btn-square" href="#"><i class="fab fa-twitter"></i></a>
-                    </div>
+                    </div> *@
                 </div>
             </div>
         </div>

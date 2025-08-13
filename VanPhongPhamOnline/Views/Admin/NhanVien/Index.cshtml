@@ -162,7 +162,11 @@
                                 <td style="text-align: center; white-space: nowrap;">
                                     <a href="@Url.Action("Details", "NhanVien", new { id = item.MaNv })" class="btn-action btn-info">Chi tiết</a>
                                     <a href="@Url.Action("Edit", "NhanVien", new { id = item.MaNv })" class="btn-action btn-warning">Sửa</a>
-                                    <a href="@Url.Action("Delete", "NhanVien", new { id = item.MaNv })" class="btn-action btn-danger">Xóa</a>
+
+                                    @if (item.MaNv != "AD001")
+                                    {
+                                        <a href="@Url.Action("Delete", "NhanVien", new { id = item.MaNv })" class="btn-action btn-danger">Xóa</a>
+                                    }
                                 </td>
                             </tr>
                         }

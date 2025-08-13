@@ -1,4 +1,41 @@
-﻿﻿@{
-ViewData["Title"] = "Success";
+﻿@{
+    ViewData["Title"] = "Success";
 }
-<h1>Success</h1>
+
+<div class="success-container">
+    <h1>Đặt hàng thành công!</h1>
+    <a href="/" class="btn-home">Quay lại trang chủ</a>
+</div>
+
+<style>
+    .success-container {
+        text-align: center;
+        padding: 60px 20px;
+        background: linear-gradient(135deg, #e0f7e9, #c8e6c9);
+        border-radius: 12px;
+        max-width: 500px;
+        margin: 80px auto;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+        .success-container h1 {
+            color: #28a745;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+    .btn-home {
+        display: inline-block;
+        padding: 10px 25px;
+        font-size: 16px;
+        background-color: #28a745;
+        color: white;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-home:hover {
+            background-color: #218838;
+        }
+</style>

@@ -1,9 +1,14 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
+﻿using ECommerceMVC.Helpers;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using VanPhongPhamOnline.Data;
 using VanPhongPhamOnline.Helpers;
+using VanPhongPhamOnline.ViewModels;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
+builder.Services.AddTransient<MyUlti>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -17,7 +22,7 @@ builder.Services.AddDbContext<MultiShopContext>(options =>
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromSeconds(10);
+    options.IdleTimeout = TimeSpan.FromMinutes(5);
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
@@ -39,6 +44,14 @@ builder.Services.AddAuthentication(options =>
     options.AccessDeniedPath = "/Admin/DangNhap/AccessDenied";
     options.Cookie.Name = "AdminCookie";
 });
+
+// Register Paypal type Singleton() - just have one instance
+builder.Services.AddSingleton(x => new PaypalClient(
+    builder.Configuration["PaypalOptions:AppId"],
+    builder.Configuration["PaypalOptions:AppSecret"],
+    builder.Configuration["PaypalOptions:Mode"]
+));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

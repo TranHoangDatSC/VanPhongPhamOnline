@@ -1,5 +1,137 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+ViewData["Title"] = "Trang Nhân Viên";
+    Layout = null;
 }
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" />
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            overflow: hidden;
+        }
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #0f172a;
+            z-index: -1;
+        }
+
+        .admin-container {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            color: white;
+        }
+
+        .admin-title {
+            font-size: 36px;
+            font-weight: bold;
+            color: #e0e7ff;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px #1e293b;
+        }
+
+        .admin-buttons .btn {
+            min-width: 240px;
+            margin: 10px;
+            font-size: 18px;
+            padding: 14px 24px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-nv {
+            background-color: #0ea5e9;
+            color: white;
+        }
+
+        .btn-hh {
+            background-color: #6d28d9;
+            color: white;
+        }
+
+        .btn-kh {
+            background-color: #1e40af;
+            color: white;
+        }
+
+        .btn-hd {
+            background-color: #059669;
+            color: white;
+        }
+
+        .btn-danger {
+            background-color: #dc2626;
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.95;
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+
+    <div class="admin-container">
+        <div class="admin-title">TRANG NHÂN VIÊN</div>
+        <div class="admin-buttons">
+            <a asp-controller="NhanVien" asp-action="Profile" class="btn btn-nv">Thông tin cá nhân</a>
+            <a asp-controller="HoaDon" asp-action="Index" class="btn btn-hd">Quản lý Đơn hàng</a>
+            <a asp-controller="DangNhap" asp-action="DangXuat" class="btn btn-danger">Đăng xuất</a>
+        </div>
+    </div>
+
+    <!-- particles.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#ffffff" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5 },
+                size: { value: 3 },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#ffffff",
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 4,
+                    direction: "none",
+                    out_mode: "bounce"
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "repulse" },
+                    onclick: { enable: true, mode: "push" }
+                },
+                modes: {
+                    repulse: { distance: 100 },
+                    push: { particles_nb: 4 }
+                }
+            },
+            retina_detect: true
+        });
+    </script>
+</body>
+</html>
