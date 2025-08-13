@@ -5,99 +5,188 @@
 }
 
 <!DOCTYPE html>
-
-<html>
+<html lang="vi">
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Hàng Hóa</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <style>
+        body {
+            background: linear-gradient(120deg, #e8f5e9, #c8e6c9);
+            font-family: 'Segoe UI', sans-serif;
+            padding: 40px;
+        }
+
+        .container-box {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #2e7d32;
+            font-weight: bold;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .btn-create {
+            background: linear-gradient(45deg, #66bb6a, #2e7d32);
+            border: none;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+            .btn-create:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(46,125,50,0.4);
+                color: white;
+                text-decoration: none;
+            }
+
+        .table {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            width: 100%;
+        }
+
+        thead th {
+            background: linear-gradient(45deg, #2e7d32, #66bb6a);
+            color: white;
+            border: none;
+            padding: 15px;
+            font-weight: 600;
+            text-align: left;
+        }
+
+        tbody td {
+            padding: 12px;
+            vertical-align: middle;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        tbody tr:hover {
+            background-color: #e8f5e9;
+            transform: scale(1.01);
+            transition: all 0.2s ease;
+        }
+
+        .btn-action {
+            margin: 0 2px;
+            border-radius: 20px;
+            padding: 5px 12px;
+            font-size: 11px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .btn-info {
+            background: linear-gradient(45deg, #29b6f6, #0288d1);
+            border: none;
+            color: white;
+        }
+
+        .btn-warning {
+            background: linear-gradient(45deg, #ffb74d, #f57c00);
+            border: none;
+            color: white;
+        }
+
+        .btn-danger {
+            background: linear-gradient(45deg, #ef5350, #d32f2f);
+            border: none;
+            color: white;
+        }
+
+        .btn-action:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            color: white;
+            text-decoration: none;
+        }
+
+        .back-link {
+            color: #2e7d32;
+            text-decoration: none;
+            font-weight: bold;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+            .back-link:hover {
+                color: #1b5e20;
+                text-decoration: none;
+            }
+    </style>
 </head>
 <body>
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.TenHh)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TenAlias)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MoTaDonVi)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DonGia)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Hinh)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NgaySx)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.GiamGia)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SoLanXem)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MoTa)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MaLoaiNavigation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MaNccNavigation)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TenHh)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TenAlias)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MoTaDonVi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DonGia)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Hinh)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NgaySx)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GiamGia)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SoLanXem)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MoTa)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaLoaiNavigation.MaLoai)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaNccNavigation.MaNcc)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.MaHh">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.MaHh">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.MaHh">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <div class="container-box">
+        <a href="@Url.Action("IndexAdmin", "Admin")" class="back-link">← Quay lại trang Admin</a>
+
+        <h1>Quản lý Hàng Hóa</h1>
+
+        <a asp-action="Create" class="btn-create">+ Thêm hàng hóa mới</a>
+
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Hình</th>
+                        <th>Tên Sản Phẩm</th>
+                        <th>Tên Alias</th>
+                        <th>Đơn vị</th>
+                        <th>Đơn giá</th>
+                        <th>Ngày SX</th>
+                        <th>Mô tả</th>
+                        @* <th>Loại</th>
+                        <th>Nhà cung cấp</th> *@
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @if (!string.IsNullOrEmpty(item.Hinh))
+                                {
+                                    <img src="~/Hinh/HangHoa/@item.Hinh" alt="@item.TenHh" style="width:80px; height:80px; object-fit:cover; border-radius:8px;" />
+                                }
+                                else
+                                {
+                                    <span>Chưa có ảnh</span>
+                                }
+                            </td>
+                            <td>@item.TenHh</td>
+                            <td>@item.TenAlias</td>
+                            <td>@item.MoTaDonVi</td>
+                            <td>@item.DonGia</td>         
+                            <td>@item.NgaySx</td>
+                            <td>@item.MoTa</td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.MaHh" class="btn-action btn-warning">Sửa</a>
+                                <a asp-action="Details" asp-route-id="@item.MaHh" class="btn-action btn-info">Chi tiết</a>
+                                <a asp-action="Delete" asp-route-id="@item.MaHh" class="btn-action btn-danger">Xóa</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
 </body>
 </html>
