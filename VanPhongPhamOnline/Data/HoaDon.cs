@@ -40,4 +40,12 @@ public partial class HoaDon
     public virtual NhanVien? MaNvNavigation { get; set; }
     [BindNever]
     public virtual TrangThai? MaTrangThaiNavigation { get; set; } = null!;
+
+    public decimal TongTien
+    {
+        get
+        {
+            return ChiTietHds?.Sum(ct => (decimal)ct.SoLuong * (decimal)ct.DonGia) ?? 0;
+        }
+    }
 }

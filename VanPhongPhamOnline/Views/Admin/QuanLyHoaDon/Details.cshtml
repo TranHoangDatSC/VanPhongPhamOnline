@@ -5,11 +5,10 @@
 }
 
 <!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Details</title>
+    <title>Chi tiết Hóa Đơn</title>
     <style>
         body {
             background: linear-gradient(120deg, #e8f5e9, #c8e6c9);
@@ -74,22 +73,6 @@
         .btn-back {
             background: linear-gradient(45deg, #81c784, #388e3c);
         }
-
-        {
-            padding: 20px;
-        }
-
-        h4 {
-            font-size: 1.4em;
-        }
-
-        dl.row dt,
-        dl.row dd {
-            display: block;
-            width: 100%;
-        }
-
-        }
     </style>
 </head>
 <body>
@@ -98,66 +81,35 @@
         <h4>Chi tiết Hóa Đơn</h4>
         <hr />
         <dl class="row">
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.NgayDat)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.NgayDat)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.NgayGiao)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.NgayGiao)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.HoTenNguoiNhan)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.HoTenNguoiNhan)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.DiaChi)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.DiaChi)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.CachThanhToan)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.CachThanhToan)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.CachVanChuyen)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.CachVanChuyen)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.PhiVanChuyen)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.PhiVanChuyen)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.GhiChu)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.GhiChu)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.MaKhNavigation)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.MaKhNavigation.MaKh)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.MaTrangThaiNavigation)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.MaTrangThaiNavigation.MaTrangThai)
-            </dd>
+            <dt class="col-sm-4">Ngày đặt hàng</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.NgayDat)</dd>
+
+            <dt class="col-sm-4">Ngày giao hàng</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.NgayGiao)</dd>
+
+            <dt class="col-sm-4">Họ tên người nhận</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.HoTenNguoiNhan)</dd>
+
+            <dt class="col-sm-4">Địa chỉ giao hàng</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.DiaChi)</dd>
+
+            <dt class="col-sm-4">Hình thức thanh toán</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.CachThanhToan)</dd>
+
+            <dt class="col-sm-4">Hình thức vận chuyển</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.CachVanChuyen)</dd>
+
+            <dt class="col-sm-4">Phí vận chuyển</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.PhiVanChuyen)</dd>
+
+            <dt class="col-sm-4">Ghi chú</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.GhiChu)</dd>
+
+            <dt class="col-sm-4">Mã khách hàng</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.MaKhNavigation.MaKh)</dd>
+
+            <dt class="col-sm-4">Trạng thái đơn hàng</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.MaTrangThaiNavigation.MaTrangThai)</dd>
         </dl>
 
         <div>

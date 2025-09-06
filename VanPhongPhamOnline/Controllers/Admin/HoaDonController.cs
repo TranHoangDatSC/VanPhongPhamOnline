@@ -23,6 +23,16 @@ namespace VanPhongPhamOnline.Controllers.Admin
         {
             var maNV = HttpContext.Session.GetString("MaNV"); 
             ViewBag.IsAdmin = string.Equals(maNV, "AD001", StringComparison.OrdinalIgnoreCase);
+            var tongTienDict = _context.HoaDons
+           .Select(h => new
+           {
+               h.MaHd,
+               TongTien = h.ChiTietHds.Sum(ct => (decimal)ct.SoLuong * (decimal)ct.DonGia) + 10000
+           })
+           .ToDictionary(x => x.MaHd, x => x.TongTien);
+
+            ViewBag.TongTienDict = tongTienDict;
+
 
             var multiShopContext = _context.HoaDons
                 .Include(h => h.MaKhNavigation)
@@ -212,5 +222,34 @@ namespace VanPhongPhamOnline.Controllers.Admin
         {
             return _context.HoaDons.Any(e => e.MaHd == id);
         }
+
+        // GET: HoaDon/Search?query=KH001
+        [HttpGet]
+        public IActionResult Search(string query)
+        {
+            var hoaDonsQuery = _context.HoaDons
+                .Include(h => h.MaKhNavigation)
+                .Include(h => h.MaNvNavigation)
+                .Include(h => h.MaTrangThaiNavigation)
+                .AsQueryable();
+
+            if (!string.IsNullOrEmpty(query))
+            {
+                hoaDonsQuery = hoaDonsQuery
+                    .Where(h => h.MaKhNavigation.MaKh.Contains(query));
+            }
+
+            var hoaDons = hoaDonsQuery.ToList();
+
+            ViewBag.TongTienDict = hoaDons.ToDictionary(
+                h => h.MaHd,
+                h => h.ChiTietHds.Sum(ct => (decimal)ct.SoLuong * (decimal)ct.DonGia)
+            );
+
+            ViewBag.Query = query;
+
+            return View("~/Views/Admin/QuanLyHoaDon/Index.cshtml", hoaDons);
+        }
+
     }
 }

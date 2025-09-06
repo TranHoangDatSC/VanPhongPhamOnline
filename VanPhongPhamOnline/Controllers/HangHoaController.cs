@@ -74,7 +74,7 @@ namespace VanPhongPhamOnline.Controllers
 
             return View(result);
         }
-
+        
         public IActionResult Detail(int id)
         {
             LoadMenuLoai();

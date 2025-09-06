@@ -2,6 +2,7 @@
 
 @{
     Layout = null;
+    var tongTienDict = (Dictionary<int, decimal>)ViewBag.TongTienDict;
 }
 
 <!DOCTYPE html>
@@ -120,7 +121,20 @@
             <a href="@Url.Action("IndexNhanVien", "Admin")" class="back-link">← Quay lại trang Admin</a>
 
             <h1>Quản lý hóa đơn</h1>
-
+            <form asp-action="Search" asp-controller="HoaDon" method="get" class="mb-3">
+                <div class="input-group" style="max-width:420px;">
+                    <input type="text"
+                           class="form-control"
+                           placeholder="Tìm theo Khách Hàng"
+                           name="query"
+                           value="@(ViewBag.Query ?? string.Empty)">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-success" type="submit">
+                            <i class="fa fa-search"></i> Tìm
+                        </button>
+                    </div>
+                </div>
+            </form>
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
@@ -132,6 +146,7 @@
                             <th>Thanh toán</th>
                             <th>Vận chuyển</th>
                             <th>Phí VC</th>
+                            <th>Tổng tiền</th>
                             <th>Ghi chú</th>
                             <th>Khách Hàng</th>
                             <th>Trạng thái</th>
@@ -149,6 +164,7 @@
                                 <td>@item.CachThanhToan</td>
                                 <td>@item.CachVanChuyen</td>
                                 <td>@item.PhiVanChuyen.ToString("N0")</td>
+                                <td>@tongTienDict[item.MaHd].ToString("N0")</td>
                                 <td>@item.GhiChu</td>
                                 <td>@item.MaKhNavigation?.MaKh</td>
                                 <td>@item.MaTrangThaiNavigation?.MaTrangThai</td>

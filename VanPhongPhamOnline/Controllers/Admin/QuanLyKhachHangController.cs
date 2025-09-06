@@ -245,5 +245,26 @@ namespace VanPhongPhamOnline.Controllers.Admin
         {
             return _context.KhachHangs.Any(e => e.MaKh == id);
         }
+
+        public async Task<IActionResult> Search(string? query)
+        {
+            var khachHangs = _context.KhachHangs
+                .Where(kh => !kh.IsDeleted) // chỉ lấy khách chưa bị xóa
+                .AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(query))
+            {
+                khachHangs = khachHangs.Where(kh =>
+                    kh.HoTenKh.Contains(query) ||
+                    kh.EmailKh.Contains(query) ||
+                    kh.DienThoaiKh.Contains(query) ||
+                    kh.MaKh.Contains(query)
+                );
+            }
+
+            var result = await khachHangs.ToListAsync();
+
+            return View("~/Views/Admin/QuanLyKhachHang/Index.cshtml", result);
+        }
     }
 }

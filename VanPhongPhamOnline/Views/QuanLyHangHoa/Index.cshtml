@@ -137,7 +137,20 @@
         <a href="@Url.Action("IndexAdmin", "Admin")" class="back-link">← Quay lại trang Admin</a>
 
         <h1>Quản lý Hàng Hóa</h1>
-
+        <form asp-action="Search" asp-controller="QuanLyHangHoa" method="get" class="mb-3">
+            <div class="input-group" style="max-width: 420px;">
+                <input type="text"
+                       name="query"
+                       class="form-control"
+                       placeholder="Nhập tên hàng hóa cần tìm..."
+                       value="@(ViewBag.Query ?? string.Empty)" />
+                <div class="input-group-append">
+                    <button class="btn btn-outline-success" type="submit">
+                        <i class="fa fa-search"></i> Tìm
+                    </button>
+                </div>
+            </div>
+        </form>
         <a asp-action="Create" class="btn-create">+ Thêm hàng hóa mới</a>
 
         <div class="table-responsive">

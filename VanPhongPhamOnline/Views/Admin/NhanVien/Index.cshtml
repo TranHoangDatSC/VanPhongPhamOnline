@@ -10,6 +10,7 @@
     <meta charset="utf-8" />
     <title>Quản lý nhân viên</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <style>
         body {
             background: linear-gradient(120deg, #fff3e0, #ffe0b2);
@@ -135,6 +136,14 @@
             <a href="@Url.Action("IndexAdmin", "Admin")" class="back-link">← Quay lại trang Admin</a>
 
             <h1>Quản lý nhân viên</h1>
+            <form asp-action="Search" asp-controller="NhanVien" method="get" class="form-inline mb-3" style="gap: 8px;">
+                <input type="text" name="query" class="form-control rounded-pill px-3"
+                       placeholder="🔍 Tìm kiếm nhân viên..." style="flex: 1; min-width: 250px;" />
+
+                <button type="submit" class="btn btn-warning rounded-pill px-4" style="font-weight: bold;">
+                    <i class="fas fa-search"></i> Tìm kiếm
+                </button>
+            </form>
 
             <a href="@Url.Action("Create", "NhanVien")" class="btn-create">
                 + Thêm nhân viên mới

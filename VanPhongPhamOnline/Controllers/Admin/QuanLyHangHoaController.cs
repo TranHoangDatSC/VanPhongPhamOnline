@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using VanPhongPhamOnline.Data;
+using VanPhongPhamOnline.ViewModels;
 
 namespace VanPhongPhamOnline.Controllers.Admin
 {
@@ -170,5 +171,21 @@ namespace VanPhongPhamOnline.Controllers.Admin
         {
             return _context.HangHoas.Any(e => e.MaHh == id);
         }
+        public async Task<IActionResult> Search(string? query)
+        {
+            var hangHoas = _context.HangHoas.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(query))
+            {
+                query = query.Trim();
+                hangHoas = hangHoas.Where(p => p.TenHh.Contains(query));
+            }
+
+            // Giữ lại từ khóa để view hiển thị lại trong ô search
+            ViewBag.Query = query;
+
+            return View("Index", await hangHoas.ToListAsync());
+        }
+
     }
 }
