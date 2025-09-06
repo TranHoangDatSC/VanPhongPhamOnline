@@ -7663,11 +7663,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I & II & III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\VanPhongPhamOnline.csproj",
+      "projectUniqueName": "C:\\Dat Files\\Document_Study\\Semesters 2024 - 2025\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\VanPhongPhamOnline.csproj",
       "projectName": "VanPhongPhamOnline",
-      "projectPath": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I & II & III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\VanPhongPhamOnline.csproj",
+      "projectPath": "C:\\Dat Files\\Document_Study\\Semesters 2024 - 2025\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\VanPhongPhamOnline.csproj",
       "packagesPath": "C:\\Users\\hoang\\.nuget\\packages\\",
-      "outputPath": "C:\\Dat Files\\Document_Study\\2024-2025 - Semester I & II & III\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\obj\\",
+      "outputPath": "C:\\Dat Files\\Document_Study\\Semesters 2024 - 2025\\Introduction to Software Engineering\\VanPhongPhamOnline\\VanPhongPhamOnline\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

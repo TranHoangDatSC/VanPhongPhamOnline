@@ -15,5 +15,6 @@
     <WebStackScaffolding_DbContextTypeFullName>VanPhongPhamOnline.Data.MultiShopContext</WebStackScaffolding_DbContextTypeFullName>
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
     <WebStackScaffolding_IsViewGenerationSelected>True</WebStackScaffolding_IsViewGenerationSelected>
+    <NameOfLastUsedPublishProfile>C:\Dat Files\Document_Study\2024-2025 - Semester I &amp; II &amp; III\Introduction to Software Engineering\VanPhongPhamOnline\VanPhongPhamOnline\Properties\PublishProfiles\FTPProfile3.pubxml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>

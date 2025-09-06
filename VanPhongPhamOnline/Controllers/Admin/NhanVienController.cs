@@ -257,6 +257,22 @@ namespace VanPhongPhamOnline.Controllers.Admin
 
             return View("~/Views/Admin/NhanVien/Profile.cshtml", nv);
         }
+        [HttpGet]
+        public async Task<IActionResult> Search(string? query)
+        {
+            var nhanViens = _context.NhanViens.AsQueryable();
+
+            if (!string.IsNullOrEmpty(query))
+            {
+                nhanViens = nhanViens.Where(nv =>
+                    nv.MaNv.Contains(query) ||
+                    nv.HoTenNv.Contains(query));
+            }
+
+            var result = await nhanViens.ToListAsync();
+
+            return View("~/Views/Admin/NhanVien/Index.cshtml", result);
+        }
 
     }
 }

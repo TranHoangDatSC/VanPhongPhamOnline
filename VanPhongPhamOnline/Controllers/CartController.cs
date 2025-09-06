@@ -201,7 +201,7 @@ namespace VanPhongPhamOnline.Controllers
         public async Task<IActionResult> CreatePaypalOrder(CancellationToken cancellationToken)
         {
             // Thong tin don hang gui qua Paypal
-            var tongTien = Cart.Sum(p => p.ThanhTien).ToString();
+            var tongTien = Cart.Sum(p => p.ThanhTien + 10000).ToString();
             var donvitiente = "USD";
             var maDonHangThamChieu = "DH" + DateTime.Now.Ticks.ToString();
             try

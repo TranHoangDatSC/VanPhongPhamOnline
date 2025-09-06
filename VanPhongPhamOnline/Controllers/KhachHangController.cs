@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Security.Claims;
 using VanPhongPhamOnline.Data;
@@ -54,7 +55,7 @@ namespace VanPhongPhamOnline.Controllers
                     return View(model);
                 }
             }
-            return View();
+            return View("~/Views/KhachHang/DangNhap.cshtml");
         }
         #endregion
 
@@ -269,8 +270,6 @@ namespace VanPhongPhamOnline.Controllers
             return RedirectToAction("XacNhanMa");
         }
 
-
-
         [HttpGet]
         public IActionResult XacNhanMa()
         {
@@ -357,6 +356,64 @@ namespace VanPhongPhamOnline.Controllers
             TempData["Success"] = "Mật khẩu đã được cập nhật. Vui lòng đăng nhập lại.";
             return RedirectToAction("DangNhap");
         }
+        [Authorize]
+        public IActionResult Details(int pageNumber = 1, int pageSize = 4)
+        {
+            var maKH = User.FindFirst("MaKH")?.Value;
+            if (string.IsNullOrEmpty(maKH)) return Unauthorized();
+
+            var query = db.HoaDons
+                .Include(h => h.ChiTietHds)
+                    .ThenInclude(ct => ct.MaHhNavigation)
+                .Include(h => h.MaTrangThaiNavigation)
+                .Include(h => h.MaNvNavigation)
+                .Where(h => h.MaKh == maKH)
+                .OrderByDescending(h => h.NgayDat);
+
+            // tổng số hóa đơn
+            int totalRecords = query.Count();
+
+            // lấy dữ liệu phân trang
+            var hoaDons = query
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            var result = hoaDons.Select(h => new BillVM
+            {
+                MaHd = h.MaHd,
+                MaKh = h.MaKh,
+                TenKhachHang = h.MaKhNavigation?.HoTenKh,
+                NgayDat = h.NgayDat,
+                NgayCan = h.NgayCan,
+                NgayGiao = h.NgayGiao,
+                HoTenNguoiNhan = h.HoTenNguoiNhan,
+                DiaChi = h.DiaChi,
+                CachThanhToan = h.CachThanhToan,
+                CachVanChuyen = h.CachVanChuyen,
+                PhiVanChuyen = h.PhiVanChuyen,
+                TenTrangThai = h.MaTrangThaiNavigation?.TenTrangThai,
+                TenNhanVien = h.MaNvNavigation?.HoTenNv,
+                GhiChu = h.GhiChu,
+                TongTien = h.TongTien,
+                ChiTietHds = h.ChiTietHds.Select(ct => new BillDetailVM
+                {
+                    MaHh = ct.MaHh,
+                    TenHh = ct.MaHhNavigation?.TenHh ?? "Không rõ",
+                    DonGia = ct.DonGia,
+                    SoLuong = ct.SoLuong
+                }).ToList()
+            }).ToList();
+
+            // truyền thêm thông tin phân trang qua ViewBag
+            ViewBag.PageNumber = pageNumber;
+            ViewBag.PageSize = pageSize;
+            ViewBag.TotalRecords = totalRecords;
+            ViewBag.TotalPages = (int)Math.Ceiling((double)totalRecords / pageSize);
+
+            return View("DetailsBill", result);
+        }
+
 
     }
 
