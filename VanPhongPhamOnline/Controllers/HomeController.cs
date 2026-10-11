@@ -23,6 +23,14 @@ namespace VanPhongPhamOnline.Controllers
             return View();
         }
 
+        [Route("/404")]
+        [Route("Home/PageNotFound")]
+        public IActionResult PageNotFound()
+        {
+            Response.StatusCode = StatusCodes.Status404NotFound;
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
