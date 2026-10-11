@@ -1,8 +1,7 @@
-﻿namespace VanPhongPhamOnline.Helpers
+namespace VanPhongPhamOnline.Helpers
 {
-    public class MySetting
+    public static class MySetting
     {
-        public static string CART_KEY = "MYCART";
-        public static string CLAIM_CUSTOMERID = "CustomerID";
+        public const string CART_KEY = "MYCART";
     }
 }

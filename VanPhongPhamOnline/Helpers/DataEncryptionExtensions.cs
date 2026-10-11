@@ -1,4 +1,4 @@
-﻿using System.Security.Cryptography;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace VanPhongPhamOnline.Helpers
@@ -6,37 +6,21 @@ namespace VanPhongPhamOnline.Helpers
     public static class DataEncryptionExtensions
     {
         #region [Hashing Extension]
-        public static string ToSHA256Hash(this string password, string? saltKey)
-        {
-            var sha256 = SHA256.Create();
-            byte[] encryptedSHA256 = sha256.ComputeHash(Encoding.UTF8.GetBytes(string.Concat(password, saltKey)));
-            sha256.Clear();
-
-            return Convert.ToBase64String(encryptedSHA256);
-        }
-
-        public static string ToSHA512Hash(this string password, string? saltKey)
-        {
-            SHA512Managed sha512 = new SHA512Managed();
-            byte[] encryptedSHA512 = sha512.ComputeHash(Encoding.UTF8.GetBytes(string.Concat(password, saltKey)));
-            sha512.Clear();
-
-            return Convert.ToBase64String(encryptedSHA512);
-        }
-
+        /// <summary>
+        /// Băm mật khẩu bằng MD5 + salt (RandomKey).
+        /// Giữ MD5 để tương thích với dữ liệu mật khẩu đã có trong CSDL.
+        /// </summary>
         public static string ToMd5Hash(this string password, string? saltKey)
         {
-            using (var md5 = MD5.Create())
+            using var md5 = MD5.Create();
+            byte[] data = md5.ComputeHash(Encoding.UTF8.GetBytes(string.Concat(password, saltKey)));
+            var sBuilder = new StringBuilder();
+            foreach (var b in data)
             {
-                byte[] data = md5.ComputeHash(Encoding.UTF8.GetBytes(string.Concat(password, saltKey)));
-                StringBuilder sBuilder = new StringBuilder();
-                for (int i = 0; i < data.Length; i++)
-                {
-                    sBuilder.Append(data[i].ToString("x2"));
-                }
-
-                return sBuilder.ToString();
+                sBuilder.Append(b.ToString("x2"));
             }
+
+            return sBuilder.ToString();
         }
         #endregion
     }
