@@ -1,0 +1,19 @@
+# Chuẩn hóa xuống dòng cho file text
+* text=auto
+
+*.cs      text diff=csharp
+*.cshtml  text
+*.sln     text eol=crlf
+*.csproj  text eol=crlf
+*.sql     text
+
+# File nhị phân
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary

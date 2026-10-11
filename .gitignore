@@ -1,0 +1,44 @@
+## .NET / Visual Studio
+.vs/
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Ll]og/
+[Ll]ogs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.rsuser
+*.cache
+*.pdb
+TestResults/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+## Publish output / profiles (may contain server info)
+PublishProfiles/
+*.pubxml
+*.publishproj
+PubTmp/
+
+## Rider / VS Code
+.idea/
+.vscode/
+
+## Local configuration & secrets
+appsettings.Local.json
+*.local.md
+
+## User uploaded files (chỉ giữ thư mục)
+**/wwwroot/Hinh/KhachHang/*
+!**/wwwroot/Hinh/KhachHang/.gitkeep
+
+## OS
+Thumbs.db
+Desktop.ini
+.DS_Store
