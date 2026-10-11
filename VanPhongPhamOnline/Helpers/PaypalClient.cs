@@ -1,16 +1,20 @@
 ﻿using System.Net.Http.Headers;
+using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 
-namespace ECommerceMVC.Helpers
+namespace VanPhongPhamOnline.Helpers
 {
     public sealed class PaypalClient
     {
+        // Dùng chung một HttpClient để tránh cạn socket khi tạo mới liên tục
+        private static readonly HttpClient httpClient = new HttpClient();
+
         public string Mode { get; }
         public string ClientId { get; }
         public string ClientSecret { get; }
 
-        public string BaseUrl => Mode == "Live"
+        public string BaseUrl => string.Equals(Mode, "Live", StringComparison.OrdinalIgnoreCase)
             ? "https://api-m.paypal.com"
             : "https://api-m.sandbox.paypal.com";
 
@@ -41,12 +45,14 @@ namespace ECommerceMVC.Helpers
                 Content = new FormUrlEncodedContent(content)
             };
 
-            var httpClient = new HttpClient();
             var httpResponse = await httpClient.SendAsync(request);
             var jsonResponse = await httpResponse.Content.ReadAsStringAsync();
-            var response = JsonSerializer.Deserialize<AuthResponse>(jsonResponse);
+            if (!httpResponse.IsSuccessStatusCode)
+            {
+                throw new InvalidOperationException($"PayPal authenticate failed: {jsonResponse}");
+            }
 
-            return response;
+            return JsonSerializer.Deserialize<AuthResponse>(jsonResponse)!;
         }
 
         public async Task<CreateOrderResponse> CreateOrder(string value, string currency, string reference)
@@ -70,34 +76,40 @@ namespace ECommerceMVC.Helpers
                 }
             };
 
-            var httpClient = new HttpClient();
+            var httpRequest = new HttpRequestMessage(HttpMethod.Post, $"{BaseUrl}/v2/checkout/orders")
+            {
+                Content = JsonContent.Create(request)
+            };
+            httpRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", auth.access_token);
 
-            httpClient.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"Bearer {auth.access_token}");
-
-            var httpResponse = await httpClient.PostAsJsonAsync($"{BaseUrl}/v2/checkout/orders", request);
-
+            var httpResponse = await httpClient.SendAsync(httpRequest);
             var jsonResponse = await httpResponse.Content.ReadAsStringAsync();
-            var response = JsonSerializer.Deserialize<CreateOrderResponse>(jsonResponse);
+            if (!httpResponse.IsSuccessStatusCode)
+            {
+                throw new InvalidOperationException($"PayPal create order failed: {jsonResponse}");
+            }
 
-            return response;
+            return JsonSerializer.Deserialize<CreateOrderResponse>(jsonResponse)!;
         }
 
         public async Task<CaptureOrderResponse> CaptureOrder(string orderId)
         {
             var auth = await Authenticate();
 
-            var httpClient = new HttpClient();
+            var httpRequest = new HttpRequestMessage(HttpMethod.Post, $"{BaseUrl}/v2/checkout/orders/{orderId}/capture")
+            {
+                Content = new StringContent("", Encoding.UTF8, "application/json")
+            };
+            httpRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", auth.access_token);
 
-            httpClient.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"Bearer {auth.access_token}");
-
-            var httpContent = new StringContent("", Encoding.Default, "application/json");
-
-            var httpResponse = await httpClient.PostAsync($"{BaseUrl}/v2/checkout/orders/{orderId}/capture", httpContent);
-
+            var httpResponse = await httpClient.SendAsync(httpRequest);
             var jsonResponse = await httpResponse.Content.ReadAsStringAsync();
-            var response = JsonSerializer.Deserialize<CaptureOrderResponse>(jsonResponse);
+            if (!httpResponse.IsSuccessStatusCode)
+            {
+                throw new InvalidOperationException($"PayPal capture order failed: {jsonResponse}");
+            }
 
-            return response;
+            return JsonSerializer.Deserialize<CaptureOrderResponse>(jsonResponse)!;
         }
     }
 
