@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace VanPhongPhamOnline.Data;
 
@@ -31,8 +32,10 @@ public partial class HangHoa
 
     public virtual ICollection<ChiTietHd> ChiTietHds { get; set; } = new List<ChiTietHd>();
 
+    [ValidateNever]
     public virtual Loai MaLoaiNavigation { get; set; } = null!;
 
+    [ValidateNever]
     public virtual NhaCungCap MaNccNavigation { get; set; } = null!;
 
     public virtual ICollection<YeuThich> YeuThiches { get; set; } = new List<YeuThich>();
