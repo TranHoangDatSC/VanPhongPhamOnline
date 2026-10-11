@@ -1,11 +1,6 @@
-﻿using ECommerceMVC.Helpers;
+using System.Globalization;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using System;
-using System.Security.Claims;
-using System.Threading.Tasks;
 using VanPhongPhamOnline.Data;
 using VanPhongPhamOnline.Helpers;
 using VanPhongPhamOnline.ViewModels;
@@ -14,35 +9,36 @@ namespace VanPhongPhamOnline.Controllers
 {
     public class CartController : Controller
     {
+        private const double PhiVanChuyen = 10000;
+
         private readonly MultiShopContext db;
         private readonly PaypalClient _paypalClient;
-        public CartController(MultiShopContext context, PaypalClient paypalClient)
+        private readonly IConfiguration _configuration;
+
+        public CartController(MultiShopContext context, PaypalClient paypalClient, IConfiguration configuration)
         {
             _paypalClient = paypalClient;
+            _configuration = configuration;
             db = context;
         }
 
-        private List<CartItem> Cart => GetToCart();
-        private List<CartItem> GetToCart()
-        {
-            var jsonCart = HttpContext.Session.GetString(MySetting.CART_KEY);
-            if (string.IsNullOrEmpty(jsonCart))
-                return new List<CartItem>();
+        private List<CartItem> Cart => HttpContext.Session.Get<List<CartItem>>(MySetting.CART_KEY) ?? new List<CartItem>();
 
-            return JsonConvert.DeserializeObject<List<CartItem>>(jsonCart);
-        }
-        private void SaveToCart(List<CartItem> cart)
+        private void SaveCart(List<CartItem> cart)
         {
-            var jsonCart = JsonConvert.SerializeObject(cart);
-            HttpContext.Session.SetString(MySetting.CART_KEY, jsonCart);
+            HttpContext.Session.Set(MySetting.CART_KEY, cart);
         }
-        [Authorize(AuthenticationSchemes = "KhachHang")]
+
+        [Authorize(AuthenticationSchemes = AppAuth.CustomerScheme)]
         public IActionResult Index()
         {
             return View(Cart);
         }
+
         public IActionResult AddToCart(int id, int quantity = 1)
         {
+            if (quantity <= 0) quantity = 1;
+
             var gioHang = Cart;
             var item = gioHang.SingleOrDefault(p => p.MaHH == id);
             if (item == null)
@@ -50,8 +46,8 @@ namespace VanPhongPhamOnline.Controllers
                 var hangHoa = db.HangHoas.SingleOrDefault(p => p.MaHh == id);
                 if (hangHoa == null)
                 {
-                    TempData["Message"] = $"Khong tim thay hang hoa co ma {id}";
-                    return Redirect("/404");
+                    TempData["Message"] = $"Không tìm thấy hàng hóa có mã {id}";
+                    return RedirectToAction("PageNotFound", "Home");
                 }
                 item = new CartItem
                 {
@@ -67,20 +63,22 @@ namespace VanPhongPhamOnline.Controllers
             {
                 item.SoLuong += quantity;
             }
-            HttpContext.Session.Set(MySetting.CART_KEY, gioHang);
+            SaveCart(gioHang);
             return RedirectToAction("Index");
         }
+
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult UpdateCart(int id, int change)
         {
-            var cart = GetToCart();
+            var cart = Cart;
             var item = cart.FirstOrDefault(p => p.MaHH == id);
             if (item != null)
             {
                 item.SoLuong += change;
                 if (item.SoLuong <= 0) cart.Remove(item);
             }
-            SaveToCart(cart); // cập nhật session
+            SaveCart(cart); // cập nhật session
             return RedirectToAction("Index"); // refresh lại trang giỏ hàng
         }
 
@@ -92,15 +90,17 @@ namespace VanPhongPhamOnline.Controllers
             if (item != null)
             {
                 gioHang.Remove(item);
-                HttpContext.Session.Set(MySetting.CART_KEY, gioHang);
+                SaveCart(gioHang);
             }
 
             return RedirectToAction("Index");
         }
+
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult UpdateQuantity(int id, int quantity)
         {
-            var gioHang = GetToCart();
+            var gioHang = Cart;
             var item = gioHang.SingleOrDefault(p => p.MaHH == id);
 
             if (item != null)
@@ -110,22 +110,23 @@ namespace VanPhongPhamOnline.Controllers
                 else
                     item.SoLuong = quantity;
 
-                SaveToCart(gioHang);
+                SaveCart(gioHang);
             }
 
             return RedirectToAction("Index");
         }
+
         public IActionResult ClearCart()
         {
-            SaveToCart(new List<CartItem>());
+            SaveCart(new List<CartItem>());
             return RedirectToAction("Index");
         }
 
         [HttpGet]
-        [Authorize(AuthenticationSchemes = "KhachHang")]
+        [Authorize(AuthenticationSchemes = AppAuth.CustomerScheme)]
         public IActionResult Checkout()
         {
-            if(Cart.Count == 0)
+            if (Cart.Count == 0)
             {
                 return Redirect("/");
             }
@@ -135,138 +136,135 @@ namespace VanPhongPhamOnline.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(AuthenticationSchemes = AppAuth.CustomerScheme)]
         public IActionResult Checkout(CheckoutVM model)
         {
-            if (!ModelState.IsValid)
+            var cart = Cart;
+            if (cart.Count == 0)
             {
-                return View(model);
+                return Redirect("/");
             }
 
-            var maKH = User.FindFirst("MaKH")?.Value;
-            if (string.IsNullOrEmpty(maKH))
+            if (!ModelState.IsValid)
+            {
+                ViewBag.PaypalClientId = _paypalClient.ClientId;
+                return View(cart);
+            }
+
+            var hoaDon = TaoHoaDon(model, cart, "COD");
+            if (hoaDon == null)
             {
                 return Content("Không xác định được khách hàng.");
             }
+
+            return RedirectToAction("Success", "Cart");
+        }
+
+        public IActionResult Success()
+        {
+            return View(); // /Views/Cart/Success.cshtml
+        }
+
+        /// <summary>
+        /// Lưu hóa đơn + chi tiết hóa đơn từ giỏ hàng, sau đó xóa giỏ hàng.
+        /// </summary>
+        private HoaDon? TaoHoaDon(CheckoutVM model, List<CartItem> cart, string cachThanhToan)
+        {
+            var maKH = User.FindFirst("MaKH")?.Value;
+            if (string.IsNullOrEmpty(maKH))
+            {
+                return null;
+            }
+
+            // Nếu tick "Giống thông tin khách hàng" hoặc bỏ trống thì lấy thông tin từ tài khoản
+            var dungThongTinKhachHang = model.GiongKhachHang || string.IsNullOrWhiteSpace(model.HoTen);
+            var hoTen = dungThongTinKhachHang ? User.Identity?.Name : model.HoTen;
+            var diaChi = dungThongTinKhachHang || string.IsNullOrWhiteSpace(model.DiaChi)
+                ? User.FindFirst("DiaChi")?.Value
+                : model.DiaChi;
 
             var hoaDon = new HoaDon
             {
                 MaKh = maKH,
                 NgayDat = DateTime.Now,
                 NgayGiao = DateTime.Now.AddDays(1),
-                DiaChi = "Sài Gòn",
-                CachThanhToan = "PAYPAL",
+                DiaChi = string.IsNullOrWhiteSpace(diaChi) ? "Chưa cập nhật" : diaChi,
+                CachThanhToan = cachThanhToan,
                 CachVanChuyen = "GRAB",
-                PhiVanChuyen = 10000,
+                PhiVanChuyen = PhiVanChuyen,
                 MaTrangThai = 1,
-                HoTenNguoiNhan = model.HoTen,
+                HoTenNguoiNhan = hoTen,
                 GhiChu = model.GhiChu,
                 MaNv = null
             };
 
+            foreach (var item in cart)
+            {
+                hoaDon.ChiTietHds.Add(new ChiTietHd
+                {
+                    MaHh = item.MaHH,
+                    SoLuong = item.SoLuong,
+                    DonGia = item.DonGia,
+                    GiamGia = 0
+                });
+            }
+
             db.HoaDons.Add(hoaDon);
             db.SaveChanges();
 
-            var cart = HttpContext.Session.Get<List<CartItem>>("Cart");
-            if (cart != null)
-            {
-                var cthds = new List<ChiTietHd>();
-                foreach (var item in cart)
-                {
-                    cthds.Add(new ChiTietHd
-                    {
-                        MaHd = hoaDon.MaHd,
-                        MaHh = item.MaHH,
-                        SoLuong = item.SoLuong,
-                        DonGia = item.DonGia,
-                        GiamGia = 0
-                    });
-                }
-
-                db.ChiTietHds.AddRange(cthds);
-                db.SaveChanges(); 
-
-                HttpContext.Session.Remove("Cart");
-            }
-
-            return RedirectToAction("Success", "Cart");
-        }
-        public IActionResult Success()
-        {
-            return View(); // /Views/Cart/Success.cshtml
+            HttpContext.Session.Remove(MySetting.CART_KEY);
+            return hoaDon;
         }
 
         #region Paypal payment
-        [Authorize]
+        [Authorize(AuthenticationSchemes = AppAuth.CustomerScheme)]
+        [IgnoreAntiforgeryToken]
         [HttpPost("Cart/create-paypal-order")]
         public async Task<IActionResult> CreatePaypalOrder(CancellationToken cancellationToken)
         {
-            // Thong tin don hang gui qua Paypal
-            var tongTien = Cart.Sum(p => p.ThanhTien + 10000).ToString();
+            var cart = Cart;
+            if (cart.Count == 0)
+            {
+                return BadRequest(new { Message = "Giỏ hàng trống." });
+            }
+
+            // Giá trong hệ thống là VND, PayPal không hỗ trợ VND nên quy đổi sang USD
+            var tyGia = _configuration.GetValue<double?>("PaypalOptions:VndPerUsd") ?? 25000;
+            var tongTienVnd = cart.Sum(p => p.ThanhTien) + PhiVanChuyen;
+            var tongTien = Math.Round(tongTienVnd / tyGia, 2).ToString("F2", CultureInfo.InvariantCulture);
             var donvitiente = "USD";
             var maDonHangThamChieu = "DH" + DateTime.Now.Ticks.ToString();
             try
             {
                 var response = await _paypalClient.CreateOrder(tongTien, donvitiente, maDonHangThamChieu);
                 return Ok(response);
-            } 
-            catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 var error = new { ex.GetBaseException().Message };
                 return BadRequest(error);
             }
         }
 
-        [Authorize]
+        [Authorize(AuthenticationSchemes = AppAuth.CustomerScheme)]
+        [IgnoreAntiforgeryToken]
         [HttpPost("Cart/capture-paypal-order")]
-        public async Task<IActionResult> CapturePaypalOrder(string orderID,CancellationToken cancellationToken, CheckoutVM model)
+        public async Task<IActionResult> CapturePaypalOrder(string orderID, CancellationToken cancellationToken, CheckoutVM model)
         {
             try
             {
                 var response = await _paypalClient.CaptureOrder(orderID);
-
-                // ==== Lưu hóa đơn sau khi PayPal thanh toán thành công ====
-                var maKH = User.FindFirst("MaKH")?.Value;
-                if (string.IsNullOrEmpty(maKH))
+                if (!string.Equals(response.status, "COMPLETED", StringComparison.OrdinalIgnoreCase))
                 {
-                    return BadRequest(new { message = "Không xác định được khách hàng." });
+                    return BadRequest(new { Message = "Thanh toán PayPal chưa hoàn tất." });
                 }
 
-                var hoaDon = new HoaDon
+                // Lưu hóa đơn sau khi PayPal thanh toán thành công
+                var hoaDon = TaoHoaDon(model, Cart, "PAYPAL");
+                if (hoaDon == null)
                 {
-                    MaKh = maKH,
-                    NgayDat = DateTime.Now,
-                    NgayGiao = DateTime.Now.AddDays(1),
-                    DiaChi = "Sài Gòn",
-                    CachThanhToan = "PAYPAL",
-                    CachVanChuyen = "GRAB",
-                    PhiVanChuyen = 10000,
-                    MaTrangThai = 1,
-                    HoTenNguoiNhan = model.HoTen, // hoặc lấy từ session/form
-                    GhiChu = model.GhiChu,
-                    MaNv = null
-                };
-
-                db.HoaDons.Add(hoaDon);
-                db.SaveChanges();
-
-                var cart = HttpContext.Session.Get<List<CartItem>>(MySetting.CART_KEY);
-                if (cart != null)
-                {
-                    var cthds = cart.Select(item => new ChiTietHd
-                    {
-                        MaHd = hoaDon.MaHd,
-                        MaHh = item.MaHH,
-                        SoLuong = item.SoLuong,
-                        DonGia = item.DonGia,
-                        GiamGia = 0
-                    }).ToList();
-
-                    db.ChiTietHds.AddRange(cthds);
-                    db.SaveChanges();
-
-                    HttpContext.Session.Remove(MySetting.CART_KEY);
+                    return BadRequest(new { Message = "Không xác định được khách hàng." });
                 }
-                // ==========================================================
 
                 return Ok(response);
             }
