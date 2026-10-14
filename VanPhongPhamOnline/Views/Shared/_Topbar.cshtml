@@ -12,24 +12,25 @@
         <div class="col-lg-6 text-center text-lg-right">
             <div class="d-inline-flex align-items-center">
                 <div class="btn-group">
-                    @if (User.Identity.IsAuthenticated)
+                    @if (User.Identity?.IsAuthenticated == true && User.HasClaim(c => c.Type == "MaKH"))
                     {
-                        // Nếu là Khách hàng
-                        if (User.HasClaim(c => c.Type == "Hinh"))
-                        {
-                            <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">
-                                <img src="@Url.Content("~/Hinh/KhachHang/" +
-                                                              (!string.IsNullOrEmpty(User.FindFirst("Hinh")?.Value)
-                                                                  ? User.FindFirst("Hinh").Value
-                                                                  : "default-customer.png"))"
-                             alt="Avatar" style="width:24px; height:24px; border-radius:50%; object-fit:cover; margin-right:5px;">
+                        var hinhKH = User.FindFirst("HinhKH")?.Value;
+                        var avatar = string.IsNullOrEmpty(hinhKH)
+                            ? Url.Content("~/Hinh/default-customer.jpg")
+                            : Url.Content("~/Hinh/KhachHang/" + hinhKH);
+
+                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">
+                            <img src="@avatar" alt="Avatar"
+                                 onerror="this.onerror=null;this.src='@Url.Content("~/Hinh/default-customer.jpg")';"
+                                 style="width:24px; height:24px; border-radius:50%; object-fit:cover; margin-right:5px;">
                             @User.Identity.Name
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" asp-action="DangXuat" asp-controller="KhachHang">Đăng xuất (KH)</a>
-                            </div>
-                        }
-                        }
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" asp-action="Profile" asp-controller="KhachHang">Tài khoản của tôi</a>
+                            <a class="dropdown-item" asp-action="Details" asp-controller="KhachHang">Lịch sử mua hàng</a>
+                            <a class="dropdown-item" asp-action="DangXuat" asp-controller="KhachHang">Đăng xuất</a>
+                        </div>
+                    }
                     else
                     {
                         <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Đăng nhập</button>
@@ -39,15 +40,6 @@
                         </div>
                     }
                 </div>
-                @if (User.Identity.IsAuthenticated && User.FindFirst("MaNV")?.Value == "admin")
-                {
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Quản trị</button>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" asp-action="Index" asp-controller="NhanVien">Quản lý nhân viên</a>
-                        </div>
-                    </div>
-                }
                 </div>
             </div>
             <div class="d-inline-flex align-items-center d-block d-lg-none">

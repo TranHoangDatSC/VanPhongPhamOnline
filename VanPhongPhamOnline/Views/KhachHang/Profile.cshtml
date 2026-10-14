@@ -1,8 +1,9 @@
 ﻿@{
     ViewData["Title"] = "Tài khoản của tôi";
     var profile = ViewBag.Profile;
-    var avtPath = Url.Content("~/Hinh/KhachHang/" + profile.HinhKh);
-    var defaultAvt = Url.Content("~/Hinh/default-customer.png");
+    string hinhKh = profile.HinhKh;
+    var defaultAvt = Url.Content("~/Hinh/default-customer.jpg");
+    var avtPath = string.IsNullOrEmpty(hinhKh) ? defaultAvt : Url.Content("~/Hinh/KhachHang/" + hinhKh);
 }
 
 <div class="container py-5">

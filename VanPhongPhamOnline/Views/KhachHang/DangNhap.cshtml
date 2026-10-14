@@ -1,25 +1,30 @@
 ﻿@model VanPhongPhamOnline.ViewModels.LoginVM
 @{
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "Đăng nhập";
 }
 
 <div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-md-8 col-lg-6">
-            <h1 class="text-center mb-4">Tên đăng nhập</h1>
+            <h1 class="text-center mb-4">Đăng nhập</h1>
+
+            @if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success">@TempData["Success"]</div>
+            }
 
             <form asp-action="DangNhap" asp-route-returnurl="@ViewBag.ReturnUrl">
                 <div class="text-danger mb-3" asp-validation-summary="All"></div>
 
                 <div class="mb-3">
-                    <label asp-for="UserName" class="form-label">Đăng nhập <sup>*</sup></label>
-                    <input asp-for="UserName" class="form-control" style="border-radius:12px;  />
+                    <label asp-for="UserName" class="form-label">Email <sup>*</sup></label>
+                    <input asp-for="UserName" class="form-control" style="border-radius:12px;" />
                     <span asp-validation-for="UserName" class="text-danger"></span>
                 </div>
 
                 <div class="mb-4">
                     <label asp-for="Password" class="form-label">Mật khẩu <sup>*</sup></label>
-                    <input asp-for="Password" class="form-control" type="password" style="border-radius:12px; />
+                    <input asp-for="Password" class="form-control" type="password" style="border-radius:12px;" />
                     <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
 
