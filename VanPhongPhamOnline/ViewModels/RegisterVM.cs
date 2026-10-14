@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
 namespace VanPhongPhamOnline.ViewModels
 {
@@ -7,7 +7,7 @@ namespace VanPhongPhamOnline.ViewModels
         [Display(Name = "Tên đăng nhập")]
         [Required(ErrorMessage = "*")]
         [MaxLength(20,ErrorMessage = "Tối đa 20 ký tự!")]
-        public string MaKh { get; set; } = null;
+        public string MaKh { get; set; } = null!;
 
         [Display(Name = "Mật khẩu")]
         [Required(ErrorMessage = "*")]
@@ -17,7 +17,7 @@ namespace VanPhongPhamOnline.ViewModels
         [Display(Name = "Họ Tên")]
         [Required(ErrorMessage = "*")]
         [MaxLength(50, ErrorMessage = "Tối đa 50 ký tự!")]
-        public string HoTenKh { get; set; }
+        public string HoTenKh { get; set; } = null!;
         public bool GioiTinhKh { get; set; } = true;
 
         [Display(Name = "Ngày sinh")]
@@ -26,16 +26,21 @@ namespace VanPhongPhamOnline.ViewModels
         public DateTime? NgaySinhKh { get; set; }
 
         [MaxLength(60, ErrorMessage = "Tối đa 60 ký tự!")]
-
         [Display(Name = "Địa Chỉ")]
-        public string DiaChiKh { get; set; }
+        [Required(ErrorMessage = "*")]
+        public string DiaChiKh { get; set; } = null!;
+
         [MaxLength(24, ErrorMessage = "Tối đa 24 ký tự!")]
         [RegularExpression(@"0[9875]\d{8}",ErrorMessage = "Chưa đúng định dạng của di động Việt Nam!")]
-
         [Display(Name = "Điện thoại")]
         public string? DienThoaiKh { get; set; }
+
+        [Display(Name = "Email")]
+        [Required(ErrorMessage = "*")]
         [EmailAddress(ErrorMessage ="Chưa đúng định dạng email!" )]
-        public string EmailKh { get; set; } = null;
+        [MaxLength(50, ErrorMessage = "Tối đa 50 ký tự!")]
+        public string EmailKh { get; set; } = null!;
+
         public string? HinhKh { get; set; }
     }
 }

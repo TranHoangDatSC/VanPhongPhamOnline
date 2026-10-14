@@ -1,9 +1,8 @@
-﻿using AutoMapper;
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Security.Claims;
 using VanPhongPhamOnline.Data;
 using VanPhongPhamOnline.Helpers;
@@ -22,113 +21,123 @@ namespace VanPhongPhamOnline.Controllers
             _mapper = mapper;
             _ulti = ulti;
         }
-        #region Register       
+
+        #region Register
         [HttpGet]
         public IActionResult DangKy()
         {
             return View();
         }
-        [HttpPost]
-        public IActionResult DangKy(RegisterVM model, IFormFile Hinh)
-        {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    var khachHang = _mapper.Map<KhachHang>(model);
-                    khachHang.MaKh = model.MaKh;
-                    khachHang.RandomKeyKh = MyUlti.GenerateRandomKey();
-                    khachHang.MatKhauKh = model.MatKhauKh.ToMd5Hash(khachHang.RandomKeyKh);
 
-                    if (Hinh != null)
-                    {
-                        khachHang.HinhKh = MyUlti.UploadHinh(Hinh, "KhachHang", khachHang.MaKh);
-                    }
-                    db.Add(khachHang);
-                    db.SaveChanges();
-                    return RedirectToAction("Index", "HangHoa");
-                }
-                catch (Exception ex)
-                {
-                    var errorMessage = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
-                    ModelState.AddModelError("", "Lỗi khi lưu dữ liệu: " + errorMessage);
-                    return View(model);
-                }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DangKy(RegisterVM model, IFormFile? Hinh)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
             }
-            return View("~/Views/KhachHang/DangNhap.cshtml");
+
+            if (db.KhachHangs.Any(kh => kh.MaKh == model.MaKh))
+            {
+                ModelState.AddModelError(nameof(model.MaKh), "Tên đăng nhập đã tồn tại.");
+                return View(model);
+            }
+
+            if (db.KhachHangs.Any(kh => kh.EmailKh == model.EmailKh))
+            {
+                ModelState.AddModelError(nameof(model.EmailKh), "Email đã được sử dụng.");
+                return View(model);
+            }
+
+            try
+            {
+                var khachHang = _mapper.Map<KhachHang>(model);
+                khachHang.MaKh = model.MaKh;
+                khachHang.RandomKeyKh = MyUlti.GenerateRandomKey();
+                khachHang.MatKhauKh = model.MatKhauKh!.ToMd5Hash(khachHang.RandomKeyKh);
+
+                if (Hinh != null)
+                {
+                    khachHang.HinhKh = MyUlti.UploadHinh(Hinh, "KhachHang", khachHang.MaKh);
+                }
+                db.Add(khachHang);
+                db.SaveChanges();
+
+                TempData["Success"] = "Đăng ký thành công! Vui lòng đăng nhập.";
+                return RedirectToAction("DangNhap");
+            }
+            catch (Exception ex)
+            {
+                var errorMessage = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
+                ModelState.AddModelError("", "Lỗi khi lưu dữ liệu: " + errorMessage);
+                return View(model);
+            }
         }
         #endregion
 
-        #region Login in
+        #region Login
         [HttpGet]
         public IActionResult DangNhap(string? ReturnUrl)
         {
             ViewBag.ReturnUrl = ReturnUrl;
             return View();
         }
+
         [HttpPost]
-        [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DangNhap(LoginVM model, string? ReturnUrl)
         {
             ViewBag.ReturnUrl = ReturnUrl;
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var khachHang = db.KhachHangs.SingleOrDefault(kh => kh.EmailKh == model.UserName);
-
-                if (khachHang == null)
-                {
-                    ModelState.AddModelError("", "Không tồn tại khách hàng này!");
-                    return View();
-                }
-
-                var matKhauHash = model.Password.ToMd5Hash(khachHang.RandomKeyKh);
-
-                if (khachHang.MatKhauKh != matKhauHash)
-                {
-                    ModelState.AddModelError("", "Sai thông tin đăng nhập!");
-                    return View();
-                }
-
-                // Tạo claims cho người dùng
-                var claims = new List<Claim>
-                {
-                    new Claim(ClaimTypes.Email, khachHang.EmailKh),
-                    new Claim(ClaimTypes.Name, khachHang.HoTenKh),
-                    new Claim("MaKH", khachHang.MaKh.ToString()),
-                    new Claim("HinhKH", string.IsNullOrEmpty(khachHang.HinhKh) ? "default-customer.png" : khachHang.HinhKh),
-                    new Claim("DienThoaiKH", khachHang.DienThoaiKh ?? ""),
-                    new Claim("DiaChi", khachHang.DiaChiKh ?? ""),
-                    new Claim("GioiTinh", khachHang.GioiTinhKh ? "Nam" : "Nữ"),
-                    new Claim("NgaySinh", khachHang.NgaySinhKh.ToString("yyyy-MM-dd")),
-                    new Claim(ClaimTypes.Role, "Customer")
-                };
-
-                var claimsIdentity = new ClaimsIdentity(claims, "KhachHang");
-                var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
-                await HttpContext.SignInAsync("KhachHang", new ClaimsPrincipal(claimsIdentity));
-
-
-                // Điều hướng về URL cũ hoặc về trang chủ
-                if (!string.IsNullOrEmpty(ReturnUrl) && Url.IsLocalUrl(ReturnUrl))
-                {
-                    return Redirect(ReturnUrl);
-                }
-                else
-                {
-                    return RedirectToAction("Index", "HangHoa");
-                }
+                return View();
             }
 
-            return View();
+            var khachHang = db.KhachHangs.SingleOrDefault(kh => kh.EmailKh == model.UserName && !kh.IsDeleted);
+            if (khachHang == null || khachHang.MatKhauKh != model.Password.ToMd5Hash(khachHang.RandomKeyKh))
+            {
+                ModelState.AddModelError("", "Sai thông tin đăng nhập!");
+                return View();
+            }
+
+            // Tạo claims cho người dùng
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Email, khachHang.EmailKh),
+                new Claim(ClaimTypes.Name, khachHang.HoTenKh),
+                new Claim("MaKH", khachHang.MaKh),
+                new Claim("HinhKH", khachHang.HinhKh ?? string.Empty),
+                new Claim("DienThoaiKH", khachHang.DienThoaiKh ?? string.Empty),
+                new Claim("DiaChi", khachHang.DiaChiKh ?? string.Empty),
+                new Claim("GioiTinh", khachHang.GioiTinhKh ? "Nam" : "Nữ"),
+                new Claim("NgaySinh", khachHang.NgaySinhKh.ToString("yyyy-MM-dd")),
+                new Claim(ClaimTypes.Role, "Customer")
+            };
+
+            var claimsIdentity = new ClaimsIdentity(claims, AppAuth.CustomerScheme);
+            await HttpContext.SignInAsync(AppAuth.CustomerScheme, new ClaimsPrincipal(claimsIdentity));
+
+            // Điều hướng về URL cũ hoặc về trang chủ
+            if (!string.IsNullOrEmpty(ReturnUrl) && Url.IsLocalUrl(ReturnUrl))
+            {
+                return Redirect(ReturnUrl);
+            }
+            return RedirectToAction("Index", "HangHoa");
         }
 
+        public IActionResult AccessDenied()
+        {
+            return View("~/Views/Shared/AccessDenied.cshtml");
+        }
         #endregion
 
+        #region Profile
         [Authorize]
         public IActionResult Profile()
         {
-            var maKH = User.FindFirst("MaKh")?.Value;
+            var maKH = User.FindFirst("MaKH")?.Value;
             var kh = db.KhachHangs.FirstOrDefault(k => k.MaKh == maKH);
             if (kh == null) return NotFound();
 
@@ -140,13 +149,14 @@ namespace VanPhongPhamOnline.Controllers
                 kh.DiaChiKh,
                 GioiTinhKh = kh.GioiTinhKh ? "Nam" : "Nữ",
                 NgaySinhKh = kh.NgaySinhKh == DateTime.MinValue ? "Chưa cập nhật" : kh.NgaySinhKh.ToString("dd/MM/yyyy"),
-                HinhKh = string.IsNullOrEmpty(kh.HinhKh) ? "default.png" : kh.HinhKh,
+                HinhKh = kh.HinhKh ?? string.Empty,
                 MaKH = kh.MaKh
             };
 
             ViewBag.Profile = profile;
             return View();
         }
+
         [Authorize]
         [HttpGet]
         public IActionResult EditProfile()
@@ -170,11 +180,18 @@ namespace VanPhongPhamOnline.Controllers
 
         [Authorize]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult EditProfile(EditProfileVM model)
         {
             var maKH = User.FindFirst("MaKH")?.Value;
             var kh = db.KhachHangs.FirstOrDefault(k => k.MaKh == maKH);
             if (kh == null) return NotFound();
+
+            if (!string.IsNullOrEmpty(model.Email) &&
+                db.KhachHangs.Any(x => x.EmailKh == model.Email && x.MaKh != kh.MaKh))
+            {
+                ModelState.AddModelError(nameof(model.Email), "Email đã được sử dụng bởi tài khoản khác.");
+            }
 
             if (ModelState.IsValid)
             {
@@ -183,7 +200,10 @@ namespace VanPhongPhamOnline.Controllers
                 kh.DienThoaiKh = model.DienThoai;
                 kh.GioiTinhKh = model.GioiTinh;
                 kh.NgaySinhKh = model.NgaySinh ?? DateTime.MinValue;
-                kh.EmailKh = model.Email;
+                if (!string.IsNullOrEmpty(model.Email))
+                {
+                    kh.EmailKh = model.Email;
+                }
 
                 if (model.Hinh != null)
                 {
@@ -201,70 +221,67 @@ namespace VanPhongPhamOnline.Controllers
         public async Task<IActionResult> DangXuat()
         {
             HttpContext.Session.Clear();
-            await HttpContext.SignOutAsync("KhachHang");
+            await HttpContext.SignOutAsync(AppAuth.CustomerScheme);
             return Redirect("/");
         }
 
         [HttpPost]
         [Authorize]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> XoaTaiKhoan()
         {
-            var maKH = User.FindFirst("MaKH").Value;
+            var maKH = User.FindFirst("MaKH")?.Value;
             var kh = db.KhachHangs.FirstOrDefault(x => x.MaKh == maKH);
 
             if (kh != null)
             {
-                // Xóa hình nếu không phải hình mặc định
-                if (!string.IsNullOrEmpty(kh.HinhKh) && kh.HinhKh != "default-customer.png")
+                // Xóa hình đại diện đã upload
+                if (!string.IsNullOrEmpty(kh.HinhKh))
                 {
-                    var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Hinh/KhachHang", kh.HinhKh);
+                    var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Hinh", "KhachHang", kh.HinhKh);
                     if (System.IO.File.Exists(path))
                     {
                         System.IO.File.Delete(path);
                     }
-
+                    kh.HinhKh = null;
                 }
 
                 kh.IsDeleted = true;
                 db.SaveChanges();
             }
 
-            await HttpContext.SignOutAsync();
+            HttpContext.Session.Clear();
+            await HttpContext.SignOutAsync(AppAuth.CustomerScheme);
             return Redirect("/");
         }
+        #endregion
+
+        #region Forgot password
         [HttpGet]
         public IActionResult QuenMatKhau()
         {
             return View();
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult QuenMatKhau(QuenMatKhauVM model)
         {
             if (!ModelState.IsValid)
                 return View(model);
 
-            var kh = db.KhachHangs.FirstOrDefault(x => x.EmailKh == model.Email);
+            var kh = db.KhachHangs.FirstOrDefault(x => x.EmailKh == model.Email && !x.IsDeleted);
             if (kh == null)
             {
                 ModelState.AddModelError("", "Email này chưa được đăng ký.");
                 return View(model);
             }
 
-            // Tạo mã OTP ngẫu nhiên
-            var otp = new Random().Next(100000, 999999).ToString();
-            var expireTime = DateTime.Now.AddMinutes(5);
+            var otp = OtpHelper.Generate(HttpContext.Session, model.Email);
 
-            // Lưu vào session
-            HttpContext.Session.SetString("OTP", otp);
-            HttpContext.Session.SetString("OTP_Email", model.Email);
-            HttpContext.Session.SetString("OTP_Expire", expireTime.ToString("O")); // ISO 8601 format
-
-            // Gửi email
             var subject = "Xác nhận đặt lại mật khẩu - MultiShop";
-            var content = $@"Xin chào {kh.HoTenKh}, mã OTP đặt lại mật khẩu của bạn là: {otp}. Mã có hiệu lực trong 5 phút. Đừng chia sẻ mã này cho bất kỳ ai.";
-
+            var content = $@"Xin chào {kh.HoTenKh}, mã OTP đặt lại mật khẩu của bạn là: <b>{otp}</b>. Mã có hiệu lực trong {OtpHelper.ExpireMinutes} phút. Đừng chia sẻ mã này cho bất kỳ ai.";
             _ulti.SendMail(kh.EmailKh, subject, content);
-
 
             TempData["Email"] = model.Email;
             return RedirectToAction("XacNhanMa");
@@ -281,59 +298,41 @@ namespace VanPhongPhamOnline.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult XacNhanMa(XacNhanMaVM model)
         {
             if (!ModelState.IsValid)
                 return View(model);
 
-            var otp = HttpContext.Session.GetString("OTP");
-            var otpEmail = HttpContext.Session.GetString("OTP_Email");
-            var otpExpireStr = HttpContext.Session.GetString("OTP_Expire");
-
-            if (otp == null || otpEmail == null || otpExpireStr == null)
+            var error = OtpHelper.Verify(HttpContext.Session, model.Email, model.MaXacNhan);
+            if (error != null)
             {
-                ModelState.AddModelError("", "Mã xác nhận đã hết hạn hoặc không hợp lệ.");
+                ModelState.AddModelError("", error);
                 return View(model);
             }
 
-            if (otpEmail != model.Email)
-            {
-                ModelState.AddModelError("", "Email không khớp với mã xác nhận.");
-                return View(model);
-            }
-
-            if (otp != model.MaXacNhan)
-            {
-                ModelState.AddModelError("", "Mã xác nhận không chính xác.");
-                return View(model);
-            }
-
-            if (DateTime.TryParse(otpExpireStr, out var otpExpire) && DateTime.Now > otpExpire)
-            {
-                ModelState.AddModelError("", "Mã xác nhận đã hết hạn.");
-                return View(model);
-            }
-
-            // Thành công → lưu lại email qua TempData
             TempData["Email"] = model.Email;
             return RedirectToAction("DatLaiMatKhau");
         }
-
-
 
         [HttpGet]
         public IActionResult DatLaiMatKhau()
         {
             var email = TempData["Email"]?.ToString();
-            if (string.IsNullOrEmpty(email))
+            if (string.IsNullOrEmpty(email) || !OtpHelper.IsVerified(HttpContext.Session, email))
                 return RedirectToAction("QuenMatKhau");
 
             return View(new DatLaiMatKhauVM { Email = email });
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult DatLaiMatKhau(DatLaiMatKhauVM model)
         {
+            // Chỉ cho phép đặt lại mật khẩu khi email đã xác nhận OTP thành công
+            if (!OtpHelper.IsVerified(HttpContext.Session, model.Email))
+                return RedirectToAction("QuenMatKhau");
+
             if (!ModelState.IsValid)
                 return View(model);
 
@@ -348,19 +347,22 @@ namespace VanPhongPhamOnline.Controllers
             kh.MatKhauKh = model.MatKhauMoi.ToMd5Hash(kh.RandomKeyKh);
             db.SaveChanges();
 
-            // Xoá OTP trong session sau khi dùng
-            HttpContext.Session.Remove("OTP");
-            HttpContext.Session.Remove("OTP_Email");
-            HttpContext.Session.Remove("OTP_Expire");
+            OtpHelper.Clear(HttpContext.Session);
 
             TempData["Success"] = "Mật khẩu đã được cập nhật. Vui lòng đăng nhập lại.";
             return RedirectToAction("DangNhap");
         }
+        #endregion
+
+        #region Order history
         [Authorize]
         public IActionResult Details(int pageNumber = 1, int pageSize = 4)
         {
             var maKH = User.FindFirst("MaKH")?.Value;
             if (string.IsNullOrEmpty(maKH)) return Unauthorized();
+
+            if (pageNumber < 1) pageNumber = 1;
+            if (pageSize < 1) pageSize = 4;
 
             var query = db.HoaDons
                 .Include(h => h.ChiTietHds)
@@ -383,7 +385,7 @@ namespace VanPhongPhamOnline.Controllers
             {
                 MaHd = h.MaHd,
                 MaKh = h.MaKh,
-                TenKhachHang = h.MaKhNavigation?.HoTenKh,
+                TenKhachHang = User.Identity?.Name,
                 NgayDat = h.NgayDat,
                 NgayCan = h.NgayCan,
                 NgayGiao = h.NgayGiao,
@@ -413,8 +415,6 @@ namespace VanPhongPhamOnline.Controllers
 
             return View("DetailsBill", result);
         }
-
-
+        #endregion
     }
-
 }
