@@ -1,16 +1,16 @@
 ﻿@model IEnumerable<VanPhongPhamOnline.ViewModels.CartItem>
 @{
-    ViewData["Title"] = "Checkout";
+    ViewData["Title"] = "Thanh toán";
     var subtotal = Model.Sum(p => p.ThanhTien);
     var shipping = 10000;
     var total = subtotal + shipping;
 }
 
 <div class="container py-5">
-    <h1 class="mb-4">Billing Details</h1>
+    <h1 class="mb-4">Thông tin thanh toán</h1>
 
-    <form asp-action="Checkout" asp-controller="Cart" method="post">
-        @Html.AntiForgeryToken()
+    <form id="checkoutForm" asp-action="Checkout" asp-controller="Cart" method="post">
+        <div asp-validation-summary="All" class="text-danger mb-3"></div>
         <div class="row g-5">
             <!-- Thông tin giao hàng -->
             <div class="col-lg-7">
@@ -22,21 +22,21 @@
                 <div class="delivery-info">
                     <div class="mb-3">
                         <label class="form-label">Người nhận hàng <sup>*</sup></label>
-                        <input type="text" name="HoTen" class="form-control">
+                        <input type="text" name="HoTen" class="form-control" maxlength="50">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Địa chỉ nhận hàng <sup>*</sup></label>
-                        <input type="text" name="DiaChi" class="form-control" placeholder="123 Lê Lợi">
+                        <input type="text" name="DiaChi" class="form-control" placeholder="123 Lê Lợi" maxlength="60">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Điện thoại <sup>*</sup></label>
-                        <input type="text" name="DienThoai" class="form-control">
+                        <input type="text" name="DienThoai" class="form-control" maxlength="24">
                     </div>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Ghi chú</label>
-                    <textarea name="GhiChu" class="form-control" rows="5" placeholder="Ghi chú..."></textarea>
+                    <textarea name="GhiChu" class="form-control" rows="5" placeholder="Ghi chú..." maxlength="50"></textarea>
                 </div>
             </div>
 
@@ -62,22 +62,22 @@
                                              class="img-fluid rounded" style="width:60px;height:60px;" alt="@item.TenHH">
                                     </td>
                                     <td>@item.TenHH</td>
-                                    <td>$@item.DonGia</td>
+                                    <td>@item.DonGia.ToString("N0")</td>
                                     <td>@item.SoLuong</td>
-                                    <td>$@item.ThanhTien</td>
+                                    <td>@item.ThanhTien.ToString("N0")</td>
                                 </tr>
                             }
                             <tr>
                                 <td colspan="4" class="text-end fw-bold">Thành tiền</td>
-                                <td>$@subtotal.ToString("#,##0")</td>
+                                <td>@subtotal.ToString("N0") VNĐ</td>
                             </tr>
                             <tr>
                                 <td colspan="4" class="text-end fw-bold">Tiền ship</td>
-                                <td>$@shipping.ToString("#,##0")</td>
+                                <td>@shipping.ToString("N0") VNĐ</td>
                             </tr>
                             <tr class="table-light">
                                 <td colspan="4" class="text-end fw-bold text-uppercase">Tổng tiền</td>
-                                <td class="fw-bold text-danger">$@total.ToString("#,##0")</td>
+                                <td class="fw-bold text-danger">@total.ToString("N0") VNĐ</td>
                             </tr>
                         </tbody>
                     </table>
@@ -127,7 +127,9 @@
                         .catch(err => alert(err.message));
                 },
                 onApprove: (data) => {
-                    return fetch(`/Cart/capture-paypal-order?orderId=${data.orderID}`, { method: "post" })
+                    // Gửi kèm thông tin người nhận trên form để lưu vào hóa đơn
+                    const checkoutForm = document.getElementById("checkoutForm");
+                    return fetch(`/Cart/capture-paypal-order?orderId=${data.orderID}`, { method: "post", body: new FormData(checkoutForm) })
                         .then(res => res.ok ? res.json() : res.json().then(err => { throw err; }))
                         .then(() => window.location.href = "/Cart/Success")
                         .catch(err => alert(err.message));

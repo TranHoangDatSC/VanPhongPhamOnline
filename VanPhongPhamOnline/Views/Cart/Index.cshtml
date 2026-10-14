@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<VanPhongPhamOnline.ViewModels.CartItem>
 @{
-    ViewData["Title"] = "Gio Hang";
+    ViewData["Title"] = "Giỏ hàng";
     var subtotal = Model.Sum(p => p.ThanhTien);
     var shipping = 10000; 
     var total = subtotal + shipping;
@@ -27,7 +27,7 @@
                                 <img src="@Url.Content("~/Hinh/HangHoa/" + item.Hinh)" alt="@item.TenHH" style="width: 50px; height:50px" />
                             <a asp-action="Detail" asp-controller="HangHoa" asp-route-id="@item.MaHH">@item.TenHH</a>
                         </td>
-                        <td class="align-middle">$ @item.DonGia</td>
+                        <td class="align-middle">@item.DonGia.ToString("N0") VNĐ</td>
                         <td class="align-middle">
                             <form asp-action="UpdateCart" asp-controller="Cart" method="post">
                                 <input type="hidden" name="id" value="@item.MaHH" />
@@ -46,7 +46,7 @@
                                 </div>
                             </form>
                         </td>
-                        <td class="align-middle">$ @item.ThanhTien</td>
+                        <td class="align-middle">@item.ThanhTien.ToString("N0") VNĐ</td>
                         <td class="align-middle">
                             <a asp-action="RemoveToCart" asp-controller="Cart" asp-route-id="@item.MaHH" class="btn btn-sm btn-danger">
                                 <i class="fa fa-times"></i>
@@ -70,18 +70,18 @@
             <div class="bg-light p-30 mb-5">
                 <div class="border-bottom pb-2">
                     <div class="d-flex justify-content-between mb-3">
-                        <h6>Tổng số tiền:</h6>
-                        <h6>$@Model.Sum(p => p.ThanhTien) VNĐ</h6>
+                        <h6>Tạm tính:</h6>
+                        <h6>@subtotal.ToString("N0") VNĐ</h6>
                     </div>
                     <div class="d-flex justify-content-between">
                         <h6 class="font-weight-medium">Tiền giao hàng:</h6>
-                        <h6 class="font-weight-medium">$@shipping.ToString("N0") VNĐ</h6>
+                        <h6 class="font-weight-medium">@shipping.ToString("N0") VNĐ</h6>
                     </div>
                 </div>
                 <div class="pt-2">
                     <div class="d-flex justify-content-between mt-2">
                         <h5>Tổng số tiền:</h5>
-                        <h5>$@total.ToString("N0") VNĐ</h5>
+                        <h5>@total.ToString("N0") VNĐ</h5>
                     </div>
                     <form asp-action="Checkout" asp-controller="Cart" method="get">
                         <button type="submit" class="btn btn-block btn-primary font-weight-bold my-3 py-3">
