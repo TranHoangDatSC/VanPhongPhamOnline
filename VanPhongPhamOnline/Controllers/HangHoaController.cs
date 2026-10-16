@@ -16,6 +16,8 @@ namespace VanPhongPhamOnline.Controllers
         {
             LoadMenuLoai();
             const int pageSize = 12;
+            if (page < 1) page = 1;
+
             var hangHoas = db.HangHoas.AsQueryable();
             if (loai.HasValue)
             {
@@ -23,6 +25,7 @@ namespace VanPhongPhamOnline.Controllers
             }
             var totalItems = hangHoas.Count();
             var result = hangHoas
+            .OrderBy(p => p.MaHh)
             .Skip((page - 1) * pageSize)
             .Take(pageSize)
             .Select(p => new HangHoaVM
@@ -40,16 +43,6 @@ namespace VanPhongPhamOnline.Controllers
             ViewBag.TotalPages = (int)Math.Ceiling((double)totalItems / pageSize);
             ViewBag.Loai = loai;
 
-            //var result = hangHoas.Select(p => new HangHoaVM
-            //{
-            //    MaHH = p.MaHh,
-            //    TenHH = p.TenHh,
-            //    DonGia = p.DonGia ?? 0,
-            //    Hinh = p.Hinh ?? "",
-            //    MoTaNgan = p.MoTaDonVi ?? "",
-            //    TenLoai = p.MaLoaiNavigation.TenLoai
-            //});
-
             return View(result);
         }
         public IActionResult Search(string? query)
@@ -57,10 +50,12 @@ namespace VanPhongPhamOnline.Controllers
             LoadMenuLoai();
 
             var hangHoas = db.HangHoas.AsQueryable();
-            if (query != null)
+            if (!string.IsNullOrWhiteSpace(query))
             {
+                query = query.Trim();
                 hangHoas = hangHoas.Where(p => p.TenHh.Contains(query));
             }
+            ViewBag.Query = query;
 
             var result = hangHoas.Select(p => new HangHoaVM
             {
