@@ -101,7 +101,7 @@
                 @{
                     var imageSrc = !string.IsNullOrEmpty(Model.Hinh) ?
                     "~/Hinh/HangHoa/" + Model.Hinh :
-                    "~/Hinh/default-product.jpg";
+                    "~/Hinh/default-product.png";
                 }
                 <img src="@Url.Content(imageSrc)" alt="@Model.TenHh" class="product-image" />
             </div>

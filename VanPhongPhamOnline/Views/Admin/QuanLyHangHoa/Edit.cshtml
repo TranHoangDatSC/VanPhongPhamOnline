@@ -1,11 +1,5 @@
 ﻿@model VanPhongPhamOnline.Data.HangHoa
-@* Hiển thị lỗi tổng quát nếu có *@
-@if (!ViewData.ModelState.IsValid)
-{
-    <div class="alert alert-danger">
-        Vui lòng kiểm tra lại thông tin. Một số trường bắt buộc chưa được nhập đúng.
-    </div>
-}
+
 @{
     Layout = null;
 }
@@ -14,7 +8,7 @@
 <html lang="vi">
 <head>
     <meta charset="utf-8" />
-    <title>Thêm hàng hóa mới</title>
+    <title>Chỉnh sửa hàng hóa</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
     <style>
         body {
@@ -58,7 +52,7 @@
             }
 
         .btn-submit {
-            background: linear-gradient(45deg, #42a5f5, #1976d2);
+            background: linear-gradient(45deg, #ff9800, #f57c00);
             border: none;
             color: white;
             padding: 12px 30px;
@@ -71,7 +65,7 @@
 
             .btn-submit:hover {
                 transform: translateY(-2px);
-                box-shadow: 0 5px 15px rgba(25, 118, 210, 0.4);
+                box-shadow: 0 5px 15px rgba(245, 124, 0, 0.4);
                 color: white;
             }
 
@@ -93,6 +87,11 @@
             margin-top: 5px;
         }
 
+        .readonly-field {
+            background-color: #f5f5f5;
+            color: #666;
+        }
+
         .image-upload-section {
             text-align: center;
             margin-bottom: 20px;
@@ -101,7 +100,7 @@
         .image-preview {
             width: 150px;
             height: 150px;
-            border-radius: 50%;
+            border-radius: 10px;
             object-fit: cover;
             border: 3px solid #1976d2;
             margin-bottom: 15px;
@@ -113,7 +112,7 @@
         .upload-btn {
             display: inline-block;
             padding: 8px 16px;
-            background: linear-gradient(45deg, #42a5f5, #1976d2);
+            background: linear-gradient(45deg, #ff9800, #f57c00);
             color: white;
             border-radius: 20px;
             cursor: pointer;
@@ -123,7 +122,7 @@
 
             .upload-btn:hover {
                 transform: translateY(-2px);
-                box-shadow: 0 5px 15px rgba(25, 118, 210, 0.4);
+                box-shadow: 0 5px 15px rgba(245, 124, 0, 0.4);
             }
 
         #imageUpload {
@@ -137,19 +136,33 @@
         <div class="container-box">
             <a href="@Url.Action("Index", "QuanLyHangHoa")" class="back-link">← Quay lại danh sách</a>
 
-            <h1>Thêm hàng hóa mới</h1>
+            <h1>Chỉnh sửa hàng hóa</h1>
 
             @await Html.PartialAsync("_ToastNotification")
 
-            <form asp-action="Create" asp-controller="QuanLyHangHoa" method="post" enctype="multipart/form-data">
+            <form asp-action="Edit" asp-controller="QuanLyHangHoa" method="post" enctype="multipart/form-data">
+                <input type="hidden" asp-for="MaHh" />
+
                 <div class="image-upload-section">
-                    <img id="imagePreview" src="~/Hinh/default-product.jpg" alt="Preview" class="image-preview" />
+                    @{
+                        var imageSrc = !string.IsNullOrEmpty(Model.Hinh) ?
+                        "~/Hinh/HangHoa/" + Model.Hinh :
+                        "~/Hinh/default-product.png";
+                    }
+                    <img id="imagePreview" src="@Url.Content(imageSrc)" alt="@Model.TenHh" class="image-preview" />
                     <br>
-                    <label for="imageUpload" class="upload-btn">📷 Chọn ảnh sản phẩm</label>
-                    <input type="file" id="imageUpload" name="HinhUpload" accept="image/*" onchange="previewImage(this)" />
+                    <label for="imageUpload" class="upload-btn">📷 Thay đổi ảnh sản phẩm</label>
+                    <input type="file" id="imageUpload" name="Hinh" accept="image/*" onchange="previewImage(this)" />
+                    <br><small class="text-muted">Để trống nếu không muốn thay đổi ảnh</small>
                 </div>
 
                 <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="MaHh">Mã hàng hóa</label>
+                            <input asp-for="MaHh" class="form-control readonly-field" readonly />
+                        </div>
+                    </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label asp-for="TenHh">Tên hàng hóa <span class="text-danger">*</span></label>
@@ -157,28 +170,31 @@
                             <span asp-validation-for="TenHh" class="text-danger"></span>
                         </div>
                     </div>
+                </div>
+
+                <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label asp-for="MaLoai">Loại hàng hóa <span class="text-danger">*</span></label>
-                            <select asp-for="MaLoai" class="form-control" asp-items="ViewBag.MenuLoai" required>
+                            <select asp-for="MaLoai" class="form-control" asp-items="ViewBag.MenuLoai" >
                                 <option value="">-- Chọn loại --</option>
                             </select>
 
                             <span asp-validation-for="MaLoai" class="text-danger"></span>
                         </div>
                     </div>
-                </div>
-
-                <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label asp-for="MaNcc">Nhà cung cấp <span class="text-danger">*</span></label>
-                            <select asp-for="MaNcc" class="form-control" asp-items="ViewBag.NccList" required>
+                            <select asp-for="MaNcc" class="form-control" asp-items="ViewBag.NccList" >
                                 <option value="">-- Chọn nhà cung cấp --</option>
                             </select>
                             <span asp-validation-for="MaNcc" class="text-danger"></span>
                         </div>
-                    </div>
+                    </div> 
+                </div>
+
+                <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label asp-for="DonGia">Đơn giá</label>
@@ -186,21 +202,28 @@
                             <span asp-validation-for="DonGia" class="text-danger"></span>
                         </div>
                     </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="GiamGia">Giảm giá (%) <span class="text-danger">*</span></label>
+                            <input asp-for="GiamGia" type="number" step="0.01" class="form-control" placeholder="Nhập % giảm giá" required />
+                            <span asp-validation-for="GiamGia" class="text-danger"></span>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="row">
-                    @* <div class="col-md-6">
-                        <div class="form-group">
-                            <label asp-for="GiamGia">Giảm giá (%) <span class="text-danger">*</span></label>
-                            <input asp-for="GiamGia" type="hidden" step="0.01" class="form-control" placeholder="Nhập % giảm giá" required value="0" />
-                            <span asp-validation-for="GiamGia" class="text-danger"></span>
-                        </div>
-                    </div> *@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label asp-for="NgaySx">Ngày sản xuất <span class="text-danger">*</span></label>
-                            <input asp-for="NgaySx" type="date" class="form-control" value="@Model.NgaySx.ToString("yyyy-MM-dd")" required />
+                            <input asp-for="NgaySx" type="date" class="form-control" required />
                             <span asp-validation-for="NgaySx" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="SoLanXem">Số lần xem <span class="text-danger">*</span></label>
+                            <input asp-for="SoLanXem" type="number" class="form-control" placeholder="Nhập số lần xem" required />
+                            <span asp-validation-for="SoLanXem" class="text-danger"></span>
                         </div>
                     </div>
                 </div>
@@ -228,14 +251,8 @@
                     <span asp-validation-for="MoTa" class="text-danger"></span>
                 </div>
 
-                @* <div class="form-group">
-                    <label asp-for="SoLanXem">Số lần xem <span class="text-danger">*</span></label>
-                    <input asp-for="SoLanXem" type="hidden" class="form-control" placeholder="Nhập số lần xem" required value="0" />
-                    <span asp-validation-for="SoLanXem" class="text-danger"></span>
-                </div> *@
-
                 <div class="text-center">
-                    <button type="submit" class="btn-submit">Thêm hàng hóa</button>
+                    <button type="submit" class="btn-submit">Cập nhật hàng hóa</button>
                 </div>
             </form>
         </div>

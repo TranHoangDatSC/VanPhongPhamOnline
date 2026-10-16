@@ -145,7 +145,20 @@
 
             <h1>Quản lý hàng hóa</h1>
 
-            @* @await Html.PartialAsync("_ToastNotification") *@
+            @await Html.PartialAsync("_ToastNotification")
+
+            <form asp-action="Search" asp-controller="QuanLyHangHoa" method="get" class="mb-3">
+                <div class="input-group" style="max-width: 420px;">
+                    <input type="text"
+                           name="query"
+                           class="form-control"
+                           placeholder="Nhập tên hàng hóa cần tìm..."
+                           value="@(ViewBag.Query ?? string.Empty)" />
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary" type="submit">Tìm</button>
+                    </div>
+                </div>
+            </form>
 
             <a href="@Url.Action("Create", "QuanLyHangHoa")" class="btn-create">
                 + Thêm hàng hóa mới
@@ -175,7 +188,7 @@
                                     @{
                                         var imageSrc = !string.IsNullOrEmpty(item.Hinh) ?
                                         "~/Hinh/HangHoa/" + item.Hinh :
-                                        "~/Hinh/default-product.jpg";
+                                        "~/Hinh/default-product.png";
                                     }
                                     <img src="@Url.Content(imageSrc)" alt="@item.TenHh" class="product-avatar" />
                                 <td>@Html.DisplayFor(modelItem => item.MaHh)</td>
