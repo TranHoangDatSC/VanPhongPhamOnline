@@ -118,7 +118,7 @@
 <body>
     <div class="container-fluid">
         <div class="container-box">
-            <a href="@Url.Action("IndexNhanVien", "Admin")" class="back-link">← Quay lại trang Admin</a>
+            <a href="@Url.Action(User.IsInRole("Admin") ? "IndexAdmin" : "IndexNhanVien", "Admin")" class="back-link">← Quay lại trang quản trị</a>
 
             <h1>Quản lý hóa đơn</h1>
             <form asp-action="Search" asp-controller="HoaDon" method="get" class="mb-3">
