@@ -1,13 +1,8 @@
 ﻿@model VanPhongPhamOnline.ViewModels.ContactVM
+@{
+    ViewData["Title"] = "Liên hệ";
+}
 
-@if (TempData["Success"] != null)
-{
-    <div class="alert alert-success">@TempData["Success"]</div>
-}
-@if (TempData["Error"] != null)
-{
-    <div class="alert alert-danger">@TempData["Error"]</div>
-}
 <div class="container-fluid">
     <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Liên hệ với chúng tôi</span></h2>
     <div class="row px-xl-5">
@@ -22,7 +17,7 @@
                     <div class="alert alert-danger">@TempData["Error"]</div>
                 }
 
-                @using (Html.BeginForm("Contact", "Home", FormMethod.Post))
+                @using (Html.BeginForm("Index", "Contact", FormMethod.Post))
                 {
                     @Html.AntiForgeryToken()
 

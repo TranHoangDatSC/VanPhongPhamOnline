@@ -1,4 +1,3 @@
-﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using VanPhongPhamOnline.Data;
 using VanPhongPhamOnline.ViewModels;
@@ -13,10 +12,15 @@ namespace VanPhongPhamOnline.Controllers
         {
             db = context;
         }
+
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Index(ContactVM model)
         {
             if (ModelState.IsValid)
@@ -24,6 +28,9 @@ namespace VanPhongPhamOnline.Controllers
                 var gopY = new GopY
                 {
                     MaGy = Guid.NewGuid().ToString(),
+                    MaKh = User.FindFirst("MaKH")?.Value,
+                    HoTenKh = model.Name,
+                    EmailKh = model.Email,
                     NoiDung = model.Subject + " - " + model.Message,
                     NgayGy = DateOnly.FromDateTime(DateTime.Now),
                     DienThoai = "",
@@ -41,18 +48,5 @@ namespace VanPhongPhamOnline.Controllers
 
             return View(model);
         }
-
-        // (Optional) Admin xem danh sách góp ý
-        //[HttpGet]
-        //[Authorize(Roles = "Admin")]
-        //public IActionResult DanhSach()
-        //{
-        //    var list = db.Gopies
-        //                .Where(x => x.MaGy == MaGy)
-        //                .OrderByDescending(x => x.NgayGy)
-        //                .ToList();
-        //    return View(list);
-        //}
-
     }
 }
