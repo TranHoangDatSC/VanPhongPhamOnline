@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using VanPhongPhamOnline.Data;
 using VanPhongPhamOnline.Helpers;
 
 namespace VanPhongPhamOnline.Controllers.Admin
 {
+    [Authorize(Policy = AppAuth.AdminPolicy)]
     public class QuanLyKhachHangController : Controller
     {
         private readonly MultiShopContext _context;
