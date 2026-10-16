@@ -9,11 +9,16 @@
         <div class="col-md-8 col-lg-6">
             <h1 class="text-center mb-4">Đăng nhập Nhân Viên</h1>
 
-            <form asp-action="Index" method="post">
+            @if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success">@TempData["Success"]</div>
+            }
+
+            <form asp-action="Index" asp-route-ReturnUrl="@Context.Request.Query["ReturnUrl"]" method="post">
                 <div class="text-danger mb-3" asp-validation-summary="All"></div>
 
                 <div class="mb-3">
-                    <label asp-for="UserName" class="form-label">Tài khoản <sup>*</sup></label>
+                    <label asp-for="UserName" class="form-label">Email <sup>*</sup></label>
                     <input asp-for="UserName" class="form-control" style="border-radius:12px;" />
                     <span asp-validation-for="UserName" class="text-danger"></span>
                 </div>

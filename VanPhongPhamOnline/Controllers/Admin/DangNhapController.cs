@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using VanPhongPhamOnline.Data;
@@ -10,6 +9,11 @@ namespace VanPhongPhamOnline.Controllers.Admin
 {
     public class DangNhapController : Controller
     {
+        private const string LoginView = "~/Views/Admin/DangNhap/Index.cshtml";
+        private const string QuenMatKhauView = "~/Views/Admin/DangNhap/QuenMatKhau.cshtml";
+        private const string XacNhanMaView = "~/Views/Admin/DangNhap/XacNhanMa.cshtml";
+        private const string DatLaiMatKhauView = "~/Views/Admin/DangNhap/DatLaiMatKhau.cshtml";
+
         private readonly MultiShopContext _context;
         private readonly MyUlti _ulti;
         public DangNhapController(MultiShopContext context, MyUlti ulti)
@@ -18,114 +22,101 @@ namespace VanPhongPhamOnline.Controllers.Admin
             _ulti = ulti;
         }
 
+        #region Login
         [HttpGet]
         public IActionResult Index()
         {
-            return View("~/Views/Admin/DangNhap/Index.cshtml");
+            return View(LoginView);
         }
-        public IActionResult IndexPartial()
-        {
-            var list = _context.NhanViens.ToList();
-            return PartialView("Index", list); // Index.cshtml dùng layout = null hoặc check isPartial
-        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Index(LoginVM model)
+        public async Task<IActionResult> Index(LoginVM model, string? ReturnUrl)
         {
             if (!ModelState.IsValid)
-                return View("~/Views/Admin/DangNhap/Index.cshtml");
+                return View(LoginView);
 
             var nv = _context.NhanViens.FirstOrDefault(x => x.EmailNv == model.UserName);
-
-            if (nv == null)
+            if (nv == null || nv.MatKhauNv != model.Password.ToMd5Hash(nv.RandomKeyNv))
             {
                 ModelState.AddModelError("", "Email hoặc mật khẩu không đúng.");
-                return View("~/Views/Admin/DangNhap/Index.cshtml"); // trả về trang login kèm thông báo
+                return View(LoginView);
             }
-            
-            if (nv.MatKhauNv != model.Password.ToMd5Hash(nv.RandomKeyNv))
-            {
-                ModelState.AddModelError("", "Sai tài khoản hoặc mật khẩu!");
-                return View("~/Views/Admin/DangNhap/Index.cshtml");
-            }
-            //var pc = _context.PhanCongs
-            //    .FirstOrDefault(p => p.MaNv == nv.MaNv && p.HieuLuc == true);
 
-            //if (pc == null)
-            //{
-            //    ModelState.AddModelError("", "Tài khoản chưa được phân công!");
-            //    return View("~/Views/Admin/DangNhap/Index.cshtml");
-            //}
+            if (nv.HieuLuc == false)
+            {
+                ModelState.AddModelError("", "Tài khoản đã bị khóa.");
+                return View(LoginView);
+            }
+
+            var isAdmin = nv.MaNv == AppAuth.AdminId
+                || _context.PhanCongs.Any(p => p.MaNv == nv.MaNv && p.MaPb == AppAuth.AdminDepartment && p.HieuLuc == true);
 
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, nv.HoTenNv),
-                new Claim("MaNV", nv.MaNv)
-                //new Claim("MaPB", pc.MaPb)
+                new Claim(ClaimTypes.Email, nv.EmailNv),
+                new Claim("MaNV", nv.MaNv),
+                new Claim(ClaimTypes.Role, isAdmin ? AppAuth.AdminRole : AppAuth.StaffRole)
             };
 
-            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-            var principal = new ClaimsPrincipal(claimsIdentity);
+            var claimsIdentity = new ClaimsIdentity(claims, AppAuth.StaffScheme);
+            await HttpContext.SignInAsync(AppAuth.StaffScheme, new ClaimsPrincipal(claimsIdentity));
             HttpContext.Session.SetString("MaNV", nv.MaNv);
-            await HttpContext.SignInAsync(principal);
 
-            if(nv.MaNv== "AD001")
+            if (!string.IsNullOrEmpty(ReturnUrl) && Url.IsLocalUrl(ReturnUrl))
             {
-                return View("~/Views/Admin/IndexAdmin.cshtml");
+                return Redirect(ReturnUrl);
             }
-            else
-            {
-                return View("~/Views/Admin/IndexNhanVien.cshtml");
-            }
+
+            return isAdmin
+                ? RedirectToAction("IndexAdmin", "Admin")
+                : RedirectToAction("IndexNhanVien", "Admin");
         }
 
         public async Task<IActionResult> DangXuat()
         {
-            await HttpContext.SignOutAsync("AdminCookie");
-            await HttpContext.SignOutAsync("KhachHang");
+            HttpContext.Session.Remove("MaNV");
+            await HttpContext.SignOutAsync(AppAuth.StaffScheme);
             return RedirectToAction("Index", "Home");
         }
 
+        public IActionResult AccessDenied()
+        {
+            return View("~/Views/Shared/AccessDenied.cshtml");
+        }
+        #endregion
+
+        #region Forgot password
         [HttpGet]
         public IActionResult QuenMatKhau()
         {
-            return View("~/Views/Admin/DangNhap/QuenMatKhau.cshtml");
-
+            return View(QuenMatKhauView);
         }
+
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult QuenMatKhau(QuenMatKhauVM model)
         {
             if (!ModelState.IsValid)
-                return View("~/Views/Admin/DangNhap/Index.cshtml");
+                return View(QuenMatKhauView, model);
 
             var nv = _context.NhanViens.FirstOrDefault(x => x.EmailNv == model.Email);
             if (nv == null)
             {
                 ModelState.AddModelError("", "Email này chưa được đăng ký.");
-                return View("~/Views/Admin/DangNhap/Index.cshtml");
+                return View(QuenMatKhauView, model);
             }
 
-            // Tạo mã OTP ngẫu nhiên
-            var otp = new Random().Next(100000, 999999).ToString();
-            var expireTime = DateTime.Now.AddMinutes(5);
+            var otp = OtpHelper.Generate(HttpContext.Session, model.Email);
 
-            // Lưu vào session
-            HttpContext.Session.SetString("OTP", otp);
-            HttpContext.Session.SetString("OTP_Email", model.Email);
-            HttpContext.Session.SetString("OTP_Expire", expireTime.ToString("O")); // ISO 8601 format
-
-            // Gửi email
             var subject = "Xác nhận đặt lại mật khẩu - MultiShop";
-            var content = $@"Xin chào {nv.HoTenNv}, mã OTP đặt lại mật khẩu của bạn là: {otp}. Mã có hiệu lực trong 5 phút. Đừng chia sẻ mã này cho bất kỳ ai.";
-
+            var content = $@"Xin chào {nv.HoTenNv}, mã OTP đặt lại mật khẩu của bạn là: <b>{otp}</b>. Mã có hiệu lực trong {OtpHelper.ExpireMinutes} phút. Đừng chia sẻ mã này cho bất kỳ ai.";
             _ulti.SendMail(nv.EmailNv, subject, content);
-
 
             TempData["Email"] = model.Email;
             return RedirectToAction("XacNhanMa");
         }
-
-
 
         [HttpGet]
         public IActionResult XacNhanMa()
@@ -134,44 +125,23 @@ namespace VanPhongPhamOnline.Controllers.Admin
             if (string.IsNullOrEmpty(email))
                 return RedirectToAction("QuenMatKhau");
 
-            return View("~/Views/Admin/DangNhap/XacNhanMa.cshtml", new XacNhanMaVM { Email = email });
+            return View(XacNhanMaView, new XacNhanMaVM { Email = email });
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult XacNhanMa(XacNhanMaVM model)
         {
             if (!ModelState.IsValid)
-                return View("~/Views/Admin/DangNhap/XacNhanMa.cshtml", model);
+                return View(XacNhanMaView, model);
 
-            var otp = HttpContext.Session.GetString("OTP");
-            var otpEmail = HttpContext.Session.GetString("OTP_Email");
-            var otpExpireStr = HttpContext.Session.GetString("OTP_Expire");
-
-            if (otp == null || otpEmail == null || otpExpireStr == null)
+            var error = OtpHelper.Verify(HttpContext.Session, model.Email, model.MaXacNhan);
+            if (error != null)
             {
-                ModelState.AddModelError("", "Mã xác nhận đã hết hạn hoặc không hợp lệ.");
-                return View("~/Views/Admin/DangNhap/XacNhanMa.cshtml", model);
+                ModelState.AddModelError("", error);
+                return View(XacNhanMaView, model);
             }
 
-            if (otpEmail != model.Email)
-            {
-                ModelState.AddModelError("", "Email không khớp với mã xác nhận.");
-                return View("~/Views/Admin/DangNhap/XacNhanMa.cshtml", model);
-            }
-
-            if (otp != model.MaXacNhan)
-            {
-                ModelState.AddModelError("", "Mã xác nhận không chính xác.");
-                return View("~/Views/Admin/DangNhap/XacNhanMa.cshtml", model);
-            }
-
-            if (DateTime.TryParse(otpExpireStr, out var otpExpire) && DateTime.Now > otpExpire)
-            {
-                ModelState.AddModelError("", "Mã xác nhận đã hết hạn.");
-                return View("~/Views/Admin/DangNhap/XacNhanMa.cshtml", model);
-            }
-
-            // Thành công → lưu lại email qua TempData
             TempData["Email"] = model.Email;
             return RedirectToAction("DatLaiMatKhau");
         }
@@ -180,36 +150,39 @@ namespace VanPhongPhamOnline.Controllers.Admin
         public IActionResult DatLaiMatKhau()
         {
             var email = TempData["Email"]?.ToString();
-            if (string.IsNullOrEmpty(email))
+            if (string.IsNullOrEmpty(email) || !OtpHelper.IsVerified(HttpContext.Session, email))
                 return RedirectToAction("QuenMatKhau");
 
-            return View("~/Views/Admin/DangNhap/DatLaiMatKhau.cshtml", new DatLaiMatKhauVM { Email = email });
+            return View(DatLaiMatKhauView, new DatLaiMatKhauVM { Email = email });
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult DatLaiMatKhau(DatLaiMatKhauVM model)
         {
-            if (!ModelState.IsValid)
-                return View("~/Views/Admin/DangNhap/DatLaiMatKhau.cshtml", model);
+            // Chỉ cho phép đặt lại mật khẩu khi email đã xác nhận OTP thành công
+            if (!OtpHelper.IsVerified(HttpContext.Session, model.Email))
+                return RedirectToAction("QuenMatKhau");
 
-            var kh = _context.NhanViens.FirstOrDefault(x => x.EmailNv == model.Email);
-            if (kh == null)
+            if (!ModelState.IsValid)
+                return View(DatLaiMatKhauView, model);
+
+            var nv = _context.NhanViens.FirstOrDefault(x => x.EmailNv == model.Email);
+            if (nv == null)
             {
                 ModelState.AddModelError("", "Không tìm thấy tài khoản.");
-                return View("~/Views/Admin/DangNhap/DatLaiMatKhau.cshtml", model);
+                return View(DatLaiMatKhauView, model);
             }
 
-            kh.RandomKeyNv = MyUlti.GenerateRandomKey();
-            kh.MatKhauNv = model.MatKhauMoi.ToMd5Hash(kh.RandomKeyNv);
+            nv.RandomKeyNv = MyUlti.GenerateRandomKey();
+            nv.MatKhauNv = model.MatKhauMoi.ToMd5Hash(nv.RandomKeyNv);
             _context.SaveChanges();
 
-            // Xoá OTP trong session sau khi dùng
-            HttpContext.Session.Remove("OTP");
-            HttpContext.Session.Remove("OTP_Email");
-            HttpContext.Session.Remove("OTP_Expire");
+            OtpHelper.Clear(HttpContext.Session);
 
             TempData["Success"] = "Mật khẩu đã được cập nhật. Vui lòng đăng nhập lại.";
             return RedirectToAction("Index");
         }
+        #endregion
     }
 }
